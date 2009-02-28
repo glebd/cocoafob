@@ -1,28 +1,96 @@
-Generate private EC key
-=======================
+CocoaFob
+========
 
-openssl ecparam -out ec.pem -name secp160k1 -genkey
+TABLE OF CONTENTS
+=================
 
-Write public EC key
-===================
+1. DESCRIPTION
+2. USAGE
+3. GENERATING KEYS
+4. LICENCE
+5. CREDITS
 
-openssl ec -in ecc.pem -pubout -out ecpub.pem
+1. DESCRIPTION
+==============
+
+CocoaFob is a set of helper code snippets for registration code generation and
+verification in Objective-C applications, integrated with registration code
+generation in Potion Store <http://www.potionfactory.com/potionstore>.
+
+The current implementation uses DSA to generate registration keys, which
+significantly reduces chances of crackers producing key generators for your
+application. Unfortunately, it also means the registration code can be quite
+long.
+
+To make registration codes human-readable, CocoaFob encodes them using a
+slightly modified Base32 to avoid ambiguous characters. It also groups codes
+in sets of five characters separated by dashes. A sample registration code may
+look like this:
+
+GAWQE-FCUGU-7Z5JE-WEVRA-PSGEQ-Y25KX-9ZJQQ-GJTQC-CUAJL-ATBR9-WV887-8KAJM-QK7DT-EZHXJ-CR99C-A
+
+One of the advantages of DSA is that for a given registration name, each
+generated code is different, as there is a random element introduced during
+the process.
+
+Providing a Registration Source String
+--------------------------------------
+
+To register an application that uses CocoaFob, it is necessary to provide a
+string of source information, which may be as simple as a registration name
+and arbitrarily complex in case your application is processing the included
+information in a user-friendly way. For example, as suggested in the sample
+implementation of Potion Store licence generator, a source string may contain
+application name, user name and number of copies:
+
+decloner|Joe Bloggs|1
+
+When sending registration mail, you need to provide both the source string and
+the registration code. Potion Store does this for you. However, small
+modifications are needed to make automatic activation work.
+
+Automatic Activation
+--------------------
+
+Potion Store supports automatic activation of an installed application by
+clicking on a special link in a registration email or on the Thank You store
+page. For this to work, you need to:
+
+- make your application support a registration URL scheme;
+
+- modify Potion Store so that automatic activation link contains not only
+  registration code, but registration source string as well.
+
+2. USAGE
+========
+
+<to be written>
+
+3. GENERATING KEYS
+==================
 
 Convert DSA private key from PEM to DER format
-==============================================
+----------------------------------------------
 
 openssl dsa -inform PEM -outform DER -in dsapriv512.pem -out dsapriv512.der
 
 Extract public key from private key
-===================================
+-----------------------------------
 
 openssl dsa -in dsapriv512.pem -pubout -out dsapub512.pem
 
 openssl dsa -in dsapriv512.der -pubout -out dsapub512.der -inform DER \
 -outform DER
 
-Credits
-=======
+4. LICENCE
+==========
+
+CocoaFob is distributed under Creative Commons Attribution 3.0 License
+<http://creativecommons.org/licenses/by/3.0/>. Attribution may take form of a
+mention in your application About box or other documentation.
+
+5. CREDITS
+==========
 
 The Base32 implementation is Copyright (C) 2007 by Samuel Tesla and comes from
 Ruby base32 gem: http://rubyforge.org/projects/base32/. Samuel Tesla's blog is
