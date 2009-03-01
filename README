@@ -19,8 +19,8 @@ generation in Potion Store <http://www.potionfactory.com/potionstore>.
 
 The current implementation uses DSA to generate registration keys, which
 significantly reduces chances of crackers producing key generators for your
-application. Unfortunately, it also means the registration code can be quite
-long.
+software. Unfortunately, it also means the registration code can be quite long
+and has variable length.
 
 To make registration codes human-readable, CocoaFob encodes them using a
 slightly modified Base32 to avoid ambiguous characters. It also groups codes
@@ -85,6 +85,10 @@ openssl dsa -in dsapriv512.der -pubout -out dsapub512.der -inform DER \
 4. LICENCE
 ==========
 
+CocoaFob is Copyright (C) 2009 PixelEspresso
+<http://www.pixelespressoapps.com>. All rights reserved. Written by Gleb
+Dolgich (Twitter: @gbd)
+
 CocoaFob is distributed under Creative Commons Attribution 3.0 License
 <http://creativecommons.org/licenses/by/3.0/>. Attribution may take form of a
 mention in your application About box or other documentation.
@@ -93,5 +97,5 @@ mention in your application About box or other documentation.
 ==========
 
 The Base32 implementation is Copyright (C) 2007 by Samuel Tesla and comes from
-Ruby base32 gem: http://rubyforge.org/projects/base32/. Samuel Tesla's blog is
-at http://blog.alieniloquent.com/tag/base32/.
+Ruby base32 gem: <http://rubyforge.org/projects/base32/>. Samuel Tesla's blog
+is at <http://blog.alieniloquent.com/tag/base32/>.
