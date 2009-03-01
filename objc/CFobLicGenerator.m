@@ -1,37 +1,38 @@
 //
-//  PxLicGenerator.m
-//  pxlic
+//  CFobLicGenerator.m
+//  CocoaFob
 //
 //  Created by Gleb Dolgich on 09/02/2009.
 //  Follow me on Twitter @gbd.
-//  Copyright 2009 PixelEspresso. All rights reserved.
+//  Copyright (C) 2009 PixelEspresso. All rights reserved.
+//  Licensed under CC Attribution Licence <http://creativecommons.org/licenses/by/3.0/>
 //
 
 #import "NSData+PECrypt.h"
 #import "NSString+PECrypt.h"
-#import "PxLicGenerator.h"
+#import "CFobLicGenerator.h"
 #import <openssl/evp.h>
 #import <openssl/err.h>
 #import <openssl/pem.h>
 
 
-@interface PxLicGenerator ()
+@interface CFobLicGenerator ()
 - (void)initOpenSSL;
 - (void)shutdownOpenSSL;
 @end
 
 
-@implementation PxLicGenerator
+@implementation CFobLicGenerator
 
 @synthesize regName;
-@synthesize regKey;
+@synthesize regCode;
 @synthesize lastError;
 
 #pragma mark -
 #pragma mark Class methods
 
 + (id)generatorWithPrivateKey:(NSString *)privKey {
-    return [[[PxLicGenerator alloc] initWithPrivateKey:privKey] autorelease];
+    return [[[CFobLicGenerator alloc] initWithPrivateKey:privKey] autorelease];
 }
 
 #pragma mark -
@@ -52,7 +53,7 @@
 - (void)dealloc {
     if (dsa)
         DSA_free(dsa);
-    self.regKey = nil;
+    self.regCode = nil;
     self.regName = nil;
     self.lastError = nil;
     [self shutdownOpenSSL];
@@ -87,7 +88,7 @@
 }
 
 - (BOOL)generate {
-    if (!regName || ![regName length] || !dsa || !dsa->priv_key)
+    if (![regName length] || !dsa || !dsa->priv_key)
         return NO;
     NSData *digest = [regName sha1];
     unsigned int siglen;
@@ -116,7 +117,7 @@
         [serial insertString:@"-" atIndex:index];
         index += 6;
     }
-    self.regKey = serial;
+    self.regCode = serial;
     return YES;
 }
 

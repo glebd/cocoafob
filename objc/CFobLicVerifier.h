@@ -1,40 +1,41 @@
 //
-//  PxLicVerifier.h
-//  pxlic
+//  CFobLicVerifier.h
+//  CocoaFob
 //
 //  Created by Gleb Dolgich on 06/02/2009.
 //  Follow me on Twitter @gbd.
 //  Copyright 2009 PixelEspresso. All rights reserved.
+//  Licensed under CC Attribution License <http://creativecommons.org/licenses/by/3.0/>
 //
 
 #import <Foundation/Foundation.h>
 #import <openssl/dsa.h>
 
 /*!
-    @class       PxLicVerifier 
+    @class       CFobLicVerifier 
     @superclass  NSObject
-    @abstract    Verifies PxLic-style registration key.
-    @discussion  Verifies PxLic-style registration key given licensing information (application name, user name, and number of copies as suggested in Potion Store) and signature in human-readable format. A signature is a base32-encoded bignum with padding removed and dashes inserted.
+    @abstract    Verifies CocoaFob-style registration key.
+    @discussion  Verifies CocoaFob-style registration key given licensing information (for example, application name, user name, and number of copies as suggested in Potion Store) and signature in human-readable format. A signature is a base32-encoded bignum with padding removed and dashes inserted.
 */
-@interface PxLicVerifier : NSObject {
+@interface CFobLicVerifier : NSObject {
     DSA *dsa;
     NSString *regName;
-    NSString *regKey;
+    NSString *regCode;
     NSArray *blacklist;
     NSString *lastError;
 }
 
 @property (nonatomic, copy) NSString *regName;
-@property (nonatomic, copy) NSString *regKey;
+@property (nonatomic, copy) NSString *regCode;
 @property (nonatomic, retain) NSArray *blacklist;
 @property (nonatomic, copy) NSString *lastError;
 
 /*!
     @method     verifierWithPublicKey:
-    @abstract   Creates a new PxLic verifier object given a DSA public key.
-    @discussion Creates a new PxLic verifier object. Use setRegName: and setRegKey: on it, then call verify to verify registration key.
+    @abstract   Creates a new registration code verifier object given a DSA public key.
+    @discussion Creates a new registration code verifier object. Use setRegName: and setRegKey: on it, then call verify to verify registration key.
     @param      pubKey A DSA public key in PEM encoding. See completePublicKeyPEM: for help on how to construct a PEM-encoded DSA public key.
-    @result     A new autoreleased PxLic verifier object.
+    @result     A new autoreleased registration code verifier object.
 */
 + (id)verifierWithPublicKey:(NSString *)pubKey;
 
@@ -50,9 +51,9 @@
 /*!
     @method     initWithPublicKey:
     @abstract   Designated initialiser.
-    @discussion Initialises a newly allocated PxLicVerifier object with a PEM-encoded DSA public key.
+    @discussion Initialises a newly allocated registration code verifier object with a PEM-encoded DSA public key.
     @param      pubKey A PEM-encoded DSA public key. See completePublicKeyPEM: for help on how to constuct a PEM-encoded DSA key string from base64-encoded lines.
-    @result     An initialised PxLicVerifier object.
+    @result     An initialised registration code verifier object.
 */
 - (id)initWithPublicKey:(NSString *)pubKey;
 
@@ -64,6 +65,13 @@
     @result     YES on success, NO on error (check lastError property).
 */
 - (BOOL)setPublicKey:(NSString *)pubKey;
+
+/*!
+    @method     verify
+    @abstract   Verifies registration code in the regName property using public DSA key.
+    @discussion Takes regName and regCode properties and verifies regCode against regName using public DSA certificate.
+    @result     YES if regCode is valid, NO if not.
+*/
 - (BOOL)verify;
 
 @end

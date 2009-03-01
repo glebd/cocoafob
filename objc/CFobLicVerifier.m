@@ -1,30 +1,31 @@
 //
-//  PxLicVerifier.m
-//  pxlic
+//  CFobLicVerifier.m
+//  CocoaFob
 //
 //  Created by Gleb Dolgich on 06/02/2009.
 //  Follow me on Twitter @gbd.
 //  Copyright 2009 PixelEspresso. All rights reserved.
+//  Licensed under CC Attribution License <http://creativecommons.org/licenses/by/3.0/>
 //
 
 #import "NSString+PECrypt.h"
-#import "PxLicVerifier.h"
+#import "CFobLicVerifier.h"
 #import "decoder.h"
 #import <openssl/evp.h>
 #import <openssl/err.h>
 #import <openssl/pem.h>
 
 
-@interface PxLicVerifier ()
+@interface CFobLicVerifier ()
 - (void)initOpenSSL;
 - (void)shutdownOpenSSL;
 @end
 
 
-@implementation PxLicVerifier
+@implementation CFobLicVerifier
 
 @synthesize regName;
-@synthesize regKey;
+@synthesize regCode;
 @synthesize blacklist;
 @synthesize lastError;
 
@@ -32,7 +33,7 @@
 #pragma mark Class methods
 
 + (id)verifierWithPublicKey:(NSString *)pubKey {
-    return [[[PxLicVerifier alloc] initWithPublicKey:pubKey] autorelease];
+    return [[[CFobLicVerifier alloc] initWithPublicKey:pubKey] autorelease];
 }
 
 + (NSString *)completePublicKeyPEM:(NSString *)partialPEM {
@@ -81,7 +82,7 @@
     if (dsa)
         DSA_free(dsa);
     self.regName = nil;
-    self.regKey = nil;
+    self.regCode = nil;
     self.blacklist = nil;
     self.lastError = nil;
     [self shutdownOpenSSL];
@@ -116,11 +117,11 @@
 }
 
 - (BOOL)verify {
-    if (!regName || ![regName length] || !dsa || !dsa->pub_key)
+    if (![regName length] || !dsa || !dsa->pub_key)
         return NO;
     BOOL result = NO;
     // Replace 9s with Is and 8s with Os
-    NSString *regKeyTemp = [regKey stringByReplacingOccurrencesOfString:@"9" withString:@"I"];
+    NSString *regKeyTemp = [regCode stringByReplacingOccurrencesOfString:@"9" withString:@"I"];
     NSString *regKeyBase32 = [regKeyTemp stringByReplacingOccurrencesOfString:@"8" withString:@"O"];
     // Remove dashes from the registration key if they are there (dashes are optional).
     NSString *keyNoDashes = [regKeyBase32 stringByReplacingOccurrencesOfString:@"-" withString:@""];

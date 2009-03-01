@@ -10,6 +10,13 @@
 		8DD76F9A0486AA7600D96B5E /* cocoafob.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* cocoafob.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		8DD76F9F0486AA7600D96B5E /* cocoafob.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* cocoafob.1 */; };
+		C7E378450F59D737002061CD /* decoder.c in Sources */ = {isa = PBXBuildFile; fileRef = C7E378410F59D737002061CD /* decoder.c */; };
+		C7E378460F59D737002061CD /* encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = C7E378430F59D737002061CD /* encoder.c */; };
+		C7E3784F0F59DB15002061CD /* CFobLicGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E378480F59DB15002061CD /* CFobLicGenerator.m */; };
+		C7E378500F59DB15002061CD /* CFobLicVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E3784A0F59DB15002061CD /* CFobLicVerifier.m */; };
+		C7E378510F59DB15002061CD /* NSData+PECrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E3784C0F59DB15002061CD /* NSData+PECrypt.m */; };
+		C7E378520F59DB15002061CD /* NSString+PECrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E3784E0F59DB15002061CD /* NSString+PECrypt.m */; };
+		C7E3788D0F5A2BDB002061CD /* libcrypto.0.9.7.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C7E3788C0F5A2BDB002061CD /* libcrypto.0.9.7.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +38,19 @@
 		32A70AAB03705E1F00C91783 /* cocoafob_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocoafob_Prefix.pch; sourceTree = "<group>"; };
 		8DD76FA10486AA7600D96B5E /* cocoafob */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocoafob; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859EA3029092ED04C91782 /* cocoafob.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = cocoafob.1; sourceTree = "<group>"; };
+		C7E378410F59D737002061CD /* decoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = decoder.c; sourceTree = "<group>"; };
+		C7E378420F59D737002061CD /* decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decoder.h; sourceTree = "<group>"; };
+		C7E378430F59D737002061CD /* encoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = encoder.c; sourceTree = "<group>"; };
+		C7E378440F59D737002061CD /* encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encoder.h; sourceTree = "<group>"; };
+		C7E378470F59DB15002061CD /* CFobLicGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFobLicGenerator.h; sourceTree = "<group>"; };
+		C7E378480F59DB15002061CD /* CFobLicGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFobLicGenerator.m; sourceTree = "<group>"; };
+		C7E378490F59DB15002061CD /* CFobLicVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFobLicVerifier.h; sourceTree = "<group>"; };
+		C7E3784A0F59DB15002061CD /* CFobLicVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFobLicVerifier.m; sourceTree = "<group>"; };
+		C7E3784B0F59DB15002061CD /* NSData+PECrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+PECrypt.h"; sourceTree = "<group>"; };
+		C7E3784C0F59DB15002061CD /* NSData+PECrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+PECrypt.m"; sourceTree = "<group>"; };
+		C7E3784D0F59DB15002061CD /* NSString+PECrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PECrypt.h"; sourceTree = "<group>"; };
+		C7E3784E0F59DB15002061CD /* NSString+PECrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PECrypt.m"; sourceTree = "<group>"; };
+		C7E3788C0F5A2BDB002061CD /* libcrypto.0.9.7.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.0.9.7.dylib; path = usr/lib/libcrypto.0.9.7.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +59,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */,
+				C7E3788D0F5A2BDB002061CD /* libcrypto.0.9.7.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +80,12 @@
 		08FB7795FE84155DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				C7E378540F59DB33002061CD /* Base32 */,
+				C7E378530F59DB1E002061CD /* PECategories */,
+				C7E378470F59DB15002061CD /* CFobLicGenerator.h */,
+				C7E378480F59DB15002061CD /* CFobLicGenerator.m */,
+				C7E378490F59DB15002061CD /* CFobLicVerifier.h */,
+				C7E3784A0F59DB15002061CD /* CFobLicVerifier.m */,
 				32A70AAB03705E1F00C91783 /* cocoafob_Prefix.pch */,
 				08FB7796FE84155DC02AAC07 /* cocoafob.m */,
 			);
@@ -68,6 +95,7 @@
 		08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				C7E3788C0F5A2BDB002061CD /* libcrypto.0.9.7.dylib */,
 				08FB779EFE84155DC02AAC07 /* Foundation.framework */,
 			);
 			name = "External Frameworks and Libraries";
@@ -87,6 +115,28 @@
 				C6859EA3029092ED04C91782 /* cocoafob.1 */,
 			);
 			name = Documentation;
+			sourceTree = "<group>";
+		};
+		C7E378530F59DB1E002061CD /* PECategories */ = {
+			isa = PBXGroup;
+			children = (
+				C7E3784B0F59DB15002061CD /* NSData+PECrypt.h */,
+				C7E3784C0F59DB15002061CD /* NSData+PECrypt.m */,
+				C7E3784D0F59DB15002061CD /* NSString+PECrypt.h */,
+				C7E3784E0F59DB15002061CD /* NSString+PECrypt.m */,
+			);
+			name = PECategories;
+			sourceTree = "<group>";
+		};
+		C7E378540F59DB33002061CD /* Base32 */ = {
+			isa = PBXGroup;
+			children = (
+				C7E378410F59D737002061CD /* decoder.c */,
+				C7E378420F59D737002061CD /* decoder.h */,
+				C7E378430F59D737002061CD /* encoder.c */,
+				C7E378440F59D737002061CD /* encoder.h */,
+			);
+			name = Base32;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +183,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DD76F9A0486AA7600D96B5E /* cocoafob.m in Sources */,
+				C7E378450F59D737002061CD /* decoder.c in Sources */,
+				C7E378460F59D737002061CD /* encoder.c in Sources */,
+				C7E3784F0F59DB15002061CD /* CFobLicGenerator.m in Sources */,
+				C7E378500F59DB15002061CD /* CFobLicVerifier.m in Sources */,
+				C7E378510F59DB15002061CD /* NSData+PECrypt.m in Sources */,
+				C7E378520F59DB15002061CD /* NSString+PECrypt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
