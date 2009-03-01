@@ -106,3 +106,5 @@ mention in your application About box or other documentation.
 Base32 implementation is Copyright (C) 2007 by Samuel Tesla and comes from
 Ruby base32 gem: <http://rubyforge.org/projects/base32/>. Samuel Tesla's blog
 is at <http://blog.alieniloquent.com/tag/base32/>.
+
+OpenSSL key generation HOWTO: <http://www.openssl.org/docs/HOWTO/keys.txt>
