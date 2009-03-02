@@ -22,7 +22,7 @@ void test() {
 	"kxhtRm6qtcywg01X847Y9ySgNepqleD+Ka2Wbucj1pOry8MoDQIVAIXgAB9GBLh4\n"
 	"keUwLHBtpClnD5E8\n"
 	"-----END DSA PRIVATE KEY-----\n";
-	NSString *regName = @"Joe Bloggs";
+	NSString *regName = @"decloner|Joe Bloggs";
 	CFobLicGenerator *generator = [CFobLicGenerator generatorWithPrivateKey:privKey];
 	generator.regName = regName;
 	[generator generate];
@@ -56,12 +56,35 @@ void test() {
 		puts("FAIL");
 }
 
-int main (int argc, const char * argv[]) {
+NSString *codegen(NSString *privKeyFileName, NSString *regName) {
+	NSString *privKey = [NSString stringWithContentsOfFile:privKeyFileName];
+	if (!privKey)
+		return nil;
+	CFobLicGenerator *generator = [CFobLicGenerator generatorWithPrivateKey:privKey];
+	generator.regName = regName;
+	if (![generator generate])
+		return nil;
+	return generator.regCode;
+}
+
+int main(int argc, const char * argv[]) {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+	
+	puts("CocoaFob Command Line Utility Version 1.0b1");
 
-	test();
-
-	printf("CocoaFob Command Line Utility Version 1.0b1");
+	//test();
+	NSUserDefaults *args = [NSUserDefaults standardUserDefaults];
+	NSString *privKeyFileName = [args stringForKey:@"privkey"];
+	NSString *regName = [args stringForKey:@"name"];
+	if (!privKeyFileName || !regName) {
+		puts("Usage: cocoafob -privkey <priv-key-file> -name <reg-name>");
+		return 1;
+	}
+	NSString *regCode = codegen(privKeyFileName, regName);
+	if (!regCode)
+		puts("Error");
+	else
+		puts([regCode UTF8String]);
 	[pool drain];
 	return 0;
 }
