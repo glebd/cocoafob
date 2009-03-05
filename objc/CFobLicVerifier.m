@@ -8,6 +8,7 @@
 //  Licensed under CC Attribution License <http://creativecommons.org/licenses/by/3.0/>
 //
 
+#import "NSString-Base64Extensions.h"
 #import "NSString+PECrypt.h"
 #import "CFobLicVerifier.h"
 #import "decoder.h"
