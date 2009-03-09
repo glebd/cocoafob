@@ -118,7 +118,7 @@
 }
 
 - (BOOL)verify {
-	if (![regName length] || !dsa || !dsa->pub_key)
+	if (![regName length] || ![regCode length] || !dsa || !dsa->pub_key)
 		return NO;
 	BOOL result = NO;
 	// Replace 9s with Is and 8s with Os
@@ -131,10 +131,14 @@
 	int paddedLength = keyLength%8 ? (keyLength/8 + 1)*8 : keyLength;
 	NSString *keyBase32 = [keyNoDashes stringByPaddingToLength:paddedLength withString:@"=" startingAtIndex:0];
 	const char *keyBase32Utf8 = [keyBase32 UTF8String];
+	if (!keyBase32Utf8)
+		return NO;
 	size_t base32Length = strlen(keyBase32Utf8);
 	// Prepare a buffer for decoding base32-encoded signature.
 	size_t decodeBufSize = base32_decoder_buffer_size(base32Length);
 	unsigned char *sig = malloc(decodeBufSize);
+	if (!sig)
+		return NO;
 	// Decode signature from Base32 to a byte buffer.
 	size_t sigSize = base32_decode(sig, decodeBufSize, (unsigned char *)keyBase32Utf8, base32Length);
 	if (!sigSize)
