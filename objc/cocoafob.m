@@ -5,14 +5,16 @@
 //  Created by Gleb Dolgich on 09/02/2009.
 //  Follow me on Twitter @gbd.
 //  Copyright (C) 2009 PixelEspresso. All rights reserved.
-//  Licensed under CC Attribution License <http://creativecommons.org/licenses/by/3.0/>
+//  Licensed under CC Attribution License 3.0 <http://creativecommons.org/licenses/by/3.0/>
 //
 
 #import <Foundation/Foundation.h>
 #import "CFobLicGenerator.h"
 #import "CFobLicVerifier.h"
 
-void test() {
+// This function just generates a registration code and then verifies it.
+void smoketest()
+{
 	// No need to obfuscate this as you won't ever distribute your private key.
 	NSString *privKey = @"-----BEGIN DSA PRIVATE KEY-----\n"
 	"MIH5AgEAAkEA8wm04e0QcQRoAVJWWnUw/4rQEKbLKjujJu6oyEv7Y2oT3itY5pbO\n"
@@ -27,7 +29,8 @@ void test() {
 	generator.regName = regName;
 	[generator generate];
 	
-	// AquaticPrime uses this method to obfuscate public key embedded in the source.
+	// Modelled after AquaticPrime's method of splitting public key to obfuscate it.
+	// It is probably better if you invent your own splitting pattern. Go wild.
 	NSMutableString *pubKeyBase64 = [NSMutableString string];
 	[pubKeyBase64 appendString:@"MIHxMIGoBgcqhkj"];
 	[pubKeyBase64 appendString:@"OOAQBMIGcAkEA8wm04e0QcQRoAVJW"];
@@ -56,7 +59,9 @@ void test() {
 		puts("FAIL");
 }
 
-NSString *codegen(NSString *privKeyFileName, NSString *regName) {
+// Pass private key file name and registration name string to generate an autoreleased string containing registration code.
+NSString *codegen(NSString *privKeyFileName, NSString *regName) 
+{
 	NSString *privKey = [NSString stringWithContentsOfFile:privKeyFileName];
 	if (!privKey)
 		return nil;
@@ -67,7 +72,12 @@ NSString *codegen(NSString *privKeyFileName, NSString *regName) {
 	return generator.regCode;
 }
 
-int main(int argc, const char * argv[]) {
+// Uses NSUserDefaults to parse command-line arguments:
+// -privkey <private-key-file-name>
+// -name <registration-name>
+// Prints generated registration code.
+int main(int argc, const char * argv[])
+{
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	
 	puts("CocoaFob Command Line Utility Version 1.0b1");
@@ -81,10 +91,13 @@ int main(int argc, const char * argv[]) {
 		return 1;
 	}
 	NSString *regCode = codegen(privKeyFileName, regName);
-	if (!regCode)
+	int retval = 0;
+	if (!regCode) {
 		puts("Error");
-	else
+		retval = 2;
+	} else {
 		puts([regCode UTF8String]);
+	}
 	[pool drain];
-	return 0;
+	return retval;
 }

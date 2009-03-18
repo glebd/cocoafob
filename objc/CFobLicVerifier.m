@@ -5,7 +5,7 @@
 //  Created by Gleb Dolgich on 06/02/2009.
 //  Follow me on Twitter @gbd.
 //  Copyright 2009 PixelEspresso. All rights reserved.
-//  Licensed under CC Attribution License <http://creativecommons.org/licenses/by/3.0/>
+//  Licensed under CC Attribution License 3.0 <http://creativecommons.org/licenses/by/3.0/>
 //
 
 #import "NSString-Base64Extensions.h"
