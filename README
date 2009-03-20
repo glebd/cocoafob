@@ -5,10 +5,11 @@ TABLE OF CONTENTS
 =================
 
 1. DESCRIPTION
-2. USAGE
-3. GENERATING KEYS
-4. LICENCE
-5. CREDITS
+2. FEATURES
+3. USAGE
+4. GENERATING KEYS
+5. LICENCE
+6. CREDITS
 
 1. DESCRIPTION
 ==============
@@ -33,12 +34,28 @@ One of the advantages of DSA is that for a given registration name, each
 generated code is different, as there is a random element introduced during
 the process.
 
+2. FEATURES
+===========
+
+(to be written)
+
+3. USAGE
+========
+
+The best way to get the latest version of the code is to clone the main Git
+repository:
+
+git://github.com/gbd/cocoafob.git
+
+You can also download the latest version from the CocoaFob home page at
+<http://github.com/gbd/cocoafob/>.
+
 Providing a Registration Source String
 --------------------------------------
 
 To register an application that uses CocoaFob, it is necessary to provide a
 string of source information, which may be as simple as a registration name
-and arbitrarily complex in case your application is processing the included
+or arbitrarily complex in case your application is processing the included
 information in a user-friendly way. For example, as suggested in the sample
 implementation of Potion Store licence generator, a source string may contain
 application name, user name and number of copies:
@@ -49,8 +66,8 @@ When sending registration mail, you need to provide both the source string and
 the registration code. Potion Store does this for you. However, small
 modifications are needed to make automatic activation work.
 
-Automatic Activation
---------------------
+Generating automatic activation URLs
+------------------------------------
 
 Potion Store supports automatic activation of an installed application by
 clicking on a special link in a registration email or on the Thank You store
@@ -61,35 +78,97 @@ page. For this to work, you need to:
 - modify Potion Store so that automatic activation link contains not only
   registration code, but registration source string as well.
 
-<more info coming>
+The stock implementation of Potion Store registration code support assumes a
+registration code is all that is needed to register an application. However,
+CocoaFob needs to know both registration name and registration code in order
+to verify the licence. This means when Potion Store generates an automatic
+registration URL for your application, it needs to include registration source
+string in it. One of the possible solutions is as follows:
 
-2. USAGE
-========
+- In the file app/models/line_item.rb, add the following line at the top:
 
-<to be written>
+    require base64
 
-3. GENERATING KEYS
+- In the same file find function called license_url--it's near the bottom of
+  the file. Replace it with the following (or modify to your heart's content):
+
+    def license_url
+      licensee_name_b64 = Base64.encode64(self.order.licensee_name)
+      return "#{self.product.license_url_scheme}://#{licensee_name_b64}/#{self.license_key}" rescue nil
+    end
+
+This will make generated registration codes to contain base64-encoded licensee
+name. When your application is opened by clicking on the registration link, it
+will parse the code, extract the registration name and use it to verify the
+licence.
+
+Supporting registration URL schema in your app
+----------------------------------------------
+
+The following files in objc directory provide a sample implementation of
+support for custom URL schema for application registration. The code is almost
+literally taken from [3].
+
+To support registration URLs in your application:
+
+- Add files MyApp.scriptSuite and MyApp.scriptTerminology to your project's
+  resources, adjusting strings inside appropriately.
+
+- Add the following to your application's Info.plist file under /plist/dict
+  key (replace mycompany and myapp with strings appropriate for your company
+  and application):
+
+    <key>NSAppleScriptEnabled</key>
+    <string>YES</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>com.mycompany.myapp.lic</string>
+            </array>
+        </dict>
+    </array>
+
+- Add the files URLCommand.h and URLCommand.m to your project, paying
+  attention to the TODO: comments in them. Specifically, you may want to save
+  registration information to your application's preferences, and also
+  broadcast a notification of a changed registration information after
+  verifying the supplied registration URL.
+
+- Be sure the URL scheme name in the Info.plist file (com.mycompany.myapp.lic)
+  is the same as the one in the database generation script for Potion Store.
+  It is the file db/migrate/001_create_tables.rb, and the variable is called
+  license_url_scheme.
+
+Test the URL schema support by making a test purchase which results in displaying an activation link, and clicking on it. If you are running your application in debugger, place a breakpoint in the 
+
+4. GENERATING KEYS
 ==================
 
-NOTE: Included keys are for demonstration and testing purposes only. DO NOT
-USE THE INCLUDE KEYS IN YOUR SOFTWARE. Before incorporating CocoaFob into your
-application, you need to generate a pair of your own DSA keys. I used key
-length of 512 bit which I thought was enough for the registration code
-generation purposes.
+IMPORTANT NOTE: Included keys are for demonstration and testing purposes only.
+DO NOT USE THE INCLUDE KEYS IN YOUR SOFTWARE. Before incorporating CocoaFob
+into your application, you need to generate a pair of your own DSA keys. I
+used key length of 512 bit which I thought was enough for the registration
+code generation purposes.
+
+(0) Make sure OpenSSL is installed. (If you're using Mac OS X, it is.)
 
 (1) Generate DSA parameters:
 
-openssl dsaparam -out dsaparam.pem 512
+    openssl dsaparam -out dsaparam.pem 512
 
 (2) Generate an unencrypted DSA private key:
 
-openssl gendsa -out privkey.pem dsaparam.pem
+    openssl gendsa -out privkey.pem dsaparam.pem
 
 (3) Extract public key from private key:
 
-openssl dsa -in privkey.pem -pubout -out pubkey.pem
+    openssl dsa -in privkey.pem -pubout -out pubkey.pem
 
-4. LICENCE
+See [2] for more information.
+
+5. LICENCE
 ==========
 
 CocoaFob is Copyright (C) 2009 PixelEspresso
@@ -100,11 +179,17 @@ CocoaFob is distributed under Creative Commons Attribution 3.0 License
 <http://creativecommons.org/licenses/by/3.0/>. Attribution may take form of a
 mention in your application About box or other documentation.
 
-5. CREDITS
+6. CREDITS
 ==========
 
-Base32 implementation is Copyright (C) 2007 by Samuel Tesla and comes from
+[1] Base32 implementation is Copyright (C) 2007 by Samuel Tesla and comes from
 Ruby base32 gem: <http://rubyforge.org/projects/base32/>. Samuel Tesla's blog
 is at <http://blog.alieniloquent.com/tag/base32/>.
 
-OpenSSL key generation HOWTO: <http://www.openssl.org/docs/HOWTO/keys.txt>
+[2] OpenSSL key generation HOWTO: <http://www.openssl.org/docs/HOWTO/keys.txt>
+
+[3] Handling URL schemes in Cocoa: a blog post by Kimbro Staken
+<http://www.xmldatabases.org/WK/blog/1154?t=item>
+
+[4] Registering a protocol handler for an App: a post on CocoaBuilder mailing
+list, <http://www.cocoabuilder.com/archive/message/cocoa/2009/2/2/229297>
