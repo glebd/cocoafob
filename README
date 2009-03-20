@@ -37,7 +37,24 @@ the process.
 2. FEATURES
 ===========
 
-(to be written)
+CocoaFob, a random collection of code snippets as it is, provides the
+following for your application:
+
+- Secure asymmetric cryptography-based registration key generation and
+  verification using DSA.
+
+- Support for key generation in Objective-C and Ruby and verification in
+  Objective-C for integration in both your Cocoa application and Potion Store.
+
+- Support for custom URL scheme for automatic application registration.
+
+There is no framework or a library to link against. You include the files you
+need in your application project directly and are free to modify the code in
+any way you need.
+
+You may also find other snippets of code useful, such as base32 and base64
+encoding/decoding functions, as well as categories extending NSString and
+NSData classes with base32 and base64 methods.
 
 3. USAGE
 ========
@@ -141,7 +158,9 @@ To support registration URLs in your application:
   It is the file db/migrate/001_create_tables.rb, and the variable is called
   license_url_scheme.
 
-Test the URL schema support by making a test purchase which results in displaying an activation link, and clicking on it. If you are running your application in debugger, place a breakpoint in the 
+Test the URL schema support by making a test purchase which results in
+displaying an activation link, and clicking on it. If you are running your
+application in debugger, place a breakpoint in the
 
 4. GENERATING KEYS
 ==================
@@ -152,7 +171,7 @@ into your application, you need to generate a pair of your own DSA keys. I
 used key length of 512 bit which I thought was enough for the registration
 code generation purposes.
 
-(0) Make sure OpenSSL is installed. (If you're using Mac OS X, it is.)
+(0) Make sure OpenSSL is installed. (If you're using Mac OS X, it already is.)
 
 (1) Generate DSA parameters:
 
@@ -181,6 +200,8 @@ mention in your application About box or other documentation.
 
 6. CREDITS
 ==========
+
+[0] The Mac developer community that continues to amaze me.
 
 [1] Base32 implementation is Copyright (C) 2007 by Samuel Tesla and comes from
 Ruby base32 gem: <http://rubyforge.org/projects/base32/>. Samuel Tesla's blog
