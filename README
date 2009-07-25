@@ -67,6 +67,10 @@ git://github.com/gbd/cocoafob.git
 You can also download the latest version from the CocoaFob home page at
 <http://github.com/gbd/cocoafob/>.
 
+For more complete examples of how to use CocoaFob, look at the following
+projects by Alex Clarke: CodexFab <https://github.com/machinecodex/CodexFab/>
+and LicenseExample <https://github.com/machinecodex/CodexFab_LicenseExample/>.
+
 Providing a Registration Source String
 --------------------------------------
 
@@ -102,9 +106,14 @@ to verify the licence. This means when Potion Store generates an automatic
 registration URL for your application, it needs to include registration source
 string in it. One of the possible solutions is as follows:
 
+- In your database migration 001_create_tables.rb, increase the length of
+  license_key column in line_items table to 128 characters:
+
+   t.column "license_key", :string, :limit => 128
+
 - In the file app/models/line_item.rb, add the following line at the top:
 
-    require base64
+    require "base64"
 
 - In the same file find function called license_url--it's near the bottom of
   the file. Replace it with the following (or modify to your heart's content):
