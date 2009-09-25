@@ -12,6 +12,9 @@
 #import "CFobLicGenerator.h"
 #import "CFobLicVerifier.h"
 
+//#define TEST
+
+#ifdef TEST
 // This function just generates a registration code and then verifies it.
 void smoketest()
 {
@@ -58,6 +61,7 @@ void smoketest()
 	else
 		puts("FAIL");
 }
+#endif
 
 // Pass private key file name and registration name string to generate an autoreleased string containing registration code.
 NSString *codegen(NSString *privKeyFileName, NSString *regName) 
@@ -80,9 +84,11 @@ int main(int argc, const char * argv[])
 {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	
-	puts("CocoaFob Command Line Utility Version 1.0b1");
+	puts("CocoaFob Command Line Utility Version 1.0b2");
 
-	//test();
+#ifdef TEST
+	smoketest();
+#endif
 	NSUserDefaults *args = [NSUserDefaults standardUserDefaults];
 	NSString *privKeyFileName = [args stringForKey:@"privkey"];
 	NSString *regName = [args stringForKey:@"name"];
