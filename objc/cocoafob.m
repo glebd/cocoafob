@@ -66,8 +66,9 @@ void smoketest()
 // Pass private key file name and registration name string to generate an autoreleased string containing registration code.
 NSString *codegen(NSString *privKeyFileName, NSString *regName) 
 {
-	NSString *privKey = [NSString stringWithContentsOfFile:privKeyFileName];
-	if (!privKey)
+    NSError *err = nil;
+	NSString *privKey = [NSString stringWithContentsOfFile:privKeyFileName encoding:NSASCIIStringEncoding error:&err];
+	if (!privKey || err)
 		return nil;
 	CFobLicGenerator *generator = [CFobLicGenerator generatorWithPrivateKey:privKey];
 	generator.regName = regName;
