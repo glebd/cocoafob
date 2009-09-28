@@ -169,7 +169,10 @@ To support registration URLs in your application:
 
 Test the URL schema support by making a test purchase which results in
 displaying an activation link, and clicking on it. If you are running your
-application in debugger, place a breakpoint in the
+application in debugger, place a breakpoint in the URLCommand instance method
+performWithURL:. The breakpoint will be triggered when you click on the
+registration link. You can extract the link into a standalone HTML file so
+that is available for testing without making any additional test purchases.
 
 4. GENERATING KEYS
 ==================
@@ -201,7 +204,7 @@ See [2] for more information.
 
 CocoaFob is Copyright (C) 2009 PixelEspresso
 <http://www.pixelespressoapps.com>. All rights reserved. Written by Gleb
-Dolgich (Twitter: @gbd)
+Dolgich (Twitter: @glebd)
 
 CocoaFob is distributed under Creative Commons Attribution 3.0 License
 <http://creativecommons.org/licenses/by/3.0/>. Attribution may take form of a
