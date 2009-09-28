@@ -77,34 +77,64 @@ NSString *codegen(NSString *privKeyFileName, NSString *regName)
 	return generator.regCode;
 }
 
+// Pass public key, registration name and registration code to verify it
+BOOL codecheck(NSString *pubKeyFileName, NSString *regName, NSString *regCode)
+{
+    NSError *err = nil;
+	NSString *pubKey = [NSString stringWithContentsOfFile:pubKeyFileName encoding:NSASCIIStringEncoding error:&err];
+	if (!pubKey || err)
+		return NO;
+    CFobLicVerifier *verifier = [CFobLicVerifier verifierWithPublicKey:pubKey];
+    verifier.regName = regName;
+    verifier.regCode = regCode;
+    return [verifier verify];
+}
+
 // Uses NSUserDefaults to parse command-line arguments:
 // -privkey <private-key-file-name>
 // -name <registration-name>
 // Prints generated registration code.
+// -pubkey <public-key-file-name>
+// -code <registration-code>
+// Verifies registration code.
 int main(int argc, const char * argv[])
 {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	
-	puts("CocoaFob Command Line Utility Version 1.0b2");
+	puts("CocoaFob Command Line Utility Version 1.0b3");
 
 #ifdef TEST
 	smoketest();
 #endif
 	NSUserDefaults *args = [NSUserDefaults standardUserDefaults];
 	NSString *privKeyFileName = [args stringForKey:@"privkey"];
+	NSString *pubKeyFileName = [args stringForKey:@"pubkey"];
 	NSString *regName = [args stringForKey:@"name"];
-	if (!privKeyFileName || !regName) {
-		puts("Usage: cocoafob -privkey <priv-key-file> -name <reg-name>");
+    NSString *regCodeIn = [args stringForKey:@"code"];
+	if (!((privKeyFileName && regName) || (pubKeyFileName && regName && regCodeIn))) {
+		puts("Usage: cocoafob {-privkey <priv-key-file> -name <reg-name>|-pubkey <pub-key-file> -name <reg-name> -code <reg-code>}");
 		return 1;
 	}
-	NSString *regCode = codegen(privKeyFileName, regName);
-	int retval = 0;
-	if (!regCode) {
-		puts("Error");
-		retval = 2;
-	} else {
-		puts([regCode UTF8String]);
-	}
+    int retval = 0;
+    if (regCodeIn && pubKeyFileName && regName) {
+        // Verify supplied registration code
+        BOOL check = codecheck(pubKeyFileName, regName, regCodeIn);
+        if (check) {
+            puts("OK");
+        } else {
+            puts("Error");
+            retval = 3;
+        }
+    } else {
+        // Generate registration code
+        NSString *regCode = codegen(privKeyFileName, regName);
+        if (!regCode) {
+            puts("Error");
+            retval = 2;
+        } else {
+            puts([regCode UTF8String]);
+        }
+    }
 	[pool drain];
 	return retval;
 }
