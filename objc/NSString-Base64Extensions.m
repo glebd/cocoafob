@@ -22,8 +22,8 @@
 // PixelEspresso, http://www.pixelespressoapps.com/
 
 #import "NSString-Base64Extensions.h"
-#include <openssl/bio.h>
-#include <openssl/evp.h>
+#import "bio.h"
+#import "evp.h"
 
 
 @implementation NSString (Base64)
