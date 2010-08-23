@@ -84,6 +84,9 @@ base32_encoder_encode_bits (int position, const uint8_t *buffer)
     case 7:
       return
         buffer[offset + 4] & 0x1F;
+
+    default:
+      return 0;
     }
 }
 
