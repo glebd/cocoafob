@@ -17,49 +17,43 @@
 
 
 @interface CFobLicGenerator ()
+
+@property (nonatomic, assign) DSA *dsa;
+
 - (void)initOpenSSL;
 - (void)shutdownOpenSSL;
+
 @end
 
 
 @implementation CFobLicGenerator
 
-@synthesize regName = _regName;
-@synthesize regCode = _regCode;
-
-#pragma mark -
-#pragma mark Class methods
-
-+ (id)generatorWithPrivateKey:(NSString *)privKey {
-	return [[[CFobLicGenerator alloc] initWithPrivateKey:privKey] autorelease];
-}
+@synthesize dsa = _dsa;
 
 #pragma mark -
 #pragma mark Lifecycle
 
-- (id)init {
-	return [self initWithPrivateKey:nil];
-}
-
-- (id)initWithPrivateKey:(NSString *)privKey {
-	if (![super init])
+- (id)init
+{
+	if ([super init] == nil)
 		return nil;
+	
 	[self initOpenSSL];
-	[self setPrivateKey:privKey];
+
 	return self;
 }
 
 - (void)finalize
 {
-	if (dsa)
-		DSA_free(dsa);
+	if (self.dsa)
+		DSA_free(self.dsa);
 	[self shutdownOpenSSL];
 	[super finalize];
 }
 
 - (void)dealloc {
-	if (dsa)
-		DSA_free(dsa);
+	if (self.dsa)
+		DSA_free(self.dsa);
 	self.regCode = nil;
 	self.regName = nil;
 	self.lastError = nil;
@@ -76,16 +70,16 @@
 		self.lastError = @"Invalid key";
 		return NO;
 	}
-	if (dsa)
-		DSA_free(dsa);
-	dsa = DSA_new();
+	if (self.dsa)
+		DSA_free(self.dsa);
+	self.dsa = DSA_new();
 	// Prepare BIO to read PEM-encoded private key from memory.
 	// Prepare buffer given NSString.
 	const char *privkeyCString = [privKey UTF8String];
 	BIO *bio = BIO_new_mem_buf((void *)privkeyCString, -1);
-	PEM_read_bio_DSAPrivateKey(bio, &dsa, NULL, NULL);
+	PEM_read_bio_DSAPrivateKey(bio, &self.dsa, NULL, NULL);
 	BOOL result = YES;
-	if (!dsa->priv_key) {
+	if (!self.dsa->priv_key) {
 		self.lastError = @"Unable to decode key";
 		result = NO;
 	}
@@ -95,12 +89,12 @@
 }
 
 - (BOOL)generate {
-	if (![regName length] || !dsa || !dsa->priv_key)
+	if (![regName length] || !self.dsa || !self.dsa->priv_key)
 		return NO;
 	NSData *digest = [regName sha1];
 	unsigned int siglen;
 	unsigned char sig[100];
-	int check = DSA_sign(NID_sha1, [digest bytes], [digest length], sig, &siglen, dsa);
+	int check = DSA_sign(NID_sha1, [digest bytes], [digest length], sig, &siglen, self.dsa);
 	if (!check) {
 		self.lastError = @"Signing failed";
 		return NO;
