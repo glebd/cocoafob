@@ -7,6 +7,7 @@
 //  Licensed under CC Attribution Licence 3.0 <http://creativecommons.org/licenses/by/3.0/>
 //
 
+#import <Foundation/Foundation.h>
 
 enum _CFobErrorCode {
 	CFobErrorCodeInvalidKey = -1,

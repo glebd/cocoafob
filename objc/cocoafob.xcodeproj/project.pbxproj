@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3035240F1223BC2200AACD22 /* cocoafob.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* cocoafob.m */; };
 		303524101223BC2200AACD22 /* decoder.c in Sources */ = {isa = PBXBuildFile; fileRef = C7E378410F59D737002061CD /* decoder.c */; };
 		303524111223BC2200AACD22 /* encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = C7E378430F59D737002061CD /* encoder.c */; };
 		303524121223BC2200AACD22 /* CFobLicGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E378480F59DB15002061CD /* CFobLicGenerator.m */; };
@@ -232,7 +231,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3035240F1223BC2200AACD22 /* cocoafob.m in Sources */,
 				303524101223BC2200AACD22 /* decoder.c in Sources */,
 				303524111223BC2200AACD22 /* encoder.c in Sources */,
 				303524121223BC2200AACD22 /* CFobLicGenerator.m in Sources */,
