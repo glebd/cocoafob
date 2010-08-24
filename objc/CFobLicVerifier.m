@@ -17,24 +17,24 @@
 #import <openssl/pem.h>
 
 
-@interface CFobLicVerifier ()
+@interface CFobLicVerifier (
+
+@property (nonatomic, assign) DSA *dsa;
+
 - (void)initOpenSSL;
 - (void)shutdownOpenSSL;
+
 @end
 
 
 @implementation CFobLicVerifier
 
-@synthesize regName = _regName;
-@synthesize regCode = _regCode;
 @synthesize blacklist = _blacklist;
+
+@synthesize dsa = _dsa;
 
 #pragma mark -
 #pragma mark Class methods
-
-+ (id)verifierWithPublicKey:(NSString *)pubKey {
-	return [[[CFobLicVerifier alloc] initWithPublicKey:pubKey] autorelease];
-}
 
 + (NSString *)completePublicKeyPEM:(NSString *)partialPEM {
 	NSString *dashes = @"-----";
@@ -66,15 +66,13 @@
 #pragma mark -
 #pragma mark Lifecycle
 
-- (id)init {
-	return [self initWithPublicKey:nil];
-}
-
-- (id)initWithPublicKey:(NSString *)pubKey {
-	if (![super init])
+- (id)init
+{
+	if ([super init] == nil)
 		return nil;
+	
 	[self initOpenSSL];
-	[self setPublicKey:pubKey];
+	
 	return self;
 }
 
@@ -89,10 +87,8 @@
 - (void)dealloc {
 	if (dsa)
 		DSA_free(dsa);
-	self.regName = nil;
-	self.regCode = nil;
+
 	self.blacklist = nil;
-	self.lastError = nil;
 	[self shutdownOpenSSL];
 	[super dealloc];
 }
