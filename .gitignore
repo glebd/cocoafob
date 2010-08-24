@@ -1,4 +1,4 @@
 build
-*.mode2v3
+*.mode*
 *.pbxuser
 *.perspectivev3
