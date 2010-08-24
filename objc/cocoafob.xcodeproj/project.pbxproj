@@ -23,6 +23,7 @@
 		3035258D1223C01100AACD22 /* NSData+PECrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E3784B0F59DB15002061CD /* NSData+PECrypt.h */; };
 		3035258E1223C01100AACD22 /* NSString+PECrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E3784D0F59DB15002061CD /* NSString+PECrypt.h */; };
 		3035258F1223C01100AACD22 /* NSString-Base64Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = C7A731670F5F42D500D40AFE /* NSString-Base64Extensions.h */; };
+		303525A81223C19D00AACD22 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 303524D01223BE4D00AACD22 /* libcrypto.dylib */; };
 		8DD76F9A0486AA7600D96B5E /* cocoafob.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* cocoafob.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		8DD76F9F0486AA7600D96B5E /* cocoafob.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* cocoafob.1 */; };
@@ -82,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				303525A81223C19D00AACD22 /* libcrypto.dylib in Frameworks */,
 				303524D71223BE6700AACD22 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,7 +384,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREFIX_HEADER = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CocoaFob-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
@@ -412,7 +414,7 @@
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREFIX_HEADER = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CocoaFob-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
