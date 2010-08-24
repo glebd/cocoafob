@@ -21,12 +21,10 @@
 	DSA *dsa;
 	NSString *regName;
 	NSString *regCode;
-	NSString *lastError;
 }
 
 @property (nonatomic, copy) NSString *regName;
 @property (nonatomic, copy) NSString *regCode;
-@property (nonatomic, copy) NSString *lastError;
 
 /*!
 	@method     generatorWithPrivateKey:

@@ -24,9 +24,8 @@
 
 @implementation CFobLicGenerator
 
-@synthesize regName;
-@synthesize regCode;
-@synthesize lastError;
+@synthesize regName = _regName;
+@synthesize regCode = _regCode;
 
 #pragma mark -
 #pragma mark Class methods

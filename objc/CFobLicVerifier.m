@@ -25,10 +25,9 @@
 
 @implementation CFobLicVerifier
 
-@synthesize regName;
-@synthesize regCode;
-@synthesize blacklist;
-@synthesize lastError;
+@synthesize regName = _regName;
+@synthesize regCode = _regCode;
+@synthesize blacklist = _blacklist;
 
 #pragma mark -
 #pragma mark Class methods
