@@ -29,9 +29,20 @@ void smoketest()
 	"keUwLHBtpClnD5E8\n"
 	"-----END DSA PRIVATE KEY-----\n";
 	NSString *regName = @"decloner|Joe Bloggs";
-	CFobLicGenerator *generator = [CFobLicGenerator generatorWithPrivateKey:privKey];
-	generator.regName = regName;
-	[generator generate];
+	
+	CFobLicGenerator *generator = [[[CFobLicGenerator alloc] init] autorelease];
+	
+	NSError *err = nil;
+	if (![generator setPrivateKey:privKey error:&err]) {
+		NSLog(@"Could not set private key: %@", err);
+		return;
+	}
+	
+	NSString *regCode = [generator generateRegCodeForName:regName error:&err];
+	if (regCode == nil) {
+		NSLog(@"Could not generate serial number: %@", err);
+		return;
+	}
 	
 	// Modelled after AquaticPrime's method of splitting public key to obfuscate it.
 	// It is probably better if you invent your own splitting pattern. Go wild.
@@ -52,15 +63,20 @@ void smoketest()
 	[pubKeyBase64 appendString:@"MP/+"];
 	[pubKeyBase64 appendString:@"2Z7ekydHfX0sTMDgkxhtRm6qtcywg01X847Y9ySgNepqleD+Ka2Wbucj1pOr\n"];
 	[pubKeyBase64 appendString:@"y8MoDQ==\n"];
+	
 	NSString *pubKey = [CFobLicVerifier completePublicKeyPEM:pubKeyBase64];
-	CFobLicVerifier *verifier = [CFobLicVerifier verifierWithPublicKey:pubKey];
-	verifier.regName = regName;
-	verifier.regCode = generator.regCode;
-	puts([verifier.regCode UTF8String]);
-	if ([verifier verify])
+	CFobLicVerifier *verifier = [[[CFobLicVerifier alloc] init] autorelease];
+	if (![verifier setPublicKey:pubKey error:&err]) {
+		NSLog(@"Could not set public key on verifier %@", err);
+		return;
+	}
+
+	puts([regCode UTF8String]);
+	if ([verifier verifyRegCode:regCode forName:regName error:&err]) {
 		puts("PASS");
-	else
-		puts("FAIL");
+	} else {
+		NSLog(@"FAIL: %@", err);
+	}
 }
 #endif
 
