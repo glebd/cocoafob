@@ -56,7 +56,6 @@
 		DSA_free(self.dsa);
 	self.regCode = nil;
 	self.regName = nil;
-	self.lastError = nil;
 	[self shutdownOpenSSL];
 	[super dealloc];
 }
