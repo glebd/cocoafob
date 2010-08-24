@@ -34,7 +34,8 @@
 	@method     generate
 	@abstract   Generates a registration code from regName property.
 	@discussion Takes regName property and DSA private key and generates a new registration code that is placed in regCode property.
-	@result     YES on success, NO on error.
+	@param		The name or registration string to generate a serial number for.
+	@result     The serial number as a string, nil on failure.
 */
 - (NSString *)generateRegCodeForName:(NSString *)name error:(NSError **)err;
 
