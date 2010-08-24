@@ -78,15 +78,15 @@
 
 - (void)finalize
 {
-	if (dsa)
-		DSA_free(dsa);
+	if (self.dsa)
+		DSA_free(self.dsa);
 	[self shutdownOpenSSL];
 	[super finalize];
 }
 
 - (void)dealloc {
-	if (dsa)
-		DSA_free(dsa);
+	if (self.dsa)
+		DSA_free(self.dsa);
 
 	self.blacklist = nil;
 	[self shutdownOpenSSL];
@@ -102,16 +102,16 @@
 		self.lastError = @"Invalid key";
 		return NO;
 	}
-	if (dsa)
-		DSA_free(dsa);
-	dsa = DSA_new();
+	if (self.dsa)
+		DSA_free(self.dsa);
+	self.dsa = DSA_new();
 	// Prepare BIO to read PEM-encoded public key from memory.
 	// Prepare buffer given NSString
 	const char *pubkeyCString = [pubKey UTF8String];
 	BIO *bio = BIO_new_mem_buf((void *)pubkeyCString, -1);
-	PEM_read_bio_DSA_PUBKEY(bio, &dsa, NULL, NULL);
+	PEM_read_bio_DSA_PUBKEY(bio, &self.dsa, NULL, NULL);
 	BOOL result = YES;
-	if (!dsa->pub_key) {
+	if (!self.dsa->pub_key) {
 		self.lastError = @"Unable to decode key";
 		result = NO;
 	}
@@ -121,7 +121,7 @@
 }
 
 - (BOOL)verify {
-	if (![regName length] || ![regCode length] || !dsa || !dsa->pub_key)
+	if (![regName length] || ![regCode length] || !self.dsa || !self.dsa->pub_key)
 		return NO;
 	BOOL result = NO;
 	// Replace 9s with Is and 8s with Os
