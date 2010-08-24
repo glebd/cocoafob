@@ -50,6 +50,14 @@
 	return self;
 }
 
+- (void)finalize
+{
+	if (dsa)
+		DSA_free(dsa);
+	[self shutdownOpenSSL];
+	[super finalize];
+}
+
 - (void)dealloc {
 	if (dsa)
 		DSA_free(dsa);
