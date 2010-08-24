@@ -129,7 +129,7 @@
 	NSString *b32 = [replacedOWith8 stringByReplacingOccurrencesOfString:@"I" withString:@"9"];
 	
 	// Cut off the padding.
-	NSString *regKeyNoPadding = [b32 stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
+	NSString *regKeyNoPadding = [b32 stringByReplacingOccurrencesOfString:@"=" withString:@""];
 	
 	// Add dashes every 5 characters.
 	NSMutableString *serial = [NSMutableString stringWithString:regKeyNoPadding];
