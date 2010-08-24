@@ -8,34 +8,38 @@
 //  Licensed under CC Attribution License 3.0 <http://creativecommons.org/licenses/by/3.0/>
 //
 
+#import "CFobLicVerifier.h"
+
+#import "CFobError.h"
+
+#import "decoder.h"
+
 #import "NSString-Base64Extensions.h"
 #import "NSString+PECrypt.h"
-#import "CFobLicVerifier.h"
-#import "decoder.h"
+
 #import <openssl/evp.h>
 #import <openssl/err.h>
 #import <openssl/pem.h>
 
 
 @interface CFobLicVerifier ()
+
+@property (nonatomic, assign) DSA *dsa;
+
 - (void)initOpenSSL;
 - (void)shutdownOpenSSL;
+
 @end
 
 
 @implementation CFobLicVerifier
 
-@synthesize regName;
-@synthesize regCode;
-@synthesize blacklist;
-@synthesize lastError;
+@synthesize blacklist = _blacklist;
+
+@synthesize dsa = _dsa;
 
 #pragma mark -
 #pragma mark Class methods
-
-+ (id)verifierWithPublicKey:(NSString *)pubKey {
-	return [[[CFobLicVerifier alloc] initWithPublicKey:pubKey] autorelease];
-}
 
 + (NSString *)completePublicKeyPEM:(NSString *)partialPEM {
 	NSString *dashes = @"-----";
@@ -67,33 +71,30 @@
 #pragma mark -
 #pragma mark Lifecycle
 
-- (id)init {
-	return [self initWithPublicKey:nil];
-}
-
-- (id)initWithPublicKey:(NSString *)pubKey {
-	if (![super init])
+- (id)init
+{
+	if ([super init] == nil)
 		return nil;
+	
 	[self initOpenSSL];
-	[self setPublicKey:pubKey];
+	
 	return self;
 }
 
 - (void)finalize
 {
-	if (dsa)
-		DSA_free(dsa);
+	if (self.dsa)
+		DSA_free(self.dsa);
 	[self shutdownOpenSSL];
 	[super finalize];
 }
 
-- (void)dealloc {
-	if (dsa)
-		DSA_free(dsa);
-	self.regName = nil;
-	self.regCode = nil;
+- (void)dealloc 
+{
+	if (self.dsa)
+		DSA_free(self.dsa);
+
 	self.blacklist = nil;
-	self.lastError = nil;
 	[self shutdownOpenSSL];
 	[super dealloc];
 }
@@ -101,34 +102,47 @@
 #pragma mark -
 #pragma mark API
 
-- (BOOL)setPublicKey:(NSString *)pubKey {
+- (BOOL)setPublicKey:(NSString *)pubKey error:(NSError **)err 
+{
 	// Validate the argument.
-	if (!pubKey || ![pubKey length]) {
-		self.lastError = @"Invalid key";
+	if (pubKey == nil || [pubKey length] < 1) {
+		CFobAssignErrorWithDescriptionAndCode(err, @"Invalid key.", CFobErrorCodeInvalidKey);		
 		return NO;
 	}
-	if (dsa)
-		DSA_free(dsa);
-	dsa = DSA_new();
+	
+	if (self.dsa)
+		DSA_free(self.dsa);
+	self.dsa = DSA_new();
+	
 	// Prepare BIO to read PEM-encoded public key from memory.
 	// Prepare buffer given NSString
 	const char *pubkeyCString = [pubKey UTF8String];
 	BIO *bio = BIO_new_mem_buf((void *)pubkeyCString, -1);
-	PEM_read_bio_DSA_PUBKEY(bio, &dsa, NULL, NULL);
+	PEM_read_bio_DSA_PUBKEY(bio, &_dsa, NULL, NULL);
+	
 	BOOL result = YES;
-	if (!dsa->pub_key) {
-		self.lastError = @"Unable to decode key";
+	if (!self.dsa->pub_key) {
+		CFobAssignErrorWithDescriptionAndCode(err, @"Unable to decode key.", CFobErrorCodeCouldNotDecode);
 		result = NO;
 	}
+	
 	// Cleanup BIO
 	BIO_vfree(bio);
 	return result;
 }
 
-- (BOOL)verify {
-	if (![regName length] || ![regCode length] || !dsa || !dsa->pub_key)
+- (BOOL)verifyRegCode:(NSString *)regCode forName:(NSString *)name error:(NSError **)err
+{
+	if (name == nil || [name length] < 1) {
+		CFobAssignErrorWithDescriptionAndCode(err, @"No name for the registration code.", CFobErrorCodeNoName);
 		return NO;
-	BOOL result = NO;
+	}
+	
+	if (!self.dsa || !self.dsa->pub_key) {
+		CFobAssignErrorWithDescriptionAndCode(err, @"Invalid key.", CFobErrorCodeInvalidKey);
+		return NO;
+	}
+	
 	// Replace 9s with Is and 8s with Os
 	NSString *regKeyTemp = [regCode stringByReplacingOccurrencesOfString:@"9" withString:@"I"];
 	NSString *regKeyBase32 = [regKeyTemp stringByReplacingOccurrencesOfString:@"8" withString:@"O"];
@@ -149,13 +163,18 @@
 		return NO;
 	// Decode signature from Base32 to a byte buffer.
 	size_t sigSize = base32_decode(sig, decodeBufSize, (unsigned char *)keyBase32Utf8, base32Length);
-	if (!sigSize)
-		self.lastError = @"Unable to decode registration key";
+	if (!sigSize) {
+		CFobAssignErrorWithDescriptionAndCode(err, @"Unable to decode registration key.", CFobErrorCodeCouldNotDecode);
+		free(sig);
+		return NO;
+	}
+		
 	// Produce a SHA-1 hash of the registration name string. This is what was signed during registration key generation.
-	NSData *digest = [regName sha1];
+	NSData *digest = [name sha1];
 	// Verify DSA signature.
-	int check = DSA_verify(0, [digest bytes], [digest length], sig, sigSize, dsa);
-	result = check > 0;
+	int check = DSA_verify(0, [digest bytes], [digest length], sig, sigSize, self.dsa);
+	
+	BOOL result = check > 0;
 	// Cleanup
 	free(sig);
 	return result;
