@@ -17,7 +17,7 @@
 #import <openssl/pem.h>
 
 
-@interface CFobLicVerifier (
+@interface CFobLicVerifier ()
 
 @property (nonatomic, assign) DSA *dsa;
 
