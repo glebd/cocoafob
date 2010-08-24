@@ -9,9 +9,9 @@
 //
 
 #import "NSString+PECrypt.h"
-#import "sha.h"
-#import "bio.h"
-#import "evp.h"
+#import <openssl/sha.h>
+#import <openssl/bio.h>
+#import <openssl/evp.h>
 
 @implementation NSString (PXCrypt)
 

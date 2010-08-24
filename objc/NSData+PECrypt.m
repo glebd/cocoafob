@@ -22,7 +22,7 @@
 	if (!buf)
 		return @"";
 	base32_encode((uint8_t *)buf, bufsize, [self bytes], [self length]);
-	NSString *s = [NSString stringWithCString:buf length:bufsize];
+	NSString *s = [NSString stringWithCString:buf encoding:NSUTF8StringEncoding];
 	free(buf);
 	return s;
 }
