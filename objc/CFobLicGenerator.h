@@ -18,33 +18,8 @@
 	@discussion  Given user name and DSA private key, generates a human-readable registration code.
 */
 @interface CFobLicGenerator : NSObject {
-	DSA *dsa;
-	NSString *regName;
-	NSString *regCode;
-	NSString *lastError;
+	DSA *_dsa;
 }
-
-@property (nonatomic, copy) NSString *regName;
-@property (nonatomic, copy) NSString *regCode;
-@property (nonatomic, copy) NSString *lastError;
-
-/*!
-	@method     generatorWithPrivateKey:
-	@abstract   Creates a new registration code generator given DSA private key.
-	@discussion Use this class method to create an autoreleased registration code generator.
-	@param      privKey PEM-encoded non-encrypted DSA private key.
-	@result     A new autoreleased registration code generator object.
-*/
-+ (id)generatorWithPrivateKey:(NSString *)privKey;
-
-/*!
-	@method     initWithPrivateKey:
-	@abstract   Designated initializer that takes a DSA private key.
-	@discussion Initializes registration code generator using a DSA private key.
-	@param      privKey PEM-encoded non-encrypted DSA private key.
-	@result     An initialized registration code generator object.
-*/
-- (id)initWithPrivateKey:(NSString *)privKey;
 
 /*!
 	@method     setPrivateKey:
@@ -53,14 +28,15 @@
 	@param      privKey PEM-encoded non-encrypted DSA private key.
 	@result     YES on success, NO on error.
 */
-- (BOOL)setPrivateKey:(NSString *)privKey;
+- (BOOL)setPrivateKey:(NSString *)privKey error:(NSError **)err;
 
 /*!
 	@method     generate
 	@abstract   Generates a registration code from regName property.
 	@discussion Takes regName property and DSA private key and generates a new registration code that is placed in regCode property.
-	@result     YES on success, NO on error.
+	@param		The name or registration string to generate a serial number for.
+	@result     The serial number as a string, nil on failure.
 */
-- (BOOL)generate;
+- (NSString *)generateRegCodeForName:(NSString *)name error:(NSError **)err;
 
 @end
