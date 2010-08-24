@@ -9,8 +9,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CFobLicGenerator.h"
-#import "CFobLicVerifier.h"
+
+#import <CocoaFob/CFobLicGenerator.h>
+#import <CocoaFob/CFobLicVerifier.h>
 
 //#define TEST
 
@@ -68,13 +69,22 @@ NSString *codegen(NSString *privKeyFileName, NSString *regName)
 {
     NSError *err = nil;
 	NSString *privKey = [NSString stringWithContentsOfFile:privKeyFileName encoding:NSASCIIStringEncoding error:&err];
-	if (!privKey || err)
+	if (privKey == nil)
 		return nil;
-	CFobLicGenerator *generator = [CFobLicGenerator generatorWithPrivateKey:privKey];
-	generator.regName = regName;
-	if (![generator generate])
+	
+	CFobLicGenerator *generator = [[[CFobLicGenerator alloc] init] autorelease];
+	if (![generator setPrivateKey:privKey error:&err]) {
+		NSLog(@"%@", err);
 		return nil;
-	return generator.regCode;
+	}
+	
+	NSString *regCode = [generator generateRegCodeForName:regName error:&err];
+	if (regCode == nil) {
+		NSLog(@"%@", err);
+		return nil;
+	}
+	
+	return regCode;
 }
 
 // Pass public key, registration name and registration code to verify it
@@ -82,12 +92,20 @@ BOOL codecheck(NSString *pubKeyFileName, NSString *regName, NSString *regCode)
 {
     NSError *err = nil;
 	NSString *pubKey = [NSString stringWithContentsOfFile:pubKeyFileName encoding:NSASCIIStringEncoding error:&err];
-	if (!pubKey || err)
+	if (pubKey == nil)
 		return NO;
-    CFobLicVerifier *verifier = [CFobLicVerifier verifierWithPublicKey:pubKey];
-    verifier.regName = regName;
-    verifier.regCode = regCode;
-    return [verifier verify];
+	
+	CFobLicVerifier *verifier = [[[CFobLicVerifier alloc] init] autorelease];
+	if (![verifier setPublicKey:pubKey error:&err]) {
+		NSLog(@"%@", err);
+		return NO;
+	}
+	
+	BOOL result = [verifier verifyRegCode:regCode forName:regName error:&err];
+	if (!result)
+		NSLog(@"%@", err);
+
+    return result;
 }
 
 // Uses NSUserDefaults to parse command-line arguments:
