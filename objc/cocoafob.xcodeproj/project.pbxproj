@@ -18,6 +18,11 @@
 		303524231223BCB500AACD22 /* CFobLicVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378490F59DB15002061CD /* CFobLicVerifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		303524241223BCBA00AACD22 /* CFobLicGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378470F59DB15002061CD /* CFobLicGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		303524D71223BE6700AACD22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303524D61223BE6700AACD22 /* Foundation.framework */; };
+		303525881223BFFF00AACD22 /* decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378420F59D737002061CD /* decoder.h */; };
+		303525891223BFFF00AACD22 /* encoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378440F59D737002061CD /* encoder.h */; };
+		3035258D1223C01100AACD22 /* NSData+PECrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E3784B0F59DB15002061CD /* NSData+PECrypt.h */; };
+		3035258E1223C01100AACD22 /* NSString+PECrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E3784D0F59DB15002061CD /* NSString+PECrypt.h */; };
+		3035258F1223C01100AACD22 /* NSString-Base64Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = C7A731670F5F42D500D40AFE /* NSString-Base64Extensions.h */; };
 		8DD76F9A0486AA7600D96B5E /* cocoafob.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* cocoafob.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		8DD76F9F0486AA7600D96B5E /* cocoafob.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* cocoafob.1 */; };
@@ -196,6 +201,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3035258D1223C01100AACD22 /* NSData+PECrypt.h in Headers */,
+				3035258E1223C01100AACD22 /* NSString+PECrypt.h in Headers */,
+				3035258F1223C01100AACD22 /* NSString-Base64Extensions.h in Headers */,
+				303525881223BFFF00AACD22 /* decoder.h in Headers */,
+				303525891223BFFF00AACD22 /* encoder.h in Headers */,
 				303524231223BCB500AACD22 /* CFobLicVerifier.h in Headers */,
 				303524241223BCBA00AACD22 /* CFobLicGenerator.h in Headers */,
 			);
