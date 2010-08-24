@@ -17,6 +17,7 @@
 		303524161223BC2200AACD22 /* NSString-Base64Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A731680F5F42D500D40AFE /* NSString-Base64Extensions.m */; };
 		303524231223BCB500AACD22 /* CFobLicVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378490F59DB15002061CD /* CFobLicVerifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		303524241223BCBA00AACD22 /* CFobLicGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378470F59DB15002061CD /* CFobLicGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		303524D71223BE6700AACD22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303524D61223BE6700AACD22 /* Foundation.framework */; };
 		8DD76F9A0486AA7600D96B5E /* cocoafob.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* cocoafob.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		8DD76F9F0486AA7600D96B5E /* cocoafob.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859EA3029092ED04C91782 /* cocoafob.1 */; };
@@ -48,6 +49,9 @@
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		303524081223BB9600AACD22 /* CocoaFob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaFob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		303524091223BB9600AACD22 /* CocoaFob-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CocoaFob-Info.plist"; sourceTree = "<group>"; };
+		303524AE1223BD1B00AACD22 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		303524D01223BE4D00AACD22 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
+		303524D61223BE6700AACD22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		32A70AAB03705E1F00C91783 /* cocoafob_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocoafob_Prefix.pch; sourceTree = "<group>"; };
 		8DD76FA10486AA7600D96B5E /* cocoafob */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocoafob; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859EA3029092ED04C91782 /* cocoafob.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = cocoafob.1; sourceTree = "<group>"; };
@@ -73,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				303524D71223BE6700AACD22 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +101,9 @@
 				C6859EA2029092E104C91782 /* Documentation */,
 				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
+				303524AE1223BD1B00AACD22 /* Cocoa.framework */,
+				303524D01223BE4D00AACD22 /* libcrypto.dylib */,
+				303524D61223BE6700AACD22 /* Foundation.framework */,
 			);
 			name = cocoafob;
 			sourceTree = "<group>";
@@ -360,10 +368,12 @@
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CocoaFob-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				OTHER_LDFLAGS = (
@@ -389,9 +399,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CocoaFob-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
 				OTHER_LDFLAGS = (
