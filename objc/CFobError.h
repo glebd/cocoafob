@@ -13,5 +13,6 @@ enum _CFobErrorCode {
 	CFobErrorCodeCouldNotDecode = -2,
 	CFobErrorCodeSigningFailed = -3,
 	CFobErrorCodeCouldNotEncode = -4,
-	CFobErrorCodeInvalidKey = -5
 };
+
+void CFobAssignErrorWithDescriptionAndCode(NSError **err, NSString *description, NSInteger code);
