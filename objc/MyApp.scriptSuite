@@ -1,0 +1,12 @@
+// Decloner.scriptSuite:
+{
+    Name = Decloner;
+    AppleEventCode = "DeCl";
+    Commands = {
+        "GetURL" = {
+            CommandClass = DCDeclonerCommand;
+            AppleEventCode = GURL;
+            AppleEventClassCode = GURL;
+         };
+    };
+}
