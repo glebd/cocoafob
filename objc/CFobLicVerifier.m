@@ -128,7 +128,7 @@
 	NSString *keyNoDashes = [regKeyBase32 stringByReplacingOccurrencesOfString:@"-" withString:@""];
 	// Need to pad up to the nearest number divisible by 8.
 	NSUInteger keyLength = [keyNoDashes length];
-	int paddedLength = keyLength%8 ? (keyLength/8 + 1)*8 : keyLength;
+	NSUInteger paddedLength = keyLength%8 ? (keyLength/8 + 1)*8 : keyLength;
 	NSString *keyBase32 = [keyNoDashes stringByPaddingToLength:paddedLength withString:@"=" startingAtIndex:0];
 	const char *keyBase32Utf8 = [keyBase32 UTF8String];
 	if (!keyBase32Utf8)
@@ -146,7 +146,7 @@
 	// Produce a SHA-1 hash of the registration name string. This is what was signed during registration key generation.
 	NSData *digest = [regName sha1];
 	// Verify DSA signature.
-	int check = DSA_verify(0, [digest bytes], [digest length], sig, sigSize, dsa);
+	int check = DSA_verify(0, [digest bytes], (int)[digest length], sig, (int)sigSize, dsa);
 	result = check > 0;
 	// Cleanup
 	free(sig);

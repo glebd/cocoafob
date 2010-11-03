@@ -37,7 +37,7 @@
 	if (!utf8)
 		return nil;
 	// Create an OpenSSL BIO buffer using UTF8 representation of the string.
-    BIO *mem = BIO_new_mem_buf((void *)utf8, strlen(utf8));
+    BIO *mem = BIO_new_mem_buf((void *)utf8, (int)strlen(utf8));
     // Push a Base64 filter so that reading from the buffer decodes it.
     BIO *b64 = BIO_new(BIO_f_base64());
     if (!lineBreaks)
@@ -49,7 +49,7 @@
 	const int DECODE_BUF_SIZE = 512;
     char inbuf[DECODE_BUF_SIZE];
     int inlen;
-    while ((inlen = BIO_read(mem, inbuf, sizeof(inbuf))) > 0)
+    while ((inlen = BIO_read(mem, inbuf, (int)sizeof(inbuf))) > 0)
         [data appendBytes: inbuf length: inlen];
 	unsigned char zeroByte[1] = {0};
 	[data appendBytes:zeroByte length:1]; // zero-terminate the string
