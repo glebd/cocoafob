@@ -78,9 +78,9 @@
 }
 
 - (id)initWithPublicKey:(NSString *)pubKey {
-	if (![super init])
-		return nil;
-	[self setPublicKey:pubKey];
+	if ( (self = [super init]) ) {
+        [self setPublicKey:pubKey];
+    }
 	return self;
 }
 
