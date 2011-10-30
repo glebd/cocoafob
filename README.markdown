@@ -92,7 +92,7 @@ string in it. One of the possible solutions is as follows:
 - In your database migration `001_create_tables.rb`, increase the length of
   `license_key` column in `line_items` table to 128 characters:
 
-   `t.column "license_key", :string, :limit => 128`
+    `t.column "license_key", :string, :limit => 128`
 
 - In the file `app/models/line_item.rb`, add the following line at the top:
 
