@@ -18,8 +18,8 @@
 
 
 @interface CFobLicVerifier ()
-- (void)initOpenSSL;
-- (void)shutdownOpenSSL;
++ (void)initOpenSSL;
++ (void)shutdownOpenSSL;
 @end
 
 
@@ -32,6 +32,12 @@
 
 #pragma mark -
 #pragma mark Class methods
+
++ (void)initialize
+{
+    OpenSSL_add_all_algorithms();
+	ERR_load_crypto_strings();
+}
 
 + (id)verifierWithPublicKey:(NSString *)pubKey {
 	return [[[CFobLicVerifier alloc] initWithPublicKey:pubKey] autorelease];
@@ -72,10 +78,9 @@
 }
 
 - (id)initWithPublicKey:(NSString *)pubKey {
-	if (![super init])
-		return nil;
-	[self initOpenSSL];
-	[self setPublicKey:pubKey];
+	if ( (self = [super init]) ) {
+        [self setPublicKey:pubKey];
+    }
 	return self;
 }
 
@@ -86,7 +91,6 @@
 	self.regCode = nil;
 	self.blacklist = nil;
 	self.lastError = nil;
-	[self shutdownOpenSSL];
 	[super dealloc];
 }
 
@@ -156,12 +160,12 @@
 #pragma mark -
 #pragma mark OpenSSL Lifecycle
 
-- (void)initOpenSSL {
++ (void)initOpenSSL {
 	OpenSSL_add_all_algorithms();
 	ERR_load_crypto_strings();
 }
 
-- (void)shutdownOpenSSL {
++ (void)shutdownOpenSSL {
 	EVP_cleanup();
 	ERR_free_strings();
 }
