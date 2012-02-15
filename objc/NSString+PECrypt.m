@@ -16,18 +16,10 @@
 @implementation NSString (PXCrypt)
 
 - (NSData *)sha1 {
-	const int DIGEST_LEN = 20;
-	unsigned char *buf = malloc(DIGEST_LEN);
+	unsigned char digest[SHA_DIGEST_LENGTH];
 	const char *str = [self UTF8String];
-	size_t len = strlen(str);
-	unsigned char *p = SHA1((unsigned char *)str, len, buf);
-	if (!p) {
-		free(buf);
-		return nil;
-	}
-	NSData *digest = [NSData dataWithBytes:buf length:DIGEST_LEN];
-	free(buf);
-	return digest;
+	SHA1((unsigned char *)str, strlen(str), digest);
+	return [NSData dataWithBytes:digest length:SHA_DIGEST_LENGTH];
 }
 
 // Based on Dave Dribin's code, http://www.dribin.org/dave/blog/archives/2006/03/12/base64_cocoa/
