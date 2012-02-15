@@ -34,7 +34,11 @@
 #pragma mark Class methods
 
 + (id)verifierWithPublicKey:(NSString *)pubKey {
+#if __has_feature(objc_arc)
+	return [[CFobLicVerifier alloc] initWithPublicKey:pubKey];
+#else
 	return [[[CFobLicVerifier alloc] initWithPublicKey:pubKey] autorelease];
+#endif
 }
 
 + (NSString *)completePublicKeyPEM:(NSString *)partialPEM {
@@ -82,12 +86,14 @@
 - (void)dealloc {
 	if (dsa)
 		DSA_free(dsa);
+	[self shutdownOpenSSL];
+#if !__has_feature(objc_arc)
 	self.regName = nil;
 	self.regCode = nil;
 	self.blacklist = nil;
 	self.lastError = nil;
-	[self shutdownOpenSSL];
-	[super dealloc];
+    [super dealloc];
+#endif
 }
 
 #pragma mark -

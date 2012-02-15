@@ -27,7 +27,11 @@
 
 @property (nonatomic, copy) NSString *regName;
 @property (nonatomic, copy) NSString *regCode;
+#if __has_feature(objc_arc)
+@property (nonatomic, strong) NSArray *blacklist;
+#else
 @property (nonatomic, retain) NSArray *blacklist;
+#endif
 @property (nonatomic, copy) NSString *lastError;
 
 /*!
