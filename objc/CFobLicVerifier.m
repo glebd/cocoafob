@@ -173,7 +173,7 @@
 	NSData *digest = [name sha1];
 
 	// Verify DSA signature.
-	int check = DSA_verify(0, [digest bytes], [digest length], sig, sigSize, self.dsa);
+	int check = DSA_verify(0, [digest bytes], (int)[digest length], sig, (int)sigSize, self.dsa);
 	BOOL result = check > 0;
 
 	// Cleanup
