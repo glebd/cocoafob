@@ -27,6 +27,24 @@
 		303526981223DC9600AACD22 /* CFobError.m in Sources */ = {isa = PBXBuildFile; fileRef = 303526971223DC9600AACD22 /* CFobError.m */; };
 		303526F41223E4C900AACD22 /* CocoaFob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303524081223BB9600AACD22 /* CocoaFob.framework */; };
 		303526FC1223E56000AACD22 /* cocoafob.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* cocoafob.m */; };
+		C7F7EF141577F3D90067C3A3 /* NSData+PECrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E3784B0F59DB15002061CD /* NSData+PECrypt.h */; };
+		C7F7EF151577F3D90067C3A3 /* NSString+PECrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E3784D0F59DB15002061CD /* NSString+PECrypt.h */; };
+		C7F7EF161577F3D90067C3A3 /* NSString-Base64Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = C7A731670F5F42D500D40AFE /* NSString-Base64Extensions.h */; };
+		C7F7EF171577F3D90067C3A3 /* decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378420F59D737002061CD /* decoder.h */; };
+		C7F7EF181577F3D90067C3A3 /* encoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378440F59D737002061CD /* encoder.h */; };
+		C7F7EF191577F3D90067C3A3 /* CFobLicVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378490F59DB15002061CD /* CFobLicVerifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C7F7EF1A1577F3D90067C3A3 /* CFobLicGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378470F59DB15002061CD /* CFobLicGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C7F7EF1B1577F3D90067C3A3 /* CFobError.h in Headers */ = {isa = PBXBuildFile; fileRef = 303526831223D4DA00AACD22 /* CFobError.h */; };
+		C7F7EF1E1577F3D90067C3A3 /* decoder.c in Sources */ = {isa = PBXBuildFile; fileRef = C7E378410F59D737002061CD /* decoder.c */; };
+		C7F7EF1F1577F3D90067C3A3 /* encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = C7E378430F59D737002061CD /* encoder.c */; };
+		C7F7EF201577F3D90067C3A3 /* CFobLicGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E378480F59DB15002061CD /* CFobLicGenerator.m */; };
+		C7F7EF211577F3D90067C3A3 /* CFobLicVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E3784A0F59DB15002061CD /* CFobLicVerifier.m */; };
+		C7F7EF221577F3D90067C3A3 /* NSData+PECrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E3784C0F59DB15002061CD /* NSData+PECrypt.m */; };
+		C7F7EF231577F3D90067C3A3 /* NSString+PECrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E3784E0F59DB15002061CD /* NSString+PECrypt.m */; };
+		C7F7EF241577F3D90067C3A3 /* NSString-Base64Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A731680F5F42D500D40AFE /* NSString-Base64Extensions.m */; };
+		C7F7EF251577F3D90067C3A3 /* CFobError.m in Sources */ = {isa = PBXBuildFile; fileRef = 303526971223DC9600AACD22 /* CFobError.m */; };
+		C7F7EF271577F3D90067C3A3 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 303524D01223BE4D00AACD22 /* libcrypto.dylib */; };
+		C7F7EF281577F3D90067C3A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303524D61223BE6700AACD22 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +81,8 @@
 		C7E3784C0F59DB15002061CD /* NSData+PECrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+PECrypt.m"; sourceTree = "<group>"; };
 		C7E3784D0F59DB15002061CD /* NSString+PECrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PECrypt.h"; sourceTree = "<group>"; };
 		C7E3784E0F59DB15002061CD /* NSString+PECrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PECrypt.m"; sourceTree = "<group>"; };
+		C7F7EF2C1577F3D90067C3A3 /* CocoaFob copy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "CocoaFob copy.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7F7EF2D1577F3D90067C3A3 /* CocoaFobARC-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "CocoaFobARC-Info.plist"; path = "/Users/glebd/git/cocoafob/objc/CocoaFobARC-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +100,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				303526F41223E4C900AACD22 /* CocoaFob.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7F7EF261577F3D90067C3A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7F7EF271577F3D90067C3A3 /* libcrypto.dylib in Frameworks */,
+				C7F7EF281577F3D90067C3A3 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +159,7 @@
 			children = (
 				303524081223BB9600AACD22 /* CocoaFob.framework */,
 				303526E91223E45100AACD22 /* cocoafob */,
+				C7F7EF2C1577F3D90067C3A3 /* CocoaFob copy.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				303524091223BB9600AACD22 /* CocoaFob-Info.plist */,
+				C7F7EF2D1577F3D90067C3A3 /* CocoaFobARC-Info.plist */,
 			);
 			name = Framework;
 			sourceTree = "<group>";
@@ -214,6 +245,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C7F7EF131577F3D90067C3A3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7F7EF141577F3D90067C3A3 /* NSData+PECrypt.h in Headers */,
+				C7F7EF151577F3D90067C3A3 /* NSString+PECrypt.h in Headers */,
+				C7F7EF161577F3D90067C3A3 /* NSString-Base64Extensions.h in Headers */,
+				C7F7EF171577F3D90067C3A3 /* decoder.h in Headers */,
+				C7F7EF181577F3D90067C3A3 /* encoder.h in Headers */,
+				C7F7EF191577F3D90067C3A3 /* CFobLicVerifier.h in Headers */,
+				C7F7EF1A1577F3D90067C3A3 /* CFobLicGenerator.h in Headers */,
+				C7F7EF1B1577F3D90067C3A3 /* CFobError.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -252,6 +298,24 @@
 			productReference = 303526E91223E45100AACD22 /* cocoafob */;
 			productType = "com.apple.product-type.tool";
 		};
+		C7F7EF121577F3D90067C3A3 /* CocoaFobARC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C7F7EF291577F3D90067C3A3 /* Build configuration list for PBXNativeTarget "CocoaFobARC" */;
+			buildPhases = (
+				C7F7EF131577F3D90067C3A3 /* Headers */,
+				C7F7EF1C1577F3D90067C3A3 /* Resources */,
+				C7F7EF1D1577F3D90067C3A3 /* Sources */,
+				C7F7EF261577F3D90067C3A3 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CocoaFobARC;
+			productName = CocoaFob;
+			productReference = C7F7EF2C1577F3D90067C3A3 /* CocoaFob copy.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -270,12 +334,20 @@
 			targets = (
 				303524071223BB9600AACD22 /* CocoaFob */,
 				303526E81223E45100AACD22 /* cocoafob */,
+				C7F7EF121577F3D90067C3A3 /* CocoaFobARC */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		303524041223BB9600AACD22 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7F7EF1C1577F3D90067C3A3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -305,6 +377,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				303526FC1223E56000AACD22 /* cocoafob.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7F7EF1D1577F3D90067C3A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7F7EF1E1577F3D90067C3A3 /* decoder.c in Sources */,
+				C7F7EF1F1577F3D90067C3A3 /* encoder.c in Sources */,
+				C7F7EF201577F3D90067C3A3 /* CFobLicGenerator.m in Sources */,
+				C7F7EF211577F3D90067C3A3 /* CFobLicVerifier.m in Sources */,
+				C7F7EF221577F3D90067C3A3 /* NSData+PECrypt.m in Sources */,
+				C7F7EF231577F3D90067C3A3 /* NSString+PECrypt.m in Sources */,
+				C7F7EF241577F3D90067C3A3 /* NSString-Base64Extensions.m in Sources */,
+				C7F7EF251577F3D90067C3A3 /* CFobError.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +545,73 @@
 			};
 			name = Release;
 		};
+		C7F7EF2A1577F3D90067C3A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = unsupported;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "CocoaFobARC-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "CocoaFob copy";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C7F7EF2B1577F3D90067C3A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_GC = supported;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "CocoaFobARC-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "CocoaFob copy";
+				SDKROOT = macosx;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -484,6 +638,15 @@
 			buildConfigurations = (
 				303526EB1223E45100AACD22 /* Debug */,
 				303526EC1223E45100AACD22 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C7F7EF291577F3D90067C3A3 /* Build configuration list for PBXNativeTarget "CocoaFobARC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7F7EF2A1577F3D90067C3A3 /* Debug */,
+				C7F7EF2B1577F3D90067C3A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
