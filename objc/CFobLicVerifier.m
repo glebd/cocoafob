@@ -4,8 +4,8 @@
 //
 //  Created by Gleb Dolgich on 06/02/2009.
 //  Follow me on Twitter @glebd.
-//  Copyright (C) 2009-2011 PixelEspresso. All rights reserved.
-//  BSD License
+//  Copyright 2009-2012 PixelEspresso. All rights reserved.
+//  Licensed under BSD license.
 //
 
 #import "CFobLicVerifier.h"
@@ -75,7 +75,7 @@
 
 - (id)init
 {
-	if ([super init] == nil)
+	if (!(self = [super init]))
 		return nil;
 
 	return self;
@@ -93,8 +93,10 @@
 	if (self.dsa)
 		DSA_free(self.dsa);
 
+#if !__has_feature(objc_arc)
 	self.blacklist = nil;
 	[super dealloc];
+#endif
 }
 
 #pragma mark -
@@ -171,7 +173,7 @@
 	NSData *digest = [name sha1];
 
 	// Verify DSA signature.
-	int check = DSA_verify(0, [digest bytes], [digest length], sig, sigSize, self.dsa);
+	int check = DSA_verify(0, [digest bytes], (int)[digest length], sig, (int)sigSize, self.dsa);
 	BOOL result = check > 0;
 
 	// Cleanup

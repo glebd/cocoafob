@@ -4,15 +4,15 @@
 //
 //  Created by Gleb Dolgich on 06/02/2009.
 //  Follow me on Twitter @glebd.
-//  Copyright (C) 2009-2011 PixelEspresso. All rights reserved.
-//  BSD License
+//  Copyright 2009-2012 PixelEspresso. All rights reserved.
+//  Licensed under BSD license.
 //
 
 #import <Foundation/Foundation.h>
 #import <openssl/dsa.h>
 
 /*!
-	@class       CFobLicVerifier 
+	@class       CFobLicVerifier
 	@superclass  NSObject
 	@abstract    Verifies CocoaFob-style registration key.
 	@discussion  Verifies CocoaFob-style registration key given licensing information (for example, application name, user name, and number of copies as suggested in Potion Store) and signature in human-readable format. A signature is a base32-encoded bignum with padding removed and dashes inserted.
