@@ -18,7 +18,8 @@
 	if (![self length])
 		return @"";
 	size_t bufsize = base32_encoder_buffer_size([self length]);
-	char *buf = malloc(bufsize);
+	char *buf = malloc(bufsize+1);
+	buf[bufsize] = 0;
 	if (!buf)
 		return @"";
 	base32_encode((uint8_t *)buf, bufsize, [self bytes], [self length]);
