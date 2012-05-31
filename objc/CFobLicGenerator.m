@@ -63,7 +63,9 @@
 		DSA_free(self.dsa);
 	
 	[self shutdownOpenSSL];
+#if !__has_feature(objc_arc)
 	[super dealloc];
+#endif
 }
 
 #pragma mark -
@@ -113,7 +115,7 @@
 	int check = DSA_sign(NID_sha1, [digest bytes], [digest length], sig, &siglen, self.dsa);
 	if (!check) {
 		CFobAssignErrorWithDescriptionAndCode(err, @"Signing failed.", CFobErrorCodeSigningFailed);
-		return NO;
+		return nil;
 	}
 	
 	// Encode signature in Base32
@@ -121,7 +123,7 @@
 	NSString *b32Orig = [signature base32];
 	if (!b32Orig || ![b32Orig length]) {
 		CFobAssignErrorWithDescriptionAndCode(err, @"Unable to encode in base32", CFobErrorCodeCouldNotEncode);
-		return NO;
+		return nil;
 	}
 	
 	// Replace Os with 8s and Is with 9s
