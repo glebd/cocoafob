@@ -48,6 +48,7 @@
 	return self;
 }
 
+#if !__has_feature(objc_arc)
 - (void)finalize
 {
 	if (self.dsa)
@@ -56,6 +57,7 @@
 	[self shutdownOpenSSL];
 	[super finalize];
 }
+#endif
 
 - (void)dealloc 
 {

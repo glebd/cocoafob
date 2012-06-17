@@ -81,12 +81,14 @@
 	return self;
 }
 
+#if !__has_feature(objc_arc)
 - (void)finalize
 {
 	if (self.dsa)
 		DSA_free(self.dsa);
 	[super finalize];
 }
+#endif
 
 - (void)dealloc
 {
