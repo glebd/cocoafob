@@ -187,14 +187,16 @@ See [2] for more information.
 
 # Licence
 
-Written by Gleb Dolgich  
-Twitter: @glebd  
+Written by Gleb Dolgich and contributors
+
+Twitter: @glebd
+
 Web: <http://pixelespressoapps.com>
 
 CocoaFob is distributed under the BSD License
 <http://www.opensource.org/licenses/bsd-license.php>
 
-Copyright &copy; 2009-2011, PixelEspresso. All rights reserved.
+Copyright &copy; 2009-2012, PixelEspresso. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -220,7 +222,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 [0] The Mac developer community that continues to amaze me.
 
-[1] Base32 implementation is Copyright (C) 2007 by Samuel Tesla and comes from
+[1] Base32 implementation is Copyright &copy; 2007 by Samuel Tesla and comes from
 Ruby base32 gem: <http://rubyforge.org/projects/base32/>. Samuel Tesla's blog is
 at <http://blog.alieniloquent.com/tag/base32/>.
 
@@ -233,3 +235,7 @@ at <http://blog.alieniloquent.com/tag/base32/>.
 list, <http://www.cocoabuilder.com/archive/message/cocoa/2009/2/2/229297>
 
 [5] PHP implementation courtesy of Sandro Noel, <http://gesosoft.com>
+
+[6] Security framework-based implementation by Matt Stevens, <http://codeworkshop.net>
+
+[7] New API by Danny Greg, <http://dannygreg.com>
