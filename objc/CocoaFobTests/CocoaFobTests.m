@@ -2,7 +2,11 @@
 //  CocoaFobTests.m
 //  CocoaFobTests
 //
-//  Created by Gleb on 01/09/2012.
+//  Created by Gleb Dolgich on 01/09/2012.
+//  Twitter: @glebd
+//  Website: http://pixelespressoapps.com
+//
+//  License: BSD
 //
 //
 
