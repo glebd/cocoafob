@@ -60,8 +60,6 @@
 		303526E91223E45100AACD22 /* cocoafob */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocoafob; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859EA3029092ED04C91782 /* cocoafob.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = cocoafob.1; sourceTree = "<group>"; };
 		C74F939115F28769004C00EA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		C7A731670F5F42D500D40AFE /* NSString-Base64Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString-Base64Extensions.h"; sourceTree = "<group>"; };
-		C7A731680F5F42D500D40AFE /* NSString-Base64Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString-Base64Extensions.m"; sourceTree = "<group>"; };
 		C7CA0D8715F1BFA900C7E9CD /* CocoaFobTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CocoaFobTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7CA0D8915F1BFA900C7E9CD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		C7CA0D8B15F1BFA900C7E9CD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -73,18 +71,10 @@
 		C7CA0D9715F1BFA900C7E9CD /* CocoaFobTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaFobTests.h; sourceTree = "<group>"; };
 		C7CA0D9815F1BFA900C7E9CD /* CocoaFobTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CocoaFobTests.m; sourceTree = "<group>"; usesTabs = 1; };
 		C7CA0D9A15F1BFA900C7E9CD /* CocoaFobTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CocoaFobTests-Prefix.pch"; sourceTree = "<group>"; };
-		C7E378410F59D737002061CD /* decoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = decoder.c; sourceTree = "<group>"; };
-		C7E378420F59D737002061CD /* decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decoder.h; sourceTree = "<group>"; };
-		C7E378430F59D737002061CD /* encoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = encoder.c; sourceTree = "<group>"; };
-		C7E378440F59D737002061CD /* encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encoder.h; sourceTree = "<group>"; };
 		C7E378470F59DB15002061CD /* CFobLicGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFobLicGenerator.h; sourceTree = "<group>"; };
 		C7E378480F59DB15002061CD /* CFobLicGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFobLicGenerator.m; sourceTree = "<group>"; usesTabs = 1; };
 		C7E378490F59DB15002061CD /* CFobLicVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFobLicVerifier.h; sourceTree = "<group>"; usesTabs = 1; };
 		C7E3784A0F59DB15002061CD /* CFobLicVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFobLicVerifier.m; sourceTree = "<group>"; usesTabs = 1; };
-		C7E3784B0F59DB15002061CD /* NSData+PECrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+PECrypt.h"; sourceTree = "<group>"; };
-		C7E3784C0F59DB15002061CD /* NSData+PECrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+PECrypt.m"; sourceTree = "<group>"; };
-		C7E3784D0F59DB15002061CD /* NSString+PECrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PECrypt.h"; sourceTree = "<group>"; };
-		C7E3784E0F59DB15002061CD /* NSString+PECrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PECrypt.m"; sourceTree = "<group>"; };
 		C7F7EF2C1577F3D90067C3A3 /* CocoaFobARC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaFobARC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7F7EF2D1577F3D90067C3A3 /* CocoaFobARC-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "CocoaFobARC-Info.plist"; path = "/Users/glebd/git/cocoafob/objc/CocoaFobARC-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -148,9 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				303526E21223E3FF00AACD22 /* Cmd Line Tool */,
-				C7A731660F5F42C000D40AFE /* Dave Dribin */,
-				C7E378540F59DB33002061CD /* Base32 */,
-				C7E378530F59DB1E002061CD /* PECategories */,
 				C7E378470F59DB15002061CD /* CFobLicGenerator.h */,
 				C7E378480F59DB15002061CD /* CFobLicGenerator.m */,
 				C7E378490F59DB15002061CD /* CFobLicVerifier.h */,
@@ -214,15 +201,6 @@
 			name = Documentation;
 			sourceTree = "<group>";
 		};
-		C7A731660F5F42C000D40AFE /* Dave Dribin */ = {
-			isa = PBXGroup;
-			children = (
-				C7A731670F5F42D500D40AFE /* NSString-Base64Extensions.h */,
-				C7A731680F5F42D500D40AFE /* NSString-Base64Extensions.m */,
-			);
-			name = "Dave Dribin";
-			sourceTree = "<group>";
-		};
 		C7CA0D8815F1BFA900C7E9CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,28 +239,6 @@
 				C7CA0D9A15F1BFA900C7E9CD /* CocoaFobTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C7E378530F59DB1E002061CD /* PECategories */ = {
-			isa = PBXGroup;
-			children = (
-				C7E3784B0F59DB15002061CD /* NSData+PECrypt.h */,
-				C7E3784C0F59DB15002061CD /* NSData+PECrypt.m */,
-				C7E3784D0F59DB15002061CD /* NSString+PECrypt.h */,
-				C7E3784E0F59DB15002061CD /* NSString+PECrypt.m */,
-			);
-			name = PECategories;
-			sourceTree = "<group>";
-		};
-		C7E378540F59DB33002061CD /* Base32 */ = {
-			isa = PBXGroup;
-			children = (
-				C7E378410F59D737002061CD /* decoder.c */,
-				C7E378420F59D737002061CD /* decoder.h */,
-				C7E378430F59D737002061CD /* encoder.c */,
-				C7E378440F59D737002061CD /* encoder.h */,
-			);
-			name = Base32;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
