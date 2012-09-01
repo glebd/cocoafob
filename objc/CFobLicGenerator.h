@@ -9,7 +9,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <openssl/dsa.h>
+#import <Security/Security.h>
 
 /*!
 	@class       CFobLicGenerator 
@@ -18,7 +18,7 @@
 	@discussion  Given user name and DSA private key, generates a human-readable registration code.
 */
 @interface CFobLicGenerator : NSObject {
-	DSA *_dsa;
+	SecKeyRef _privateKey;
 }
 
 /*!

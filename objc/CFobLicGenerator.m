@@ -9,94 +9,70 @@
 //
 
 #import "CFobLicGenerator.h"
-
 #import "CFobError.h"
 
-#import "NSData+PECrypt.h"
-#import "NSString+PECrypt.h"
-
-#import <openssl/evp.h>
-#import <openssl/err.h>
-#import <openssl/pem.h>
-
-//***************************************************************************
-
 @interface CFobLicGenerator ()
-
-@property (nonatomic, assign) DSA *dsa;
-
-- (void)initOpenSSL;
-- (void)shutdownOpenSSL;
-
+@property (retain) __attribute__((NSObject)) SecKeyRef privateKey;
 @end
 
 
 @implementation CFobLicGenerator
 
-@synthesize dsa = _dsa;
+@synthesize privateKey = _privateKey;
 
 #pragma mark -
 #pragma mark Lifecycle
 
-- (id)init
-{
-	if (!(self = [super init]))
-		return nil;
-	
-	[self initOpenSSL];
-
-	return self;
-}
-
 #if !__has_feature(objc_arc)
 - (void)finalize
 {
-	if (self.dsa)
-		DSA_free(self.dsa);
-	
-	[self shutdownOpenSSL];
+    self.privateKey = nil;
 	[super finalize];
 }
-#endif
 
-- (void)dealloc 
+- (void)dealloc
 {
-	if (self.dsa)
-		DSA_free(self.dsa);
-	
-	[self shutdownOpenSSL];
-#if !__has_feature(objc_arc)
 	[super dealloc];
-#endif
 }
+#endif
 
 #pragma mark -
 #pragma mark API
 
 - (BOOL)setPrivateKey:(NSString *)privKey error:(NSError **)err
-{	
+{
+	self.privateKey = nil;
+
 	// Validate the argument.
 	if (privKey == nil || [privKey length] < 1) {
 		CFobAssignErrorWithDescriptionAndCode(err, @"Invalid private key.", CFobErrorCodeInvalidKey);
 		return NO;
 	}
-	
-	if (self.dsa)
-		DSA_free(self.dsa);
-	self.dsa = DSA_new();
-	// Prepare BIO to read PEM-encoded private key from memory.
-	// Prepare buffer given NSString.
-	const char *privkeyCString = [privKey UTF8String];
-	BIO *bio = BIO_new_mem_buf((void *)privkeyCString, -1);
-	PEM_read_bio_DSAPrivateKey(bio, &_dsa, NULL, NULL);
-	BOOL result = YES;
-	if (!self.dsa->priv_key) {
+
+	SecItemImportExportKeyParameters params = {};
+	SecExternalItemType keyType = kSecItemTypePrivateKey;
+	SecExternalFormat keyFormat = kSecFormatPEMSequence;
+	CFArrayRef importArray = NULL;
+
+	NSData *privKeyData = [privKey dataUsingEncoding:NSUTF8StringEncoding];
+#if __has_feature(objc_arc)
+	CFDataRef privKeyDataRef = (__bridge CFDataRef)privKeyData;
+#else
+	CFDataRef privKeyDataRef = (CFDataRef)privKeyData;
+#endif
+
+	OSStatus importError = SecItemImport(privKeyDataRef, NULL, &keyFormat, &keyType, 0, &params, NULL, &importArray);
+	if (importError) {
 		CFobAssignErrorWithDescriptionAndCode(err, @"Unable to decode key.", CFobErrorCodeCouldNotDecode);
-		result = NO;
+		if (importArray) {
+			CFRelease(importArray);
+		}
+		return NO;
 	}
-	// Cleanup BIO
-	BIO_vfree(bio);
-	return result;
+
+	self.privateKey = (SecKeyRef)CFArrayGetValueAtIndex(importArray, 0);
+	CFRelease(importArray);
+	return YES;
 }
 
 - (NSString *)generateRegCodeForName:(NSString *)name error:(NSError **)err
@@ -106,28 +82,48 @@
 		return nil;
 	}
 	
-	if (!self.dsa || !self.dsa->priv_key) {
+	if (!self.privateKey) {
 		CFobAssignErrorWithDescriptionAndCode(err, @"Invalid private key.", CFobErrorCodeInvalidKey);
 		return nil;
 	}
-	
-	NSData *digest = [name sha1];
-	unsigned int siglen;
-	unsigned char sig[100];
-	int check = DSA_sign(NID_sha1, [digest bytes], [digest length], sig, &siglen, self.dsa);
-	if (!check) {
+
+	NSData *keyData = nil;
+	NSData *nameData = [name dataUsingEncoding:NSUTF8StringEncoding];
+#if __has_feature(objc_arc)
+	CFDataRef nameDataRef = (__bridge CFDataRef)nameData;
+#else
+	CFDataRef nameDataRef = (CFDataRef)nameData;
+#endif
+
+	SecGroupTransformRef group = SecTransformCreateGroupTransform();
+	SecTransformRef signer = SecSignTransformCreate(self.privateKey, NULL);
+	if (signer) {
+		SecTransformSetAttribute(signer, kSecTransformInputAttributeName, nameDataRef, NULL);
+		SecTransformSetAttribute(signer, kSecDigestTypeAttribute, kSecDigestSHA1, NULL);
+		SecTransformRef encoder = SecEncodeTransformCreate(kSecBase32Encoding, NULL);
+		if (encoder) {
+			SecTransformConnectTransforms(signer, kSecTransformOutputAttributeName, encoder, kSecTransformInputAttributeName, group, NULL);
+#if __has_feature(objc_arc)
+			keyData = (NSData *)CFBridgingRelease(SecTransformExecute(group, NULL));
+#else
+			keyData = [(NSData *)SecTransformExecute(group, NULL) autorelease];
+#endif
+			CFRelease(encoder);
+		}
+		CFRelease(signer);
+	}
+	CFRelease(group);
+
+	if (!keyData) {
 		CFobAssignErrorWithDescriptionAndCode(err, @"Signing failed.", CFobErrorCodeSigningFailed);
 		return nil;
 	}
-	
-	// Encode signature in Base32
-	NSData *signature = [NSData dataWithBytes:sig length:siglen];
-	NSString *b32Orig = [signature base32];
-	if (!b32Orig || ![b32Orig length]) {
-		CFobAssignErrorWithDescriptionAndCode(err, @"Unable to encode in base32", CFobErrorCodeCouldNotEncode);
-		return nil;
-	}
-	
+
+	NSString *b32Orig = [[NSString alloc] initWithData:keyData encoding:NSUTF8StringEncoding];
+#if !__has_feature(objc_arc)
+	[b32Orig autorelease];
+#endif
+
 	// Replace Os with 8s and Is with 9s
 	NSString *replacedOWith8 = [b32Orig stringByReplacingOccurrencesOfString:@"O" withString:@"8"];
 	NSString *b32 = [replacedOWith8 stringByReplacingOccurrencesOfString:@"I" withString:@"9"];
@@ -144,21 +140,6 @@
 	}
 
 	return serial;
-}
-
-#pragma mark -
-#pragma mark OpenSSL Lifecycle
-
-- (void)initOpenSSL 
-{
-	OpenSSL_add_all_algorithms();
-	ERR_load_crypto_strings();
-}
-
-- (void)shutdownOpenSSL 
-{
-	EVP_cleanup();
-	ERR_free_strings();
 }
 
 @end

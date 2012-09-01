@@ -9,46 +9,27 @@
 //
 
 #import "CFobLicVerifier.h"
-
 #import "CFobError.h"
 
-#import "decoder.h"
-
-#import "NSString-Base64Extensions.h"
-#import "NSString+PECrypt.h"
-
-#import <openssl/evp.h>
-#import <openssl/err.h>
-#import <openssl/pem.h>
-
-
 @interface CFobLicVerifier ()
-
-@property (nonatomic, assign) DSA *dsa;
-
+@property (retain) __attribute__((NSObject)) SecKeyRef publicKey;
 @end
 
 
 @implementation CFobLicVerifier
 
 @synthesize blacklist = _blacklist;
-
-@synthesize dsa = _dsa;
+@synthesize publicKey = _publicKey;
 
 #pragma mark -
 #pragma mark Class methods
-
-+ (void)initialize
-{
-    [CFobLicVerifier initOpenSSL];
-}
 
 + (NSString *)completePublicKeyPEM:(NSString *)partialPEM {
 	NSString *dashes = @"-----";
 	NSString *begin = @"BEGIN";
 	NSString *end = @"END";
 	NSString *key = @"KEY";
-	NSString *public = @"PUBLIC";
+	NSString *public = @"DSA PUBLIC";
 	NSMutableString *pem = [NSMutableString string];
 	[pem appendString:dashes];
 	[pem appendString:begin];
@@ -73,64 +54,59 @@
 #pragma mark -
 #pragma mark Lifecycle
 
-- (id)init
-{
-	if (!(self = [super init]))
-		return nil;
-
-	return self;
-}
-
 #if !__has_feature(objc_arc)
 - (void)finalize
 {
-	if (self.dsa)
-		DSA_free(self.dsa);
+	self.publicKey = nil;
 	[super finalize];
 }
-#endif
 
 - (void)dealloc
 {
-	if (self.dsa)
-		DSA_free(self.dsa);
-
-#if !__has_feature(objc_arc)
+	self.publicKey = nil;
 	self.blacklist = nil;
 	[super dealloc];
-#endif
 }
+#endif
 
 #pragma mark -
 #pragma mark API
 
 - (BOOL)setPublicKey:(NSString *)pubKey error:(NSError **)err
 {
+	self.publicKey = nil;
+
 	// Validate the argument.
 	if (pubKey == nil || [pubKey length] < 1) {
 		CFobAssignErrorWithDescriptionAndCode(err, @"Invalid key.", CFobErrorCodeInvalidKey);
 		return NO;
 	}
 
-	if (self.dsa)
-		DSA_free(self.dsa);
-	self.dsa = DSA_new();
+	SecItemImportExportKeyParameters params = {};
+	SecExternalItemType keyType = kSecItemTypePublicKey;
+	SecExternalFormat keyFormat = kSecFormatPEMSequence;
+	CFArrayRef importArray = NULL;
 
-	// Prepare BIO to read PEM-encoded public key from memory.
-	// Prepare buffer given NSString
-	const char *pubkeyCString = [pubKey UTF8String];
-	BIO *bio = BIO_new_mem_buf((void *)pubkeyCString, -1);
-	PEM_read_bio_DSA_PUBKEY(bio, &_dsa, NULL, NULL);
+	NSData *pubKeyData = [pubKey dataUsingEncoding:NSUTF8StringEncoding];
+#if __has_feature(objc_arc)
+	CFDataRef pubKeyDataRef = (__bridge CFDataRef)pubKeyData;
+#else
+	CFDataRef pubKeyDataRef = (CFDataRef)pubKeyData;
+#endif
 
-	BOOL result = YES;
-	if (!self.dsa->pub_key) {
+	OSStatus importError = SecItemImport(pubKeyDataRef, NULL, &keyFormat, &keyType, 0, &params, NULL, &importArray);
+
+	if (importError) {
 		CFobAssignErrorWithDescriptionAndCode(err, @"Unable to decode key.", CFobErrorCodeCouldNotDecode);
-		result = NO;
+		if (importArray) {
+			CFRelease(importArray);
+		}
+		return NO;
 	}
 
-	// Cleanup BIO
-	BIO_vfree(bio);
-	return result;
+	self.publicKey = (SecKeyRef)CFArrayGetValueAtIndex(importArray, 0);
+	CFRelease(importArray);
+	return YES;
 }
 
 - (BOOL)verifyRegCode:(NSString *)regCode forName:(NSString *)name error:(NSError **)err
@@ -140,7 +116,7 @@
 		return NO;
 	}
 
-	if (!self.dsa || !self.dsa->pub_key) {
+	if (!self.publicKey) {
 		CFobAssignErrorWithDescriptionAndCode(err, @"Invalid key.", CFobErrorCodeInvalidKey);
 		return NO;
 	}
@@ -150,50 +126,41 @@
 	NSString *regKeyBase32 = [regKeyTemp stringByReplacingOccurrencesOfString:@"8" withString:@"O"];
 	// Remove dashes from the registration key if they are there (dashes are optional).
 	NSString *keyNoDashes = [regKeyBase32 stringByReplacingOccurrencesOfString:@"-" withString:@""];
-	// Need to pad up to the nearest number divisible by 8.
-	NSUInteger keyLength = [keyNoDashes length];
-	NSUInteger paddedLength = keyLength%8 ? (keyLength/8 + 1)*8 : keyLength;
-	NSString *keyBase32 = [keyNoDashes stringByPaddingToLength:paddedLength withString:@"=" startingAtIndex:0];
-	const char *keyBase32Utf8 = [keyBase32 UTF8String];
-	if (!keyBase32Utf8)
-		return NO;
-	size_t base32Length = strlen(keyBase32Utf8);
-	// Prepare a buffer for decoding base32-encoded signature.
-	size_t decodeBufSize = base32_decoder_buffer_size(base32Length);
-	unsigned char *sig = malloc(decodeBufSize);
-	if (!sig)
-		return NO;
-	// Decode signature from Base32 to a byte buffer.
-	size_t sigSize = base32_decode(sig, decodeBufSize, (unsigned char *)keyBase32Utf8, base32Length);
-	if (!sigSize) {
-		CFobAssignErrorWithDescriptionAndCode(err, @"Unable to decode registration key.", CFobErrorCodeCouldNotDecode);
-		free(sig);
-		return NO;
+	NSData *keyData = [keyNoDashes dataUsingEncoding:NSUTF8StringEncoding];
+	NSData *nameData = [name dataUsingEncoding:NSUTF8StringEncoding];
+#if __has_feature(objc_arc)
+	CFDataRef keyDataRef = (__bridge CFDataRef)keyData;
+	CFDataRef nameDataRef = (__bridge CFDataRef)nameData;
+#else
+	CFDataRef keyDataRef = (CFDataRef)keyData;
+	CFDataRef nameDataRef = (CFDataRef)nameData;
+#endif
+
+	// Note: A transform group is not used here because there appears to be a bug connecting the output of a decode transform to kSecSignatureAttributeName. Execution of the group randomly fails.
+
+	BOOL result = NO;
+	SecTransformRef decoder = SecDecodeTransformCreate(kSecBase32Encoding, NULL);
+	if (decoder) {
+		SecTransformSetAttribute(decoder, kSecTransformInputAttributeName, keyDataRef, NULL);
+		CFDataRef signature = SecTransformExecute(decoder, NULL);
+		if (signature) {
+			SecTransformRef verifier = SecVerifyTransformCreate(self.publicKey, signature, NULL);
+			if (verifier) {
+				SecTransformSetAttribute(verifier, kSecTransformInputAttributeName, nameDataRef, NULL);
+				SecTransformSetAttribute(verifier, kSecDigestTypeAttribute, kSecDigestSHA1, NULL);
+				CFErrorRef error;
+				CFBooleanRef transformResult = SecTransformExecute(verifier, &error);
+				if (transformResult) {
+					result = (transformResult == kCFBooleanTrue);
+					CFRelease(transformResult);
+				}
+				CFRelease(verifier);
+			}
+			CFRelease(signature);
+		}
+		CFRelease(decoder);
 	}
-
-	// Produce a SHA-1 hash of the registration name string. This is what was signed during registration key generation.
-	NSData *digest = [name sha1];
-
-	// Verify DSA signature.
-	int check = DSA_verify(0, [digest bytes], (int)[digest length], sig, (int)sigSize, self.dsa);
-	BOOL result = check > 0;
-
-	// Cleanup
-	free(sig);
 	return result;
-}
-
-#pragma mark -
-#pragma mark OpenSSL Lifecycle
-
-+ (void)initOpenSSL {
-	OpenSSL_add_all_algorithms();
-	ERR_load_crypto_strings();
-}
-
-+ (void)shutdownOpenSSL {
-	EVP_cleanup();
-	ERR_free_strings();
 }
 
 @end
