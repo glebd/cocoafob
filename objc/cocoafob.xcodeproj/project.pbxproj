@@ -27,6 +27,7 @@
 		303526981223DC9600AACD22 /* CFobError.m in Sources */ = {isa = PBXBuildFile; fileRef = 303526971223DC9600AACD22 /* CFobError.m */; };
 		303526F41223E4C900AACD22 /* CocoaFob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303524081223BB9600AACD22 /* CocoaFob.framework */; };
 		303526FC1223E56000AACD22 /* cocoafob.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* cocoafob.m */; };
+		C74F938B15F26AFA004C00EA /* CocoaFobARC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F7EF2C1577F3D90067C3A3 /* CocoaFobARC.framework */; };
 		C7CA0D8A15F1BFA900C7E9CD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7CA0D8915F1BFA900C7E9CD /* SenTestingKit.framework */; };
 		C7CA0D8C15F1BFA900C7E9CD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7CA0D8B15F1BFA900C7E9CD /* Cocoa.framework */; };
 		C7CA0D9615F1BFA900C7E9CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7CA0D9415F1BFA900C7E9CD /* InfoPlist.strings */; };
@@ -58,6 +59,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 303524071223BB9600AACD22;
 			remoteInfo = CocoaFob;
+		};
+		C74F938915F26AB1004C00EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C7F7EF121577F3D90067C3A3;
+			remoteInfo = CocoaFobARC;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -96,7 +104,7 @@
 		C7E3784C0F59DB15002061CD /* NSData+PECrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+PECrypt.m"; sourceTree = "<group>"; };
 		C7E3784D0F59DB15002061CD /* NSString+PECrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PECrypt.h"; sourceTree = "<group>"; };
 		C7E3784E0F59DB15002061CD /* NSString+PECrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PECrypt.m"; sourceTree = "<group>"; };
-		C7F7EF2C1577F3D90067C3A3 /* CocoaFob copy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "CocoaFob copy.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7F7EF2C1577F3D90067C3A3 /* CocoaFobARC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaFobARC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7F7EF2D1577F3D90067C3A3 /* CocoaFobARC-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "CocoaFobARC-Info.plist"; path = "/Users/glebd/git/cocoafob/objc/CocoaFobARC-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C74F938B15F26AFA004C00EA /* CocoaFobARC.framework in Frameworks */,
 				C7CA0D8A15F1BFA900C7E9CD /* SenTestingKit.framework in Frameworks */,
 				C7CA0D8C15F1BFA900C7E9CD /* Cocoa.framework in Frameworks */,
 			);
@@ -184,7 +193,7 @@
 			children = (
 				303524081223BB9600AACD22 /* CocoaFob.framework */,
 				303526E91223E45100AACD22 /* cocoafob */,
-				C7F7EF2C1577F3D90067C3A3 /* CocoaFob copy.framework */,
+				C7F7EF2C1577F3D90067C3A3 /* CocoaFobARC.framework */,
 				C7CA0D8715F1BFA900C7E9CD /* CocoaFobTests.octest */,
 			);
 			name = Products;
@@ -377,6 +386,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C74F938A15F26AB1004C00EA /* PBXTargetDependency */,
 			);
 			name = CocoaFobTests;
 			productName = CocoaFobTests;
@@ -398,7 +408,7 @@
 			);
 			name = CocoaFobARC;
 			productName = CocoaFob;
-			productReference = C7F7EF2C1577F3D90067C3A3 /* CocoaFob copy.framework */;
+			productReference = C7F7EF2C1577F3D90067C3A3 /* CocoaFobARC.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -523,6 +533,11 @@
 			isa = PBXTargetDependency;
 			target = 303524071223BB9600AACD22 /* CocoaFob */;
 			targetProxy = 303526F01223E4C200AACD22 /* PBXContainerItemProxy */;
+		};
+		C74F938A15F26AB1004C00EA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C7F7EF121577F3D90067C3A3 /* CocoaFobARC */;
+			targetProxy = C74F938915F26AB1004C00EA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -753,7 +768,7 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_NAME = "CocoaFob copy";
+				PRODUCT_NAME = CocoaFobARC;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -785,7 +800,7 @@
 					"-framework",
 					AppKit,
 				);
-				PRODUCT_NAME = "CocoaFob copy";
+				PRODUCT_NAME = CocoaFobARC;
 				SDKROOT = macosx;
 				ZERO_LINK = NO;
 			};
