@@ -88,4 +88,11 @@ static NSString *regName = @"decloner|Joe Bloggs";
 	STAssertTrue(result, @"Registration code could not be verified: %@", err);
 }
 
+- (void)testVerify
+{
+	NSError *err = nil;
+	BOOL result = [self.verifier verifyRegCode:@"GAWQE-F9AQP-XJCCL-PAFAX-NU5XX-EUG6W-KLT3H-VTEB9-A9KHJ-8DZ5R-DL74G-TU4BN-7ATPY-3N4XB-V4V27-Q" forName:@"Joe Bloggs" error:&err];
+	STAssertTrue(result, @"Registration code could not be verified: %@", err);
+}
+
 @end
