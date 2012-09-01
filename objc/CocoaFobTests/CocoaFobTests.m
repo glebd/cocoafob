@@ -36,7 +36,7 @@ static NSString *regName = @"decloner|Joe Bloggs";
 
 - (void)setUp
 {
-    [super setUp];
+	[super setUp];
 
 	self.generator = [[CFobLicGenerator alloc] init];
 
@@ -75,16 +75,16 @@ static NSString *regName = @"decloner|Joe Bloggs";
 
 - (void)tearDown
 {
-    [super tearDown];
+	[super tearDown];
 }
 
 - (void)testGenerateAndVerify
 {
-    NSError *err = nil;
+	NSError *err = nil;
 	NSString *regCode = [self.generator generateRegCodeForName:regName error:&err];
-    STAssertNotNil(regCode, @"Could not generate serial number: %@", err);
+	STAssertNotNil(regCode, @"Could not generate serial number: %@", err);
 
-    BOOL result = [self.verifier verifyRegCode:regCode forName:regName error:&err];
+	BOOL result = [self.verifier verifyRegCode:regCode forName:regName error:&err];
 	STAssertTrue(result, @"Registration code could not be verified: %@", err);
 }
 
