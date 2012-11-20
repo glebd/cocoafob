@@ -124,7 +124,8 @@
 
 	BOOL result = YES;
 	if (!self.dsa->pub_key) {
-		CFobAssignErrorWithDescriptionAndCode(err, @"Unable to decode key.", CFobErrorCodeCouldNotDecode);
+        NSString *message = [NSString stringWithFormat:@"Unable to decode public key: %s", ERR_error_string(ERR_get_error (), NULL)];
+		CFobAssignErrorWithDescriptionAndCode(err, message, CFobErrorCodeCouldNotDecode);
 		result = NO;
 	}
 
