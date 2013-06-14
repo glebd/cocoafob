@@ -131,6 +131,7 @@ To support registration URLs in your application:
 	<pre>
     &lt;key&gt;NSAppleScriptEnabled&lt;/key&gt;
     &lt;string&gt;YES&lt;/string&gt;
+    
     &lt;key&gt;CFBundleURLTypes&lt;/key&gt;
     &lt;array&gt;
         &lt;dict&gt;
