@@ -21,6 +21,11 @@ import org.apache.commons.codec.binary.Base32;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.openssl.PEMReader;
 
+/**
+ * Generate and verify CocoaFob licenses. Based on the PHP implementation by Sandro Noel.
+ * @author karlvr
+ *
+ */
 public class LicenseGenerator {
 	
 	private DSAPrivateKey privateKey;
@@ -35,11 +40,27 @@ public class LicenseGenerator {
 		random = new SecureRandom();
 	}
 	
+	/**
+	 * Construct the LicenseGenerator with a URL that points to either the private key or public key.
+	 * Pass the private key for making and verifying licenses. Pass the public key for verifying only.
+	 * If you this code will go onto a user's machine you MUST NOT include the private key, only include
+	 * the public key in this case. 
+	 * @param keyURL
+	 * @throws IOException
+	 */
 	public LicenseGenerator(URL keyURL) throws IOException {
 		this();
 		initKeys(keyURL.openStream());
 	}
 	
+	/**
+	 * Construct the LicenseGenerator with an InputStream of either the private key or public key.
+	 * Pass the private key for making and verifying licenses. Pass the public key for verifying only.
+	 * If you this code will go onto a user's machine you MUST NOT include the private key, only include
+	 * the public key in this case. 
+	 * @param keyURL
+	 * @throws IOException
+	 */
 	public LicenseGenerator(InputStream keyInputStream) throws IOException {
 		this();
 		initKeys(keyInputStream);
@@ -67,7 +88,18 @@ public class LicenseGenerator {
 		}
 	}
 
-	public String makeLicense(LicenseData licenseData) throws LicenseGeneratorException {
+	/**
+	 * Make and return a license for the given {@link LicenseData}.
+	 * @param licenseData
+	 * @return
+	 * @throws LicenseGeneratorException If the generation encounters an error, usually due to invalid input.
+	 * @throws IllegalStateException If the generator is not setup correctly to make licenses.
+	 */
+	public String makeLicense(LicenseData licenseData) throws LicenseGeneratorException, IllegalStateException {
+		if (!isCanMakeLicenses()) {
+			throw new IllegalStateException("The LicenseGenerator cannot make licenses as it was not configured with a private key");
+		}
+		
 		final String stringData = licenseData.toLicenseStringData();
 		
 		try {
@@ -102,7 +134,19 @@ public class LicenseGenerator {
 		}
 	}
 
-	public boolean verifyLicense(LicenseData licenseData, String license) throws LicenseGeneratorException {
+	/**
+	 * Verify the given license for the given {@link LicenseData}.
+	 * @param licenseData
+	 * @param license
+	 * @return Whether the license verified successfully.
+	 * @throws LicenseGeneratorException If the verification encounters an error, usually due to invalid input. You MUST check the return value of this method if no exception is thrown.
+	 * @throws IllegalStateException If the generator is not setup correctly to verify licenses.
+	 */
+	public boolean verifyLicense(LicenseData licenseData, String license) throws LicenseGeneratorException, IllegalStateException {
+		if (!isCanVerifyLicenses()) {
+			throw new IllegalStateException("The LicenseGenerator cannot verify licenses as it was not configured with a public key");
+		}
+		
 		final String stringData = licenseData.toLicenseStringData();
 		
 		/* replace O with 8 and I with 9 */
