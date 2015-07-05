@@ -3,3 +3,4 @@ build
 *.pbxuser
 *.perspectivev3
 .idea
+xcuserdata
