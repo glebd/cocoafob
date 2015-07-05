@@ -7,48 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		303524101223BC2200AACD22 /* decoder.c in Sources */ = {isa = PBXBuildFile; fileRef = C7E378410F59D737002061CD /* decoder.c */; };
-		303524111223BC2200AACD22 /* encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = C7E378430F59D737002061CD /* encoder.c */; };
 		303524121223BC2200AACD22 /* CFobLicGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E378480F59DB15002061CD /* CFobLicGenerator.m */; };
 		303524131223BC2200AACD22 /* CFobLicVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E3784A0F59DB15002061CD /* CFobLicVerifier.m */; };
-		303524141223BC2200AACD22 /* NSData+PECrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E3784C0F59DB15002061CD /* NSData+PECrypt.m */; };
-		303524151223BC2200AACD22 /* NSString+PECrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E3784E0F59DB15002061CD /* NSString+PECrypt.m */; };
-		303524161223BC2200AACD22 /* NSString-Base64Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A731680F5F42D500D40AFE /* NSString-Base64Extensions.m */; };
 		303524231223BCB500AACD22 /* CFobLicVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378490F59DB15002061CD /* CFobLicVerifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		303524241223BCBA00AACD22 /* CFobLicGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378470F59DB15002061CD /* CFobLicGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		303524D71223BE6700AACD22 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303524D61223BE6700AACD22 /* Foundation.framework */; };
-		303525881223BFFF00AACD22 /* decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378420F59D737002061CD /* decoder.h */; };
-		303525891223BFFF00AACD22 /* encoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378440F59D737002061CD /* encoder.h */; };
-		3035258D1223C01100AACD22 /* NSData+PECrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E3784B0F59DB15002061CD /* NSData+PECrypt.h */; };
-		3035258E1223C01100AACD22 /* NSString+PECrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E3784D0F59DB15002061CD /* NSString+PECrypt.h */; };
-		3035258F1223C01100AACD22 /* NSString-Base64Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = C7A731670F5F42D500D40AFE /* NSString-Base64Extensions.h */; };
-		303525A81223C19D00AACD22 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 303524D01223BE4D00AACD22 /* libcrypto.dylib */; };
 		303526851223D4DA00AACD22 /* CFobError.h in Headers */ = {isa = PBXBuildFile; fileRef = 303526831223D4DA00AACD22 /* CFobError.h */; };
 		303526981223DC9600AACD22 /* CFobError.m in Sources */ = {isa = PBXBuildFile; fileRef = 303526971223DC9600AACD22 /* CFobError.m */; };
 		303526F41223E4C900AACD22 /* CocoaFob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303524081223BB9600AACD22 /* CocoaFob.framework */; };
 		303526FC1223E56000AACD22 /* cocoafob.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* cocoafob.m */; };
 		C74F938B15F26AFA004C00EA /* CocoaFobARC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F7EF2C1577F3D90067C3A3 /* CocoaFobARC.framework */; };
+		C74F939215F28769004C00EA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74F939115F28769004C00EA /* Security.framework */; };
+		C74F939315F28776004C00EA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74F939115F28769004C00EA /* Security.framework */; };
 		C7CA0D8A15F1BFA900C7E9CD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7CA0D8915F1BFA900C7E9CD /* SenTestingKit.framework */; };
 		C7CA0D8C15F1BFA900C7E9CD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7CA0D8B15F1BFA900C7E9CD /* Cocoa.framework */; };
 		C7CA0D9615F1BFA900C7E9CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7CA0D9415F1BFA900C7E9CD /* InfoPlist.strings */; };
 		C7CA0D9915F1BFA900C7E9CD /* CocoaFobTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CA0D9815F1BFA900C7E9CD /* CocoaFobTests.m */; };
-		C7F7EF141577F3D90067C3A3 /* NSData+PECrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E3784B0F59DB15002061CD /* NSData+PECrypt.h */; };
-		C7F7EF151577F3D90067C3A3 /* NSString+PECrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E3784D0F59DB15002061CD /* NSString+PECrypt.h */; };
-		C7F7EF161577F3D90067C3A3 /* NSString-Base64Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = C7A731670F5F42D500D40AFE /* NSString-Base64Extensions.h */; };
-		C7F7EF171577F3D90067C3A3 /* decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378420F59D737002061CD /* decoder.h */; };
-		C7F7EF181577F3D90067C3A3 /* encoder.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378440F59D737002061CD /* encoder.h */; };
 		C7F7EF191577F3D90067C3A3 /* CFobLicVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378490F59DB15002061CD /* CFobLicVerifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C7F7EF1A1577F3D90067C3A3 /* CFobLicGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378470F59DB15002061CD /* CFobLicGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C7F7EF1B1577F3D90067C3A3 /* CFobError.h in Headers */ = {isa = PBXBuildFile; fileRef = 303526831223D4DA00AACD22 /* CFobError.h */; };
-		C7F7EF1E1577F3D90067C3A3 /* decoder.c in Sources */ = {isa = PBXBuildFile; fileRef = C7E378410F59D737002061CD /* decoder.c */; };
-		C7F7EF1F1577F3D90067C3A3 /* encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = C7E378430F59D737002061CD /* encoder.c */; };
 		C7F7EF201577F3D90067C3A3 /* CFobLicGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E378480F59DB15002061CD /* CFobLicGenerator.m */; };
 		C7F7EF211577F3D90067C3A3 /* CFobLicVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E3784A0F59DB15002061CD /* CFobLicVerifier.m */; };
-		C7F7EF221577F3D90067C3A3 /* NSData+PECrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E3784C0F59DB15002061CD /* NSData+PECrypt.m */; };
-		C7F7EF231577F3D90067C3A3 /* NSString+PECrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E3784E0F59DB15002061CD /* NSString+PECrypt.m */; };
-		C7F7EF241577F3D90067C3A3 /* NSString-Base64Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A731680F5F42D500D40AFE /* NSString-Base64Extensions.m */; };
 		C7F7EF251577F3D90067C3A3 /* CFobError.m in Sources */ = {isa = PBXBuildFile; fileRef = 303526971223DC9600AACD22 /* CFobError.m */; };
-		C7F7EF271577F3D90067C3A3 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 303524D01223BE4D00AACD22 /* libcrypto.dylib */; };
 		C7F7EF281577F3D90067C3A3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303524D61223BE6700AACD22 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,8 +59,7 @@
 		303526971223DC9600AACD22 /* CFobError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFobError.m; sourceTree = "<group>"; };
 		303526E91223E45100AACD22 /* cocoafob */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocoafob; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859EA3029092ED04C91782 /* cocoafob.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = cocoafob.1; sourceTree = "<group>"; };
-		C7A731670F5F42D500D40AFE /* NSString-Base64Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString-Base64Extensions.h"; sourceTree = "<group>"; };
-		C7A731680F5F42D500D40AFE /* NSString-Base64Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString-Base64Extensions.m"; sourceTree = "<group>"; };
+		C74F939115F28769004C00EA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C7CA0D8715F1BFA900C7E9CD /* CocoaFobTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CocoaFobTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7CA0D8915F1BFA900C7E9CD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		C7CA0D8B15F1BFA900C7E9CD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -92,18 +71,10 @@
 		C7CA0D9715F1BFA900C7E9CD /* CocoaFobTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaFobTests.h; sourceTree = "<group>"; };
 		C7CA0D9815F1BFA900C7E9CD /* CocoaFobTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CocoaFobTests.m; sourceTree = "<group>"; usesTabs = 1; };
 		C7CA0D9A15F1BFA900C7E9CD /* CocoaFobTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CocoaFobTests-Prefix.pch"; sourceTree = "<group>"; };
-		C7E378410F59D737002061CD /* decoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = decoder.c; sourceTree = "<group>"; };
-		C7E378420F59D737002061CD /* decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decoder.h; sourceTree = "<group>"; };
-		C7E378430F59D737002061CD /* encoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = encoder.c; sourceTree = "<group>"; };
-		C7E378440F59D737002061CD /* encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encoder.h; sourceTree = "<group>"; };
 		C7E378470F59DB15002061CD /* CFobLicGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFobLicGenerator.h; sourceTree = "<group>"; };
-		C7E378480F59DB15002061CD /* CFobLicGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFobLicGenerator.m; sourceTree = "<group>"; };
-		C7E378490F59DB15002061CD /* CFobLicVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFobLicVerifier.h; sourceTree = "<group>"; };
-		C7E3784A0F59DB15002061CD /* CFobLicVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFobLicVerifier.m; sourceTree = "<group>"; };
-		C7E3784B0F59DB15002061CD /* NSData+PECrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+PECrypt.h"; sourceTree = "<group>"; };
-		C7E3784C0F59DB15002061CD /* NSData+PECrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+PECrypt.m"; sourceTree = "<group>"; };
-		C7E3784D0F59DB15002061CD /* NSString+PECrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PECrypt.h"; sourceTree = "<group>"; };
-		C7E3784E0F59DB15002061CD /* NSString+PECrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PECrypt.m"; sourceTree = "<group>"; };
+		C7E378480F59DB15002061CD /* CFobLicGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFobLicGenerator.m; sourceTree = "<group>"; usesTabs = 1; };
+		C7E378490F59DB15002061CD /* CFobLicVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFobLicVerifier.h; sourceTree = "<group>"; usesTabs = 1; };
+		C7E3784A0F59DB15002061CD /* CFobLicVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFobLicVerifier.m; sourceTree = "<group>"; usesTabs = 1; };
 		C7F7EF2C1577F3D90067C3A3 /* CocoaFobARC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaFobARC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7F7EF2D1577F3D90067C3A3 /* CocoaFobARC-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "CocoaFobARC-Info.plist"; path = "/Users/glebd/git/cocoafob/objc/CocoaFobARC-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -113,7 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				303525A81223C19D00AACD22 /* libcrypto.dylib in Frameworks */,
+				C74F939315F28776004C00EA /* Security.framework in Frameworks */,
 				303524D71223BE6700AACD22 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,7 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7F7EF271577F3D90067C3A3 /* libcrypto.dylib in Frameworks */,
+				C74F939215F28769004C00EA /* Security.framework in Frameworks */,
 				C7F7EF281577F3D90067C3A3 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,6 +122,7 @@
 		08FB7794FE84155DC02AAC07 /* cocoafob */ = {
 			isa = PBXGroup;
 			children = (
+				C74F939115F28769004C00EA /* Security.framework */,
 				08FB7795FE84155DC02AAC07 /* Source */,
 				303526E01223E39D00AACD22 /* Tests */,
 				3035240E1223BC0400AACD22 /* Framework */,
@@ -166,9 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				303526E21223E3FF00AACD22 /* Cmd Line Tool */,
-				C7A731660F5F42C000D40AFE /* Dave Dribin */,
-				C7E378540F59DB33002061CD /* Base32 */,
-				C7E378530F59DB1E002061CD /* PECategories */,
 				C7E378470F59DB15002061CD /* CFobLicGenerator.h */,
 				C7E378480F59DB15002061CD /* CFobLicGenerator.m */,
 				C7E378490F59DB15002061CD /* CFobLicVerifier.h */,
@@ -232,15 +201,6 @@
 			name = Documentation;
 			sourceTree = "<group>";
 		};
-		C7A731660F5F42C000D40AFE /* Dave Dribin */ = {
-			isa = PBXGroup;
-			children = (
-				C7A731670F5F42D500D40AFE /* NSString-Base64Extensions.h */,
-				C7A731680F5F42D500D40AFE /* NSString-Base64Extensions.m */,
-			);
-			name = "Dave Dribin";
-			sourceTree = "<group>";
-		};
 		C7CA0D8815F1BFA900C7E9CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,28 +241,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C7E378530F59DB1E002061CD /* PECategories */ = {
-			isa = PBXGroup;
-			children = (
-				C7E3784B0F59DB15002061CD /* NSData+PECrypt.h */,
-				C7E3784C0F59DB15002061CD /* NSData+PECrypt.m */,
-				C7E3784D0F59DB15002061CD /* NSString+PECrypt.h */,
-				C7E3784E0F59DB15002061CD /* NSString+PECrypt.m */,
-			);
-			name = PECategories;
-			sourceTree = "<group>";
-		};
-		C7E378540F59DB33002061CD /* Base32 */ = {
-			isa = PBXGroup;
-			children = (
-				C7E378410F59D737002061CD /* decoder.c */,
-				C7E378420F59D737002061CD /* decoder.h */,
-				C7E378430F59D737002061CD /* encoder.c */,
-				C7E378440F59D737002061CD /* encoder.h */,
-			);
-			name = Base32;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -310,11 +248,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3035258D1223C01100AACD22 /* NSData+PECrypt.h in Headers */,
-				3035258E1223C01100AACD22 /* NSString+PECrypt.h in Headers */,
-				3035258F1223C01100AACD22 /* NSString-Base64Extensions.h in Headers */,
-				303525881223BFFF00AACD22 /* decoder.h in Headers */,
-				303525891223BFFF00AACD22 /* encoder.h in Headers */,
 				303524231223BCB500AACD22 /* CFobLicVerifier.h in Headers */,
 				303524241223BCBA00AACD22 /* CFobLicGenerator.h in Headers */,
 				303526851223D4DA00AACD22 /* CFobError.h in Headers */,
@@ -325,11 +258,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7F7EF141577F3D90067C3A3 /* NSData+PECrypt.h in Headers */,
-				C7F7EF151577F3D90067C3A3 /* NSString+PECrypt.h in Headers */,
-				C7F7EF161577F3D90067C3A3 /* NSString-Base64Extensions.h in Headers */,
-				C7F7EF171577F3D90067C3A3 /* decoder.h in Headers */,
-				C7F7EF181577F3D90067C3A3 /* encoder.h in Headers */,
 				C7F7EF191577F3D90067C3A3 /* CFobLicVerifier.h in Headers */,
 				C7F7EF1A1577F3D90067C3A3 /* CFobLicGenerator.h in Headers */,
 				C7F7EF1B1577F3D90067C3A3 /* CFobError.h in Headers */,
@@ -484,13 +412,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				303524101223BC2200AACD22 /* decoder.c in Sources */,
-				303524111223BC2200AACD22 /* encoder.c in Sources */,
 				303524121223BC2200AACD22 /* CFobLicGenerator.m in Sources */,
 				303524131223BC2200AACD22 /* CFobLicVerifier.m in Sources */,
-				303524141223BC2200AACD22 /* NSData+PECrypt.m in Sources */,
-				303524151223BC2200AACD22 /* NSString+PECrypt.m in Sources */,
-				303524161223BC2200AACD22 /* NSString-Base64Extensions.m in Sources */,
 				303526981223DC9600AACD22 /* CFobError.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,13 +438,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7F7EF1E1577F3D90067C3A3 /* decoder.c in Sources */,
-				C7F7EF1F1577F3D90067C3A3 /* encoder.c in Sources */,
 				C7F7EF201577F3D90067C3A3 /* CFobLicGenerator.m in Sources */,
 				C7F7EF211577F3D90067C3A3 /* CFobLicVerifier.m in Sources */,
-				C7F7EF221577F3D90067C3A3 /* NSData+PECrypt.m in Sources */,
-				C7F7EF231577F3D90067C3A3 /* NSString+PECrypt.m in Sources */,
-				C7F7EF241577F3D90067C3A3 /* NSString-Base64Extensions.m in Sources */,
 				C7F7EF251577F3D90067C3A3 /* CFobError.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

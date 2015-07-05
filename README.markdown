@@ -2,7 +2,8 @@
 
 CocoaFob is a set of helper code snippets for registration code generation and
 verification in Objective-C applications, integrated with registration code
-generation in Potion Store <http://www.potionfactory.com/potionstore> and FastSpring <http://fastspring.com>.
+generation in Potion Store <http://www.potionfactory.com/potionstore> and
+FastSpring <http://fastspring.com>.
 
 The current implementation uses DSA to generate registration keys, which
 significantly reduces chances of crackers producing key generators for your
@@ -10,17 +11,18 @@ software. Unfortunately, it also means the registration code can be quite long
 and has variable length.
 
 To make registration codes human-readable, CocoaFob encodes them using a
-slightly modified base32 to avoid ambiguous characters. It also groups codes
-in sets of five characters separated by dashes. A sample registration code
+slightly modified base32 to avoid ambiguous characters. It also groups codes in
+sets of five characters separated by dashes. A sample registration code
 produced using a 512-bit DSA key looks like this:
 
 `GAWQE-FCUGU-7Z5JE-WEVRA-PSGEQ-Y25KX-9ZJQQ-GJTQC-CUAJL-ATBR9-WV887-8KAJM-QK7DT-EZHXJ-CR99C-A`
 
 One of the advantages of DSA is that for a given registration name, each
-generated code is different, as there is a random element introduced during
-the process.
+generated code is different, as there is a random element introduced during the
+process.
 
-The name 'CocoaFob' is a combination of 'Cocoa' (the Mac and iOS programming framework) and 'Fob' (a key fob is something you keep your keys on).
+The name 'CocoaFob' is a combination of 'Cocoa' (the Mac and iOS programming
+framework) and 'Fob' (a key fob is something you keep your keys on).
 
 # Features
 
@@ -92,21 +94,25 @@ string in it. One of the possible solutions is as follows:
 - In your database migration `001_create_tables.rb`, increase the length of
   `license_key` column in `line_items` table to 128 characters:
 
-    `t.column "license_key", :string, :limit => 128`
+```ruby
+    t.column "license_key", :string, :limit => 128
+```
 
 - In the file `app/models/line_item.rb`, add the following line at the top:
 
-    `require "base64"`
+```ruby
+    require "base64"`
+```
 
 - In the same file find function called `license_url` near the bottom of the
   file. Replace it with the following (or modify to your heart's content):
 
-	<pre>
-    def license_url
-      licensee_name_b64 = Base64.encode64(self.order.licensee_name)
-      return "#{self.product.license_url_scheme}://#{licensee_name_b64}/#{self.license_key}" rescue nil
-    end
-	</pre>
+```ruby
+  def license_url
+    licensee_name_b64 = Base64.encode64(self.order.licensee_name)
+    return "#{self.product.license_url_scheme}://#{licensee_name_b64}/#{self.license_key}" rescue nil
+  end
+```
 
 This will make generated registration codes to contain base64-encoded licensee
 name. When your application is opened by clicking on the registration link, it
@@ -128,20 +134,19 @@ To support registration URLs in your application:
   key (replace *mycompany* and *myapp* with strings appropriate for your company
   and application):
 
-	<pre>
-    &lt;key&gt;NSAppleScriptEnabled&lt;/key&gt;
-    &lt;string&gt;YES&lt;/string&gt;
-    
-    &lt;key&gt;CFBundleURLTypes&lt;/key&gt;
-    &lt;array&gt;
-        &lt;dict&gt;
-            &lt;key&gt;CFBundleURLSchemes&lt;/key&gt;
-            &lt;array&gt;
-                &lt;string&gt;com.mycompany.myapp.lic&lt;/string&gt;
-            &lt;/array&gt;
-        &lt;/dict&gt;
-    &lt;/array&gt;
-	</pre>
+```xml
+  <key>NSAppleScriptEnabled</key>
+  <string>YES</string>
+  <key>CFBundleURLTypes</key>
+  <array>
+      <dict>
+          <key>CFBundleURLSchemes</key>
+          <array>
+              <string>com.mycompany.myapp.lic</string>
+          </array>
+      </dict>
+  </array>
+```
 
 - Add the files `URLCommand.h` and `URLCommand.m` to your project, paying
   attention to the `TODO:` comments in them. Specifically, you may want to save
@@ -151,8 +156,8 @@ To support registration URLs in your application:
 
 - Be sure the URL scheme name in the `Info.plist` file
   (`com.mycompany.myapp.lic`) is the same as the one in the database generation
-  script for Potion Store. It is the file `db/migrate/001_create_tables.rb`, and
-  the variable is called `license_url_scheme`.
+  script for Potion Store. It is the file `db/migrate/001_create_tables.rb`,
+  and the variable is called `license_url_scheme`.
 
 Test the URL schema support by making a test purchase which results in
 displaying an activation link, and clicking on it. If you are running your
@@ -166,9 +171,9 @@ additional test purchases.
 
 IMPORTANT NOTE: Included keys are for demonstration and testing purposes only.
 DO NOT USE THE INCLUDE KEYS IN YOUR SOFTWARE. Before incorporating CocoaFob
-into your application, you need to generate a pair of your own DSA keys. I
-used key length of 512 bit which I thought was enough for the registration
-code generation purposes.
+into your application, you need to generate a pair of your own DSA keys. I used
+key length of 512 bit which I thought was enough for the registration code
+generation purposes.
 
 (0) Make sure OpenSSL is installed. (If you're using Mac OS X, it already is.)
 
@@ -188,49 +193,53 @@ See [2] for more information.
 
 # Licence
 
-Written by Gleb Dolgich  
-Twitter: @glebd  
+Written by Gleb Dolgich and contributors
+
+Twitter: @glebd
+
 Web: <http://pixelespressoapps.com>
 
 CocoaFob is distributed under the BSD License
 <http://www.opensource.org/licenses/bsd-license.php>
 
-Copyright &copy; 2009-2011, PixelEspresso. All rights reserved.
+Copyright &copy; 2009-2015, PixelEspresso. All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification,
-are permitted provided that the following conditions are met:
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
 
-Redistributions of source code must retain the above copyright notice, this list
-of conditions and the following disclaimer. Redistributions in binary form must
-reproduce the above copyright notice, this list of conditions and the following
-disclaimer in the documentation and/or other materials provided with the
-distribution.
+Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer. Redistributions in binary form
+must reproduce the above copyright notice, this list of conditions and the
+following disclaimer in the documentation and/or other materials provided with
+the distribution.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
-ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # Credits
 
 [0] The Mac developer community that continues to amaze me.
 
-[1] Base32 implementation is Copyright (C) 2007 by Samuel Tesla and comes from
-Ruby base32 gem: <http://rubyforge.org/projects/base32/>. Samuel Tesla's blog is
-at <http://blog.alieniloquent.com/tag/base32/>.
+[1] Base32 implementation is Copyright &copy; 2007 by Samuel Tesla and comes from
+Ruby base32 gem: <http://rubyforge.org/projects/base32/>.
 
 [2] OpenSSL key generation HOWTO: <http://www.openssl.org/docs/HOWTO/keys.txt>
 
 [3] Handling URL schemes in Cocoa: a blog post by Kimbro Staken
-<http://www.xmldatabases.org/WK/blog/1154?t=item>
 
 [4] Registering a protocol handler for an App: a post on CocoaBuilder mailing
 list, <http://www.cocoabuilder.com/archive/message/cocoa/2009/2/2/229297>
 
-[5] PHP implementation courtesy of Sandro Noel, <http://gesosoft.com>
+[5] PHP implementation courtesy of Sandro Noel
+
+[6] Security framework-based implementation by Matt Stevens, <http://codeworkshop.net>
+
+[7] New API by Danny Greg, <http://dannygreg.com>

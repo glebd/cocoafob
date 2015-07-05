@@ -4,12 +4,12 @@
 //
 //  Created by Gleb Dolgich on 09/02/2009.
 //  Follow me on Twitter @glebd.
-//  Copyright (C) 2009-2011 PixelEspresso. All rights reserved.
+//  Copyright (C) 2009-2012 PixelEspresso. All rights reserved.
 //  BSD License
 //
 
 #import <Foundation/Foundation.h>
-#import <openssl/dsa.h>
+#import <Security/Security.h>
 
 /*!
 	@class       CFobLicGenerator 
@@ -18,7 +18,7 @@
 	@discussion  Given user name and DSA private key, generates a human-readable registration code.
 */
 @interface CFobLicGenerator : NSObject {
-	DSA *_dsa;
+	SecKeyRef _privateKey;
 }
 
 /*!
