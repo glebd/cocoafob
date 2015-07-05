@@ -16,13 +16,10 @@
 		303526981223DC9600AACD22 /* CFobError.m in Sources */ = {isa = PBXBuildFile; fileRef = 303526971223DC9600AACD22 /* CFobError.m */; };
 		303526F41223E4C900AACD22 /* CocoaFob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303524081223BB9600AACD22 /* CocoaFob.framework */; };
 		303526FC1223E56000AACD22 /* cocoafob.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* cocoafob.m */; };
-		C74F938B15F26AFA004C00EA /* CocoaFobARC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F7EF2C1577F3D90067C3A3 /* CocoaFobARC.framework */; };
+		C70720321B48C8D80083F859 /* CocoaFobTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C70720311B48C8D80083F859 /* CocoaFobTests.m */; };
+		C70720341B48C8D80083F859 /* CocoaFobARC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F7EF2C1577F3D90067C3A3 /* CocoaFobARC.framework */; };
 		C74F939215F28769004C00EA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74F939115F28769004C00EA /* Security.framework */; };
 		C74F939315F28776004C00EA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74F939115F28769004C00EA /* Security.framework */; };
-		C7CA0D8A15F1BFA900C7E9CD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7CA0D8915F1BFA900C7E9CD /* SenTestingKit.framework */; };
-		C7CA0D8C15F1BFA900C7E9CD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7CA0D8B15F1BFA900C7E9CD /* Cocoa.framework */; };
-		C7CA0D9615F1BFA900C7E9CD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C7CA0D9415F1BFA900C7E9CD /* InfoPlist.strings */; };
-		C7CA0D9915F1BFA900C7E9CD /* CocoaFobTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CA0D9815F1BFA900C7E9CD /* CocoaFobTests.m */; };
 		C7F7EF191577F3D90067C3A3 /* CFobLicVerifier.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378490F59DB15002061CD /* CFobLicVerifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C7F7EF1A1577F3D90067C3A3 /* CFobLicGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E378470F59DB15002061CD /* CFobLicGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C7F7EF1B1577F3D90067C3A3 /* CFobError.h in Headers */ = {isa = PBXBuildFile; fileRef = 303526831223D4DA00AACD22 /* CFobError.h */; };
@@ -40,7 +37,7 @@
 			remoteGlobalIDString = 303524071223BB9600AACD22;
 			remoteInfo = CocoaFob;
 		};
-		C74F938915F26AB1004C00EA /* PBXContainerItemProxy */ = {
+		C70720351B48C8D80083F859 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
 			proxyType = 1;
@@ -53,24 +50,15 @@
 		08FB7796FE84155DC02AAC07 /* cocoafob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cocoafob.m; sourceTree = "<group>"; };
 		303524081223BB9600AACD22 /* CocoaFob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaFob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		303524091223BB9600AACD22 /* CocoaFob-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CocoaFob-Info.plist"; sourceTree = "<group>"; };
-		303524D01223BE4D00AACD22 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = usr/lib/libcrypto.dylib; sourceTree = SDKROOT; };
 		303524D61223BE6700AACD22 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		303526831223D4DA00AACD22 /* CFobError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFobError.h; sourceTree = "<group>"; };
 		303526971223DC9600AACD22 /* CFobError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFobError.m; sourceTree = "<group>"; };
 		303526E91223E45100AACD22 /* cocoafob */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocoafob; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859EA3029092ED04C91782 /* cocoafob.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = cocoafob.1; sourceTree = "<group>"; };
+		C707202F1B48C8D80083F859 /* CocoaFobTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CocoaFobTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C70720311B48C8D80083F859 /* CocoaFobTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CocoaFobTests.m; sourceTree = "<group>"; };
+		C70720331B48C8D80083F859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C74F939115F28769004C00EA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		C7CA0D8715F1BFA900C7E9CD /* CocoaFobTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CocoaFobTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7CA0D8915F1BFA900C7E9CD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		C7CA0D8B15F1BFA900C7E9CD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		C7CA0D8E15F1BFA900C7E9CD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		C7CA0D8F15F1BFA900C7E9CD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		C7CA0D9015F1BFA900C7E9CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		C7CA0D9315F1BFA900C7E9CD /* CocoaFobTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CocoaFobTests-Info.plist"; sourceTree = "<group>"; };
-		C7CA0D9515F1BFA900C7E9CD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C7CA0D9715F1BFA900C7E9CD /* CocoaFobTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaFobTests.h; sourceTree = "<group>"; };
-		C7CA0D9815F1BFA900C7E9CD /* CocoaFobTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CocoaFobTests.m; sourceTree = "<group>"; usesTabs = 1; };
-		C7CA0D9A15F1BFA900C7E9CD /* CocoaFobTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CocoaFobTests-Prefix.pch"; sourceTree = "<group>"; };
 		C7E378470F59DB15002061CD /* CFobLicGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFobLicGenerator.h; sourceTree = "<group>"; };
 		C7E378480F59DB15002061CD /* CFobLicGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFobLicGenerator.m; sourceTree = "<group>"; usesTabs = 1; };
 		C7E378490F59DB15002061CD /* CFobLicVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFobLicVerifier.h; sourceTree = "<group>"; usesTabs = 1; };
@@ -97,13 +85,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C7CA0D8315F1BFA900C7E9CD /* Frameworks */ = {
+		C707202C1B48C8D80083F859 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C74F938B15F26AFA004C00EA /* CocoaFobARC.framework in Frameworks */,
-				C7CA0D8A15F1BFA900C7E9CD /* SenTestingKit.framework in Frameworks */,
-				C7CA0D8C15F1BFA900C7E9CD /* Cocoa.framework in Frameworks */,
+				C70720341B48C8D80083F859 /* CocoaFobARC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,17 +108,17 @@
 		08FB7794FE84155DC02AAC07 /* cocoafob */ = {
 			isa = PBXGroup;
 			children = (
-				C74F939115F28769004C00EA /* Security.framework */,
 				08FB7795FE84155DC02AAC07 /* Source */,
-				303526E01223E39D00AACD22 /* Tests */,
+				C70720301B48C8D80083F859 /* CocoaFobTests */,
 				3035240E1223BC0400AACD22 /* Framework */,
 				C6859EA2029092E104C91782 /* Documentation */,
-				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,
 				C7CA0D8815F1BFA900C7E9CD /* Frameworks */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
 			);
+			indentWidth = 4;
 			name = cocoafob;
 			sourceTree = "<group>";
+			tabWidth = 4;
 		};
 		08FB7795FE84155DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
@@ -148,22 +134,13 @@
 			name = Source;
 			sourceTree = "<group>";
 		};
-		08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				303524D01223BE4D00AACD22 /* libcrypto.dylib */,
-				303524D61223BE6700AACD22 /* Foundation.framework */,
-			);
-			name = "External Frameworks and Libraries";
-			sourceTree = "<group>";
-		};
 		1AB674ADFE9D54B511CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				303524081223BB9600AACD22 /* CocoaFob.framework */,
 				303526E91223E45100AACD22 /* cocoafob */,
 				C7F7EF2C1577F3D90067C3A3 /* CocoaFobARC.framework */,
-				C7CA0D8715F1BFA900C7E9CD /* CocoaFobTests.octest */,
+				C707202F1B48C8D80083F859 /* CocoaFobTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -175,14 +152,6 @@
 				C7F7EF2D1577F3D90067C3A3 /* CocoaFobARC-Info.plist */,
 			);
 			name = Framework;
-			sourceTree = "<group>";
-		};
-		303526E01223E39D00AACD22 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				C7CA0D9115F1BFA900C7E9CD /* CocoaFobTests */,
-			);
-			name = Tests;
 			sourceTree = "<group>";
 		};
 		303526E21223E3FF00AACD22 /* Cmd Line Tool */ = {
@@ -201,44 +170,22 @@
 			name = Documentation;
 			sourceTree = "<group>";
 		};
-		C7CA0D8815F1BFA900C7E9CD /* Frameworks */ = {
+		C70720301B48C8D80083F859 /* CocoaFobTests */ = {
 			isa = PBXGroup;
 			children = (
-				C7CA0D8915F1BFA900C7E9CD /* SenTestingKit.framework */,
-				C7CA0D8B15F1BFA900C7E9CD /* Cocoa.framework */,
-				C7CA0D8D15F1BFA900C7E9CD /* Other Frameworks */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C7CA0D8D15F1BFA900C7E9CD /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C7CA0D8E15F1BFA900C7E9CD /* AppKit.framework */,
-				C7CA0D8F15F1BFA900C7E9CD /* CoreData.framework */,
-				C7CA0D9015F1BFA900C7E9CD /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
-		C7CA0D9115F1BFA900C7E9CD /* CocoaFobTests */ = {
-			isa = PBXGroup;
-			children = (
-				C7CA0D9715F1BFA900C7E9CD /* CocoaFobTests.h */,
-				C7CA0D9815F1BFA900C7E9CD /* CocoaFobTests.m */,
-				C7CA0D9215F1BFA900C7E9CD /* Supporting Files */,
+				C70720311B48C8D80083F859 /* CocoaFobTests.m */,
+				C70720331B48C8D80083F859 /* Info.plist */,
 			);
 			path = CocoaFobTests;
 			sourceTree = "<group>";
 		};
-		C7CA0D9215F1BFA900C7E9CD /* Supporting Files */ = {
+		C7CA0D8815F1BFA900C7E9CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C7CA0D9315F1BFA900C7E9CD /* CocoaFobTests-Info.plist */,
-				C7CA0D9415F1BFA900C7E9CD /* InfoPlist.strings */,
-				C7CA0D9A15F1BFA900C7E9CD /* CocoaFobTests-Prefix.pch */,
+				303524D61223BE6700AACD22 /* Foundation.framework */,
+				C74F939115F28769004C00EA /* Security.framework */,
 			);
-			name = "Supporting Files";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,24 +249,23 @@
 			productReference = 303526E91223E45100AACD22 /* cocoafob */;
 			productType = "com.apple.product-type.tool";
 		};
-		C7CA0D8615F1BFA900C7E9CD /* CocoaFobTests */ = {
+		C707202E1B48C8D80083F859 /* CocoaFobTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C7CA0D9D15F1BFA900C7E9CD /* Build configuration list for PBXNativeTarget "CocoaFobTests" */;
+			buildConfigurationList = C70720371B48C8D80083F859 /* Build configuration list for PBXNativeTarget "CocoaFobTests" */;
 			buildPhases = (
-				C7CA0D8215F1BFA900C7E9CD /* Sources */,
-				C7CA0D8315F1BFA900C7E9CD /* Frameworks */,
-				C7CA0D8415F1BFA900C7E9CD /* Resources */,
-				C7CA0D8515F1BFA900C7E9CD /* ShellScript */,
+				C707202B1B48C8D80083F859 /* Sources */,
+				C707202C1B48C8D80083F859 /* Frameworks */,
+				C707202D1B48C8D80083F859 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C74F938A15F26AB1004C00EA /* PBXTargetDependency */,
+				C70720361B48C8D80083F859 /* PBXTargetDependency */,
 			);
 			name = CocoaFobTests;
 			productName = CocoaFobTests;
-			productReference = C7CA0D8715F1BFA900C7E9CD /* CocoaFobTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = C707202F1B48C8D80083F859 /* CocoaFobTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		C7F7EF121577F3D90067C3A3 /* CocoaFobARC */ = {
 			isa = PBXNativeTarget;
@@ -345,7 +291,13 @@
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastTestingUpgradeCheck = 0700;
+				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					C707202E1B48C8D80083F859 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+				};
 			};
 			buildConfigurationList = 1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "cocoafob" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -361,7 +313,7 @@
 				303524071223BB9600AACD22 /* CocoaFob */,
 				303526E81223E45100AACD22 /* cocoafob */,
 				C7F7EF121577F3D90067C3A3 /* CocoaFobARC */,
-				C7CA0D8615F1BFA900C7E9CD /* CocoaFobTests */,
+				C707202E1B48C8D80083F859 /* CocoaFobTests */,
 			);
 		};
 /* End PBXProject section */
@@ -374,11 +326,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C7CA0D8415F1BFA900C7E9CD /* Resources */ = {
+		C707202D1B48C8D80083F859 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7CA0D9615F1BFA900C7E9CD /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,22 +341,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		C7CA0D8515F1BFA900C7E9CD /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		303524051223BB9600AACD22 /* Sources */ = {
@@ -426,11 +361,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C7CA0D8215F1BFA900C7E9CD /* Sources */ = {
+		C707202B1B48C8D80083F859 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7CA0D9915F1BFA900C7E9CD /* CocoaFobTests.m in Sources */,
+				C70720321B48C8D80083F859 /* CocoaFobTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,29 +387,18 @@
 			target = 303524071223BB9600AACD22 /* CocoaFob */;
 			targetProxy = 303526F01223E4C200AACD22 /* PBXContainerItemProxy */;
 		};
-		C74F938A15F26AB1004C00EA /* PBXTargetDependency */ = {
+		C70720361B48C8D80083F859 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C7F7EF121577F3D90067C3A3 /* CocoaFobARC */;
-			targetProxy = C74F938915F26AB1004C00EA /* PBXContainerItemProxy */;
+			targetProxy = C70720351B48C8D80083F859 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		C7CA0D9415F1BFA900C7E9CD /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C7CA0D9515F1BFA900C7E9CD /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB927908733DD40010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -487,7 +411,6 @@
 		1DEB927A08733DD40010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -499,14 +422,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -520,6 +441,7 @@
 					"-framework",
 					AppKit,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelespresso.cocoafob;
 				PRODUCT_NAME = CocoaFob;
 				SDKROOT = macosx;
 			};
@@ -529,14 +451,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ENABLE_OBJC_GC = supported;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -550,6 +470,7 @@
 					"-framework",
 					AppKit,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelespresso.cocoafob;
 				PRODUCT_NAME = CocoaFob;
 				SDKROOT = macosx;
 				ZERO_LINK = NO;
@@ -560,7 +481,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -583,7 +503,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
@@ -602,60 +521,84 @@
 			};
 			name = Release;
 		};
-		C7CA0D9B15F1BFA900C7E9CD /* Debug */ = {
+		C70720381B48C8D80083F859 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CocoaFobTests/CocoaFobTests-Prefix.pch";
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				INFOPLIST_FILE = "CocoaFobTests/CocoaFobTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = CocoaFobTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelespresso.CocoaFobTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
-		C7CA0D9C15F1BFA900C7E9CD /* Release */ = {
+		C70720391B48C8D80083F859 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CocoaFobTests/CocoaFobTests-Prefix.pch";
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				INFOPLIST_FILE = "CocoaFobTests/CocoaFobTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = CocoaFobTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelespresso.CocoaFobTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -663,7 +606,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -672,7 +614,6 @@
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -686,6 +627,7 @@
 					"-framework",
 					AppKit,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelespresso.cocoafob;
 				PRODUCT_NAME = CocoaFobARC;
 				SDKROOT = macosx;
 			};
@@ -695,7 +637,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -704,7 +645,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
-				GCC_ENABLE_OBJC_GC = supported;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -718,6 +658,7 @@
 					"-framework",
 					AppKit,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelespresso.cocoafob;
 				PRODUCT_NAME = CocoaFobARC;
 				SDKROOT = macosx;
 				ZERO_LINK = NO;
@@ -754,14 +695,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C7CA0D9D15F1BFA900C7E9CD /* Build configuration list for PBXNativeTarget "CocoaFobTests" */ = {
+		C70720371B48C8D80083F859 /* Build configuration list for PBXNativeTarget "CocoaFobTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C7CA0D9B15F1BFA900C7E9CD /* Debug */,
-				C7CA0D9C15F1BFA900C7E9CD /* Release */,
+				C70720381B48C8D80083F859 /* Debug */,
+				C70720391B48C8D80083F859 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		C7F7EF291577F3D90067C3A3 /* Build configuration list for PBXNativeTarget "CocoaFobARC" */ = {
 			isa = XCConfigurationList;

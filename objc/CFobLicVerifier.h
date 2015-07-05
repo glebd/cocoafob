@@ -4,7 +4,7 @@
 //
 //  Created by Gleb Dolgich on 06/02/2009.
 //  Follow me on Twitter @glebd.
-//  Copyright 2009-2012 PixelEspresso. All rights reserved.
+//  Copyright 2009-2015 PixelEspresso. All rights reserved.
 //  Licensed under BSD license.
 //
 
