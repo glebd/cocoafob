@@ -24,8 +24,8 @@
 size_t
 base32_encoder_last_quintent (const size_t bytes)
 {
-  int quintets = bytes * 8 / 5;
-  int remainder = bytes % 5;
+  size_t quintets = bytes * 8 / 5;
+  size_t remainder = bytes % 5;
   return remainder == 0 ? quintets : quintets + 1;
 }
 
@@ -43,10 +43,10 @@ base32_encoder_buffer_size (const size_t bytes)
     base32_encoder_output_padding_size (bytes);
 }
 
-static unsigned
-base32_encoder_encode_bits (int position, const uint8_t *buffer)
+static size_t
+base32_encoder_encode_bits (size_t position, const uint8_t *buffer)
 {
-  unsigned offset = position / 8 * 5;
+  size_t offset = position / 8 * 5;
   switch (position % 8)
     {
     case 0:
@@ -91,10 +91,10 @@ base32_encoder_encode_bits (int position, const uint8_t *buffer)
 }
 
 static inline uint8_t
-base32_encoder_encode_at_position (unsigned position, const uint8_t *buffer)
+base32_encoder_encode_at_position (size_t position, const uint8_t *buffer)
 {
   const char *table = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
-  unsigned index = base32_encoder_encode_bits (position, buffer);
+  size_t index = base32_encoder_encode_bits (position, buffer);
   return table[index];
 }
 
@@ -102,8 +102,8 @@ void
 base32_encode (uint8_t *output, const size_t outputLength,
                const uint8_t *input, const size_t inputLength)
 {
-  unsigned i;
-  unsigned quintets = base32_encoder_last_quintent(inputLength);
+  size_t i;
+  size_t quintets = base32_encoder_last_quintent(inputLength);
   for (i = 0; i < quintets; i++)
     output[i] = base32_encoder_encode_at_position (i, input);
   for (i = quintets; i < outputLength; i++)
