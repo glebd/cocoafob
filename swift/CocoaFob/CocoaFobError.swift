@@ -10,7 +10,7 @@ import Foundation
 
 /**
 Custom error type:
-- InvalidPrivateKey(OSStatus): The supplied private key is invalid
+- InvalidPrivateKey(OSStatus): The supplied private key is invalid; use `security error <OSStatus>` to get the message
 - DecodeError: The supplied key could not be decoded
 - SigningFailed: The cryptographic signing operation resulted in an error
 */
