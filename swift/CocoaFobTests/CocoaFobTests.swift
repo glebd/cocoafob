@@ -39,10 +39,8 @@ class CocoaFobTests: XCTestCase {
     do {
       let keygen = try CocoaFobKeyGenerator(privateKeyPEM: privateKeyPEM)
       XCTAssertNotNil(keygen.privKey)
-    } catch let err as CocoaFobError {
-      XCTAssertTrue(false, "Importing private key must succeed but produced \(err)")
     } catch {
-      XCTAssertTrue(false, "Importing private key must succeed but produced \(error)")
+      XCTAssert(false, "Importing private key must succeed but produced \(error)")
     }
   }
     
