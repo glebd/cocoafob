@@ -37,7 +37,7 @@ class CocoaFobTests: XCTestCase {
       + "keUwLHBtpClnD5E8\n"
       + "-----END DSA PRIVATE KEY-----\n"
     do {
-      let keygen = try CocoaFobKeyGenerator(privateKeyPEM: privateKeyPEM)
+      let keygen = try CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
       XCTAssertNotNil(keygen.privKey)
     } catch {
       XCTAssert(false, "Importing private key must succeed but produced \(error)")

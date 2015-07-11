@@ -11,7 +11,7 @@ import Foundation
 /**
 Generates CocoaFob registration keys
 */
-struct CocoaFobKeyGenerator {
+struct CocoaFobLicGenerator {
   
   var privKey: SecKeyRef
   
