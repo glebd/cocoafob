@@ -27,7 +27,7 @@ class CocoaFobTests: XCTestCase {
         }
     }*/
   
-  func testSetPrivateKey() {
+  func testSetPrivateKeyPass() {
     let privateKeyPEM = "-----BEGIN DSA PRIVATE KEY-----\n"
       + "MIH5AgEAAkEA8wm04e0QcQRoAVJWWnUw/4rQEKbLKjujJu6oyEv7Y2oT3itY5pbO\n"
       + "bgYCHEu9FBizqq7apsWYSF3YXiRjKlg10wIVALfs9eVL10PhoV6zczFpi3C7FzWN\n"
@@ -43,5 +43,21 @@ class CocoaFobTests: XCTestCase {
       XCTAssert(false, "Importing private key must succeed but produced \(error)")
     }
   }
-    
+  
+  func testSetPrivateKeyFail() {
+    let privateKeyPEM = "-----BEGIN DSA PRIVATE KEY-----\n"
+    do {
+      let _ = try CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+    } catch let err as CocoaFobError {
+      switch err {
+      case CocoaFobError.InvalidPrivateKey(let osStatus):
+        XCTAssert(osStatus == -25257, "Wrong OSStatus: \(osStatus)")
+      default:
+        XCTAssert(false, "Expected CocoaFobError.InvalidPrivateKey(-25257), got \(err)")
+      }
+    } catch {
+      XCTAssert(false, "Expected CocoaFobError.InvalidPrivateKey(-25257), got \(error)")
+    }
+  }
+  
 }
