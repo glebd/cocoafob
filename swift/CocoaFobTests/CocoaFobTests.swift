@@ -20,7 +20,14 @@ class CocoaFobTests: XCTestCase {
     + "keUwLHBtpClnD5E8\n"
     + "-----END DSA PRIVATE KEY-----\n"
   
-  let publicKeyPEM = ""
+  let publicKeyPEM = "-----BEGIN PUBLIC KEY-----\n"
+  + "MIHxMIGoBgcqhkjOOAQBMIGcAkEA8wm04e0QcQRoAVJWWnUw/4rQEKbLKjujJu6o\n"
+  + "yEv7Y2oT3itY5pbObgYCHEu9FBizqq7apsWYSF3YXiRjKlg10wIVALfs9eVL10Ph\n"
+  + "oV6zczFpi3C7FzWNAkBaPhALEKlgIltHsumHdTSBqaVoR1/bmlgw/BCC13IAsW40\n"
+  + "nkFNsK1OVwjo2ocn3MwW4Rdq6uLm3DlENRZ5bYrTA0QAAkEA4reDYZKAl1vx+8EI\n"
+  + "MP/+2Z7ekydHfX0sTMDgkxhtRm6qtcywg01X847Y9ySgNepqleD+Ka2Wbucj1pOr\n"
+  + "y8MoDQ==\n"
+  + "-----END PUBLIC KEY-----\n"
   
   func testInitGeneratorPass() {
     do {
@@ -97,6 +104,31 @@ class CocoaFobTests: XCTestCase {
       XCTAssert(actual != "")
     } catch {
       XCTAssert(false, "\(error)")
+    }
+  }
+  
+  func testInitVerifierPass() {
+    do {
+      let keygen = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+      XCTAssertNotNil(keygen.pubKey)
+    } catch {
+      XCTAssert(false, "Importing public key must succeed but produced \(error)")
+    }
+  }
+  
+  func testInitVerifierFail() {
+    let publicKeyPEM = "-----BEGIN PUBLIC KEY-----\n"
+    do {
+      let _ = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    } catch let err as CocoaFobError {
+      switch err {
+      case CocoaFobError.InvalidKey(let osStatus):
+        XCTAssert(osStatus == -25257, "Wrong OSStatus: \(osStatus)")
+      default:
+        XCTAssert(false, "Expected CocoaFobError.InvalidKey(-25257), got \(err)")
+      }
+    } catch {
+      XCTAssert(false, "Expected CocoaFobError.InvalidKey(-25257), got \(error)")
     }
   }
   
