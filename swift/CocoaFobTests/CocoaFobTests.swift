@@ -61,4 +61,16 @@ class CocoaFobTests: XCTestCase {
     }
   }
   
+  func testGeneratePass() {
+    do {
+      let keygen = try CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+      XCTAssertNotNil(keygen.privKey)
+      let actual = try keygen.generate("Joe Bloggs")
+      let expected = "GAWQE-F9AQP-XJCCL-PAFAX-NU5XX-EUG6W-KLT3H-VTEB9-A9KHJ-8DZ5R-DL74G-TU4BN-7ATPY-3N4XB-V4V27-Q"
+      XCTAssert(actual == expected, "Expected: \(expected), actual: \(actual)")
+    } catch {
+      XCTAssert(false, "\(error)")
+    }
+  }
+  
 }
