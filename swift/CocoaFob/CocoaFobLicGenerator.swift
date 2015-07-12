@@ -60,8 +60,7 @@ struct CocoaFobLicGenerator {
     let group = try connectTransforms(signer, encoder: encoder)
     let regData = try cfTry(.ErrorGeneratingRegKey) { return SecTransformExecute(group.takeUnretainedValue(), $0) }
     if let reg = NSString(data: regData as! NSData, encoding: NSUTF8StringEncoding) {
-      // TODO: tweak Base32-encoded key
-      return String(reg)
+      return String(reg).cocoaFobToReadableKey()
     } else {
       throw CocoaFobError.ErrorGeneratingRegKey
     }

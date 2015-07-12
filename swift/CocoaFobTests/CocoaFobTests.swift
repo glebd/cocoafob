@@ -96,11 +96,19 @@ class CocoaFobTests: XCTestCase {
     }
   }
   
+  func testReadableKeyPass() {
+    let unreadable = "GAWAEFCDW3KH4IP5E2DHKUHPQPN5P52V43SVGDYCCRS64XXNRYBBCT44EOGM3SKYV4272LQ6LQ======"
+    let expected = "GAWAE-FCDW3-KH49P-5E2DH-KUHPQ-PN5P5-2V43S-VGDYC-CRS64-XXNRY-BBCT4-4E8GM-3SKYV-4272L-Q6LQ"
+    let actual = unreadable.cocoaFobToReadableKey()
+    XCTAssertEqual(actual, expected)
+  }
+  
   func testGeneratePass() {
     do {
       let keygen = try CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
       XCTAssertNotNil(keygen.privKey)
       let actual = try keygen.generate("Joe Bloggs")
+      print(actual)
       XCTAssert(actual != "")
     } catch {
       XCTAssert(false, "\(error)")
