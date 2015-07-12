@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import CocoaFob
 
 class CocoaFobTests: XCTestCase {
   
@@ -61,13 +62,54 @@ class CocoaFobTests: XCTestCase {
     }
   }
   
+  func testGetNameData() {
+    do {
+      let keygen = try CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+      XCTAssertNotNil(keygen.privKey)
+      let name = "Joe Bloggs"
+      let nameData = try keygen.getNameData(name)
+      let nameFromDataAsNSString = NSString(data: nameData, encoding: NSUTF8StringEncoding)
+      XCTAssertNotNil(nameFromDataAsNSString)
+      let nameFromData = String(nameFromDataAsNSString!)
+      XCTAssertEqual(nameFromData, name)
+    } catch {
+      XCTAssert(false, "\(error)")
+    }
+  }
+  
+  func testGetSignerPass() {
+    do {
+      let keygen = try CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+      XCTAssertNotNil(keygen.privKey)
+      let name = "Joe Bloggs"
+      let nameData = try keygen.getNameData(name)
+      let signer = try keygen.getSigner(nameData)
+      
+      // check name attribute
+      let nameDataAttr = SecTransformGetAttribute(signer.takeUnretainedValue(), kSecTransformInputAttributeName)
+      let nameDataFromAttr = nameDataAttr.takeUnretainedValue() as! NSData
+      XCTAssertNotNil(nameDataFromAttr, "Expected to get name data back")
+      let nameFromAttrAsNSString = NSString(data: nameDataFromAttr, encoding: NSUTF8StringEncoding)
+      XCTAssertNotNil(nameFromAttrAsNSString)
+      let nameFromAttr = String(nameFromAttrAsNSString!)
+      XCTAssertEqual(nameFromAttr, name)
+      
+      // check digest type attribute
+      let digestTypeAttr = SecTransformGetAttribute(signer.takeUnretainedValue(), kSecDigestTypeAttribute)
+      let digestTypeFromAttr = digestTypeAttr.takeUnretainedValue() as! NSString
+      XCTAssertNotNil(digestTypeFromAttr, "Expected to get SHA1 transform type back")
+      XCTAssertEqual(digestTypeFromAttr, kSecDigestSHA1)
+    } catch {
+      XCTAssert(false, "\(error)")
+    }
+  }
+  
   func testGeneratePass() {
     do {
       let keygen = try CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
       XCTAssertNotNil(keygen.privKey)
       let actual = try keygen.generate("Joe Bloggs")
-      let expected = "GAWQE-F9AQP-XJCCL-PAFAX-NU5XX-EUG6W-KLT3H-VTEB9-A9KHJ-8DZ5R-DL74G-TU4BN-7ATPY-3N4XB-V4V27-Q"
-      XCTAssert(actual == expected, "Expected: \(expected), actual: \(actual)")
+      XCTAssert(actual != "")
     } catch {
       XCTAssert(false, "\(error)")
     }

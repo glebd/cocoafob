@@ -59,10 +59,9 @@ struct CocoaFobLicGenerator {
     let encoder = try getEncoder()
     let group = try connectTransforms(signer, encoder: encoder)
     let regData = try cfTry(.ErrorGeneratingRegKey) { return SecTransformExecute(group.takeUnretainedValue(), $0) }
-    if regData.length > 0 {
-      let reg = String(regData, NSUTF8StringEncoding)
+    if let reg = NSString(data: regData as! NSData, encoding: NSUTF8StringEncoding) {
       // TODO: tweak Base32-encoded key
-      return reg
+      return String(reg)
     } else {
       throw CocoaFobError.ErrorGeneratingRegKey
     }
@@ -105,14 +104,14 @@ struct CocoaFobLicGenerator {
     }
   }
   
-  private func getNameData(name: String) throws -> NSData {
+  func getNameData(name: String) throws -> NSData {
     if let nameData = name.dataUsingEncoding(NSUTF8StringEncoding) {
       return nameData
     }
     throw CocoaFobError.InvalidName
   }
   
-  private func getSigner(nameData: NSData) throws -> Unmanaged<SecTransform> {
+  func getSigner(nameData: NSData) throws -> Unmanaged<SecTransform> {
     let signer = try cfTry(.ErrorCreatingSignerTransform) { return SecSignTransformCreate(self.privKey, $0) }
     try cfTry(.ErrorConfiguringSignerTransform) { return SecTransformSetAttribute(signer.takeUnretainedValue(), kSecTransformInputAttributeName, nameData, $0) }
     try cfTry(.ErrorConfiguringSignerTransform) { return SecTransformSetAttribute(signer.takeUnretainedValue(), kSecDigestTypeAttribute, kSecDigestSHA1, $0) }
