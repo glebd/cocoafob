@@ -26,21 +26,21 @@ struct CocoaFobLicGenerator {
     var params = SecItemImportExportKeyParameters()
     var keyFormat = SecExternalFormat(kSecFormatPEMSequence)
     var keyType = SecExternalItemType(kSecItemTypePrivateKey)
-    if let privateKeyData = privateKeyPEM.dataUsingEncoding(NSUTF8StringEncoding) {
+    if let keyData = privateKeyPEM.dataUsingEncoding(NSUTF8StringEncoding) {
       var importArray: Unmanaged<CFArray>? = nil
-      let osStatus = withUnsafeMutablePointer(&importArray, { importArrayPtr in
-         SecItemImport(privateKeyData, nil, &keyFormat, &keyType, 0, &params, nil, importArrayPtr)
-      })
+      let osStatus = withUnsafeMutablePointer(&importArray) { importArrayPtr in
+        SecItemImport(keyData, nil, &keyFormat, &keyType, 0, &params, nil, importArrayPtr)
+      }
       if osStatus != errSecSuccess {
-        throw CocoaFobError.InvalidPrivateKey(osStatus)
+        throw CocoaFobError.InvalidKey(osStatus)
       }
       let items = importArray!.takeRetainedValue() as NSArray
       if items.count < 1 {
-        throw CocoaFobError.InvalidPrivateKey(0)
+        throw CocoaFobError.InvalidKey(0)
       }
       self.privKey = items[0] as! SecKeyRef
     } else {
-      throw CocoaFobError.InvalidPrivateKey(0)
+      throw CocoaFobError.InvalidKey(0)
     }
   }
   

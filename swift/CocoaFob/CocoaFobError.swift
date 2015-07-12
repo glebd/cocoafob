@@ -10,7 +10,7 @@ import Foundation
 
 /**
 Custom error type:
-- InvalidPrivateKey(OSStatus): The supplied private key is invalid; use `security error <OSStatus>` to get the message
+- InvalidKey(OSStatus): The supplied key is invalid; use `security error <OSStatus>` to get the message
 - DecodeError: The supplied key could not be decoded
 - InvalidName: Invalid user name supplied
 - ErrorCreatingSignerTransform: Unable to create cryptographic signing transform
@@ -20,7 +20,7 @@ Custom error type:
 - ErrorGeneratingRegKey: Unable to generate registration key
 */
 enum CocoaFobError: ErrorType {
-  case InvalidPrivateKey(OSStatus)
+  case InvalidKey(OSStatus)
   case DecodeError
   case InvalidName
   case ErrorCreatingSignerTransform
