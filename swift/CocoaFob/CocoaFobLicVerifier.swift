@@ -11,7 +11,7 @@ import Foundation
 /**
 Verifies CocoaFob registration keys
 */
-struct CocoaFobLicVerifier {
+public struct CocoaFobLicVerifier {
   
   var pubKey: SecKeyRef
   
@@ -22,7 +22,7 @@ struct CocoaFobLicVerifier {
   
   - parameter publicKeyPEM: String containing PEM representation of the public key
   */
-  init(publicKeyPEM: String) throws {
+  public init(publicKeyPEM: String) throws {
     var params = SecItemImportExportKeyParameters()
     var keyFormat = SecExternalFormat(kSecFormatPEMSequence)
     var keyType = SecExternalItemType(kSecItemTypePublicKey)

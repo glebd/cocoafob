@@ -11,7 +11,7 @@ import Foundation
 /**
 Generates CocoaFob registration keys
 */
-struct CocoaFobLicGenerator {
+public struct CocoaFobLicGenerator {
   
   var privKey: SecKeyRef
   
@@ -22,7 +22,7 @@ struct CocoaFobLicGenerator {
   
   - parameter privateKeyPEM: String containing PEM representation of the private key
   */
-  init(privateKeyPEM: String) throws {
+  public init(privateKeyPEM: String) throws {
     var params = SecItemImportExportKeyParameters()
     var keyFormat = SecExternalFormat(kSecFormatPEMSequence)
     var keyType = SecExternalItemType(kSecItemTypePrivateKey)
@@ -52,7 +52,7 @@ struct CocoaFobLicGenerator {
   - parameter userName: User name for which to generate a registration key
   - returns: Registration key
   */
-  func generate(name: String) throws -> String {
+  public func generate(name: String) throws -> String {
     guard name != "" else { throw CocoaFobError.InvalidName }
     let nameData = try getNameData(name)
     let signer = try getSigner(nameData)
