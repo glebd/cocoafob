@@ -96,10 +96,17 @@ class CocoaFobTests: XCTestCase {
     }
   }
   
-  func testReadableKeyPass() {
+  func testToReadableKeyPass() {
     let unreadable = "GAWAEFCDW3KH4IP5E2DHKUHPQPN5P52V43SVGDYCCRS64XXNRYBBCT44EOGM3SKYV4272LQ6LQ======"
     let expected = "GAWAE-FCDW3-KH49P-5E2DH-KUHPQ-PN5P5-2V43S-VGDYC-CRS64-XXNRY-BBCT4-4E8GM-3SKYV-4272L-Q6LQ"
     let actual = unreadable.cocoaFobToReadableKey()
+    XCTAssertEqual(actual, expected)
+  }
+  
+  func testFromReadableKeyPass() {
+    let readable = "GAWAE-FCDW3-KH49P-5E2DH-KUHPQ-PN5P5-2V43S-VGDYC-CRS64-XXNRY-BBCT4-4E8GM-3SKYV-4272L-Q6LQ"
+    let expected = "GAWAEFCDW3KH4IP5E2DHKUHPQPN5P52V43SVGDYCCRS64XXNRYBBCT44EOGM3SKYV4272LQ6LQ"
+    let actual = readable.cocoaFobFromReadableKey()
     XCTAssertEqual(actual, expected)
   }
   

@@ -32,4 +32,18 @@ extension String {
     return key
   }
   
+  /**
+  Reverses readability changes to a supplied key:
+  - removes dashes
+  - replaces 9s with Is and 8s with Os
+  
+  - returns: Compacted key ready for verification
+  */
+  func cocoaFobFromReadableKey() -> String {
+    let replaced9withI = self.stringByReplacingOccurrencesOfString("9", withString: "I")
+    let replaced8withO = replaced9withI.stringByReplacingOccurrencesOfString("8", withString: "O")
+    let key = replaced8withO.stringByReplacingOccurrencesOfString("-", withString: "")
+    return key
+  }
+  
 }
