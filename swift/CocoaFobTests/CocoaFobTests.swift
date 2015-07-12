@@ -160,4 +160,19 @@ class CocoaFobTests: XCTestCase {
     }
   }
   
+  func testGenerateAndVerifyPass() {
+    do {
+      let keygen = try CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+      XCTAssertNotNil(keygen.privKey)
+      let name = "Joe Bloggs"
+      let regKey = try keygen.generate(name)
+      let verifier = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+      XCTAssertNotNil(verifier.pubKey)
+      let result = try verifier.verify(regKey, forName: name)
+      XCTAssertTrue(result)
+    } catch {
+      XCTAssert(false, "\(error)")
+    }
+  }
+  
 }
