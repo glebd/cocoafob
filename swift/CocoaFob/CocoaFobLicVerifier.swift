@@ -43,4 +43,42 @@ public struct CocoaFobLicVerifier {
       throw CocoaFobError.InvalidKey(0)
     }
   }
+  
+  /**
+  Verifies registration key against registered name
+  
+  - parameter regKey: Registration key string
+  - parameter name: Registered name string
+  - returns: `true` if the registration key is valid for the given name, `false` if not
+  */
+  public func verify(regKey: String, forName name: String) throws -> Bool {
+    guard regKey != "" else { throw CocoaFobError.InvalidInput }
+    guard name != "" else { throw CocoaFobError.InvalidInput }
+    if let keyData = regKey.cocoaFobFromReadableKey().dataUsingEncoding(NSUTF8StringEncoding), nameData = name.dataUsingEncoding(NSUTF8StringEncoding) {
+      let decoder = try getDecoder(keyData)
+      let signature = try cfTry(.DecodeError) { SecTransformExecute(decoder.takeUnretainedValue(), $0) }
+      let verifier = try getVerifier(self.pubKey, signature: signature as! NSData, nameData: nameData)
+      let result = try cfTry(.VerificationError) { SecTransformExecute(verifier.takeUnretainedValue(), $0) }
+      let boolResult = result as! CFBooleanRef
+      return Bool(boolResult)
+    } else {
+      throw CocoaFobError.InvalidInput
+    }
+  }
+  
+  // MARK: - Helper functions
+  
+  private func getDecoder(keyData: NSData) throws -> Unmanaged<SecTransform> {
+    let decoder = try cfTry(.ErrorCreatingDecoderTransform) { return SecDecodeTransformCreate(kSecBase32Encoding, $0) }
+    try cfTry(.ErrorConfiguringDecoderTransform) { return SecTransformSetAttribute(decoder.takeUnretainedValue(), kSecTransformInputAttributeName, keyData, $0) }
+    return decoder
+  }
+  
+  private func getVerifier(publicKey: SecKeyRef, signature: NSData, nameData: NSData) throws -> Unmanaged<SecTransform> {
+    let verifier = try cfTry(.ErrorCreatingVerifierTransform) { return SecVerifyTransformCreate(publicKey, signature, $0) }
+    try cfTry(.ErrorConfiguringVerifierTransform) { return SecTransformSetAttribute(verifier.takeUnretainedValue(), kSecTransformInputAttributeName, nameData, $0) }
+    try cfTry(.ErrorConfiguringVerifierTransform) { return SecTransformSetAttribute(verifier.takeUnretainedValue(), kSecDigestTypeAttribute, kSecDigestSHA1, $0) }
+    return verifier
+  }
+  
 }

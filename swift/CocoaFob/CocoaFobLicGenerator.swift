@@ -53,7 +53,7 @@ public struct CocoaFobLicGenerator {
   - returns: Registration key
   */
   public func generate(name: String) throws -> String {
-    guard name != "" else { throw CocoaFobError.InvalidName }
+    guard name != "" else { throw CocoaFobError.InvalidInput }
     let nameData = try getNameData(name)
     let signer = try getSigner(nameData)
     let encoder = try getEncoder()
@@ -84,7 +84,7 @@ public struct CocoaFobLicGenerator {
     if let nameData = name.dataUsingEncoding(NSUTF8StringEncoding) {
       return nameData
     }
-    throw CocoaFobError.InvalidName
+    throw CocoaFobError.InvalidInput
   }
   
   func getSigner(nameData: NSData) throws -> Unmanaged<SecTransform> {
