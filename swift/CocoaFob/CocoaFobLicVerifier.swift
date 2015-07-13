@@ -45,7 +45,7 @@ public struct CocoaFobLicVerifier {
   }
   
   /**
-  Verifies registration key against registered name
+  Verifies registration key against registered name. Doesn't throw since you are mst likely not interested in the reason registration verification failed.
   
   - parameter regKey: Registration key string
   - parameter name: Registered name string
