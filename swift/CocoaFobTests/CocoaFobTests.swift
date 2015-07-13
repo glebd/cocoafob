@@ -153,8 +153,73 @@ class CocoaFobTests: XCTestCase {
       XCTAssertNotNil(verifier.pubKey)
       let name = "Joe Bloggs"
       let regKey = "GAWQE-F9AQP-XJCCL-PAFAX-NU5XX-EUG6W-KLT3H-VTEB9-A9KHJ-8DZ5R-DL74G-TU4BN-7ATPY-3N4XB-V4V27-Q"
-      let result = try verifier.verify(regKey, forName: name)
+      let result = verifier.verify(regKey, forName: name)
       XCTAssertTrue(result)
+    } catch {
+      XCTAssert(false, "\(error)")
+    }
+  }
+  
+  func testVerifyBadNameFail() {
+    do {
+      let verifier = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+      XCTAssertNotNil(verifier.pubKey)
+      let name = "Joe Bloggs II"
+      let regKey = "GAWQE-F9AQP-XJCCL-PAFAX-NU5XX-EUG6W-KLT3H-VTEB9-A9KHJ-8DZ5R-DL74G-TU4BN-7ATPY-3N4XB-V4V27-Q"
+      let result = verifier.verify(regKey, forName: name)
+      XCTAssertFalse(result)
+    } catch {
+      XCTAssert(false, "\(error)")
+    }
+  }
+  
+  func testVerifyBadKeyFail() {
+    do {
+      let verifier = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+      XCTAssertNotNil(verifier.pubKey)
+      let name = "Joe Bloggs"
+      let regKey = "foo bar"
+      let result = verifier.verify(regKey, forName: name)
+      XCTAssertFalse(result)
+    } catch {
+      XCTAssert(false, "\(error)")
+    }
+  }
+  
+  func testVerifyEmptyKeyFail() {
+    do {
+      let verifier = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+      XCTAssertNotNil(verifier.pubKey)
+      let name = "Joe Bloggs"
+      let regKey = ""
+      let result = verifier.verify(regKey, forName: name)
+      XCTAssertFalse(result)
+    } catch {
+      XCTAssert(false, "\(error)")
+    }
+  }
+  
+  func testVerifyEmptyNameAndKeyFail() {
+    do {
+      let verifier = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+      XCTAssertNotNil(verifier.pubKey)
+      let name = ""
+      let regKey = ""
+      let result = verifier.verify(regKey, forName: name)
+      XCTAssertFalse(result)
+    } catch {
+      XCTAssert(false, "\(error)")
+    }
+  }
+  
+  func testVerifyEmptyNameFail() {
+    do {
+      let verifier = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+      XCTAssertNotNil(verifier.pubKey)
+      let name = ""
+      let regKey = "GAWQE-F9AQP-XJCCL-PAFAX-NU5XX-EUG6W-KLT3H-VTEB9-A9KHJ-8DZ5R-DL74G-TU4BN-7ATPY-3N4XB-V4V27-Q"
+      let result = verifier.verify(regKey, forName: name)
+      XCTAssertFalse(result)
     } catch {
       XCTAssert(false, "\(error)")
     }
@@ -168,7 +233,7 @@ class CocoaFobTests: XCTestCase {
       let regKey = try keygen.generate(name)
       let verifier = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
       XCTAssertNotNil(verifier.pubKey)
-      let result = try verifier.verify(regKey, forName: name)
+      let result = verifier.verify(regKey, forName: name)
       XCTAssertTrue(result)
     } catch {
       XCTAssert(false, "\(error)")

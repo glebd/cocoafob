@@ -51,18 +51,20 @@ public struct CocoaFobLicVerifier {
   - parameter name: Registered name string
   - returns: `true` if the registration key is valid for the given name, `false` if not
   */
-  public func verify(regKey: String, forName name: String) throws -> Bool {
-    guard regKey != "" else { throw CocoaFobError.InvalidInput }
-    guard name != "" else { throw CocoaFobError.InvalidInput }
-    if let keyData = regKey.cocoaFobFromReadableKey().dataUsingEncoding(NSUTF8StringEncoding), nameData = name.dataUsingEncoding(NSUTF8StringEncoding) {
-      let decoder = try getDecoder(keyData)
-      let signature = try cfTry(.DecodeError) { SecTransformExecute(decoder.takeUnretainedValue(), $0) }
-      let verifier = try getVerifier(self.pubKey, signature: signature as! NSData, nameData: nameData)
-      let result = try cfTry(.VerificationError) { SecTransformExecute(verifier.takeUnretainedValue(), $0) }
-      let boolResult = result as! CFBooleanRef
-      return Bool(boolResult)
-    } else {
-      throw CocoaFobError.InvalidInput
+  public func verify(regKey: String, forName name: String) -> Bool {
+    do {
+      if let keyData = regKey.cocoaFobFromReadableKey().dataUsingEncoding(NSUTF8StringEncoding), nameData = name.dataUsingEncoding(NSUTF8StringEncoding) {
+        let decoder = try getDecoder(keyData)
+        let signature = try cfTry(.DecodeError) { SecTransformExecute(decoder.takeUnretainedValue(), $0) }
+        let verifier = try getVerifier(self.pubKey, signature: signature as! NSData, nameData: nameData)
+        let result = try cfTry(.VerificationError) { SecTransformExecute(verifier.takeUnretainedValue(), $0) }
+        let boolResult = result as! CFBooleanRef
+        return Bool(boolResult)
+      } else {
+        return false
+      }
+    } catch {
+      return false
     }
   }
   
