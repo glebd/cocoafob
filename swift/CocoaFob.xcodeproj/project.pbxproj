@@ -20,6 +20,7 @@
 		C739DCDE1B48E0240074D8F2 /* CocoaFobLicGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDC1B48E0240074D8F2 /* CocoaFobLicGenerator.swift */; };
 		C739DCE01B48E1450074D8F2 /* CocoaFobError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */; };
 		C739DCE11B48E1450074D8F2 /* CocoaFobError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */; };
+		C77D712A1B5496F00019F670 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77D71291B5496F00019F670 /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,18 @@
 			remoteInfo = CocoaFob;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C77D71251B5496F00019F670 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C7101B6A1B52B73A00A71BA8 /* CocoaFobLicVerifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaFobLicVerifier.swift; sourceTree = "<group>"; };
@@ -44,6 +57,8 @@
 		C739DCD31B48DFA10074D8F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C739DCDC1B48E0240074D8F2 /* CocoaFobLicGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaFobLicGenerator.swift; sourceTree = "<group>"; };
 		C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaFobError.swift; sourceTree = "<group>"; };
+		C77D71271B5496F00019F670 /* cocoafob-keygen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "cocoafob-keygen"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C77D71291B5496F00019F670 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +77,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C77D71241B5496F00019F670 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -70,6 +92,7 @@
 			children = (
 				C739DCC41B48DFA00074D8F2 /* CocoaFob */,
 				C739DCD01B48DFA10074D8F2 /* CocoaFobTests */,
+				C77D71281B5496F00019F670 /* cocoafob-keygen */,
 				C739DCC31B48DFA00074D8F2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,6 +102,7 @@
 			children = (
 				C739DCC21B48DFA00074D8F2 /* CocoaFob.framework */,
 				C739DCCC1B48DFA10074D8F2 /* CocoaFobTests.xctest */,
+				C77D71271B5496F00019F670 /* cocoafob-keygen */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,6 +128,14 @@
 				C739DCD31B48DFA10074D8F2 /* Info.plist */,
 			);
 			path = CocoaFobTests;
+			sourceTree = "<group>";
+		};
+		C77D71281B5496F00019F670 /* cocoafob-keygen */ = {
+			isa = PBXGroup;
+			children = (
+				C77D71291B5496F00019F670 /* main.swift */,
+			);
+			path = "cocoafob-keygen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +188,23 @@
 			productReference = C739DCCC1B48DFA10074D8F2 /* CocoaFobTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		C77D71261B5496F00019F670 /* cocoafob-keygen */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C77D712D1B5496F00019F670 /* Build configuration list for PBXNativeTarget "cocoafob-keygen" */;
+			buildPhases = (
+				C77D71231B5496F00019F670 /* Sources */,
+				C77D71241B5496F00019F670 /* Frameworks */,
+				C77D71251B5496F00019F670 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "cocoafob-keygen";
+			productName = "cocoafob-keygen";
+			productReference = C77D71271B5496F00019F670 /* cocoafob-keygen */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -170,6 +219,9 @@
 						CreatedOnToolsVersion = 7.0;
 					};
 					C739DCCB1B48DFA10074D8F2 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					C77D71261B5496F00019F670 = {
 						CreatedOnToolsVersion = 7.0;
 					};
 				};
@@ -188,6 +240,7 @@
 			targets = (
 				C739DCC11B48DFA00074D8F2 /* CocoaFob */,
 				C739DCCB1B48DFA10074D8F2 /* CocoaFobTests */,
+				C77D71261B5496F00019F670 /* cocoafob-keygen */,
 			);
 		};
 /* End PBXProject section */
@@ -232,6 +285,14 @@
 				C739DCDE1B48E0240074D8F2 /* CocoaFobLicGenerator.swift in Sources */,
 				C739DCE11B48E1450074D8F2 /* CocoaFobError.swift in Sources */,
 				C7101B6F1B52C4A900A71BA8 /* CFUtil.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C77D71231B5496F00019F670 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C77D712A1B5496F00019F670 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +452,20 @@
 			};
 			name = Release;
 		};
+		C77D712B1B5496F00019F670 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C77D712C1B5496F00019F670 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -420,6 +495,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		C77D712D1B5496F00019F670 /* Build configuration list for PBXNativeTarget "cocoafob-keygen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C77D712B1B5496F00019F670 /* Debug */,
+				C77D712C1B5496F00019F670 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
