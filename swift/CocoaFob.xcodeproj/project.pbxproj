@@ -21,6 +21,9 @@
 		C739DCE01B48E1450074D8F2 /* CocoaFobError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */; };
 		C739DCE11B48E1450074D8F2 /* CocoaFobError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */; };
 		C77D712A1B5496F00019F670 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77D71291B5496F00019F670 /* main.swift */; };
+		C7C398631B55F95200DCF644 /* CommandLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C398601B55F95200DCF644 /* CommandLine.swift */; };
+		C7C398641B55F95200DCF644 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C398611B55F95200DCF644 /* Option.swift */; };
+		C7C398651B55F95200DCF644 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C398621B55F95200DCF644 /* StringExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,9 @@
 		C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaFobError.swift; sourceTree = "<group>"; };
 		C77D71271B5496F00019F670 /* cocoafob-keygen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "cocoafob-keygen"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C77D71291B5496F00019F670 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		C7C398601B55F95200DCF644 /* CommandLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandLine.swift; path = vendor/CommandLine/CommandLine/CommandLine.swift; sourceTree = SOURCE_ROOT; };
+		C7C398611B55F95200DCF644 /* Option.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Option.swift; path = vendor/CommandLine/CommandLine/Option.swift; sourceTree = SOURCE_ROOT; };
+		C7C398621B55F95200DCF644 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = vendor/CommandLine/CommandLine/StringExtensions.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,9 +139,28 @@
 		C77D71281B5496F00019F670 /* cocoafob-keygen */ = {
 			isa = PBXGroup;
 			children = (
+				C7C3985E1B55F87B00DCF644 /* vendor */,
 				C77D71291B5496F00019F670 /* main.swift */,
 			);
 			path = "cocoafob-keygen";
+			sourceTree = "<group>";
+		};
+		C7C3985E1B55F87B00DCF644 /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				C7C3985F1B55F88300DCF644 /* CommandLine */,
+			);
+			name = vendor;
+			sourceTree = "<group>";
+		};
+		C7C3985F1B55F88300DCF644 /* CommandLine */ = {
+			isa = PBXGroup;
+			children = (
+				C7C398601B55F95200DCF644 /* CommandLine.swift */,
+				C7C398611B55F95200DCF644 /* Option.swift */,
+				C7C398621B55F95200DCF644 /* StringExtensions.swift */,
+			);
+			name = CommandLine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,7 +317,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7C398651B55F95200DCF644 /* StringExtensions.swift in Sources */,
 				C77D712A1B5496F00019F670 /* main.swift in Sources */,
+				C7C398641B55F95200DCF644 /* Option.swift in Sources */,
+				C7C398631B55F95200DCF644 /* CommandLine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +531,7 @@
 				C77D712C1B5496F00019F670 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
