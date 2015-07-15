@@ -18,5 +18,5 @@ Look at the tests in `CocoaFobTests/CocoaFobTests.swift` to see how to verify a 
 * CommandLine by Ben Gollmer, GitHub -- https://github.com/jatoben/CommandLine
 
 ```bash
-git subtree add --squash --prefix vendor/CommandLine git://github.com/jatoben/CommandLine.git master
+git subtree add --squash --prefix swift/vendor/CommandLine git://github.com/jatoben/CommandLine.git master
 ```
