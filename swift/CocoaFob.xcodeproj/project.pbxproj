@@ -513,8 +513,8 @@
 		C77D712B1B5496F00019F670 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEPLOYMENT_LOCATION = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
+				DSTROOT = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -522,8 +522,8 @@
 		C77D712C1B5496F00019F670 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEPLOYMENT_LOCATION = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
+				DSTROOT = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
