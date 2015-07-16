@@ -9,7 +9,9 @@
 import Foundation
 
 func verifyRegKey(pubKeyPath: String, userName: String, regKey: String) throws -> Bool {
-  return false
+  let pubKeyPEM = try NSString(contentsOfFile: pubKeyPath, encoding: NSUTF8StringEncoding) as String
+  let verifier = try CocoaFobLicVerifier(publicKeyPEM: pubKeyPEM)
+  return verifier.verify(regKey, forName: userName)
 }
 
 func generateRegKey(pvtKeyPath: String, userName: String) throws -> String {
