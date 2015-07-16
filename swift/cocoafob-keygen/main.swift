@@ -30,10 +30,11 @@ if let pub = pubKey.value {
   
   if let user = userName.value, let reg = regKey.value {
     do {
+      print("Name: \(user)\n Key: \(reg)")
       if try verifyRegKey(pub, userName: user, regKey: reg) {
-        print("Registration is valid")
+        print("Registration is VALID")
       } else {
-        print("Registration is invalid")
+        print("Registration is INVALID")
         exit(1)
       }
     } catch {
@@ -54,7 +55,7 @@ if let pub = pubKey.value {
     }
     do {
       let reg = try generateRegKey(pvt, userName: user)
-      print(reg)
+      print("Name: \(user)\n Key: \(reg)")
     } catch {
       print("ERROR: Unable to generate registration key -- \(error)", &errStream)
       exit(EX_DATAERR)

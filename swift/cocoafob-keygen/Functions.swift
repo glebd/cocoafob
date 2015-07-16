@@ -15,5 +15,7 @@ func verifyRegKey(pubKeyPath: String, userName: String, regKey: String) throws -
 }
 
 func generateRegKey(pvtKeyPath: String, userName: String) throws -> String {
-  return ""
+  let pvtKeyPEM = try NSString(contentsOfFile: pvtKeyPath, encoding: NSUTF8StringEncoding) as String
+  let generator = try CocoaFobLicGenerator(privateKeyPEM: pvtKeyPEM)
+  return try generator.generate(userName)
 }
