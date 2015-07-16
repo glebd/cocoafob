@@ -20,6 +20,8 @@
 		C739DCDE1B48E0240074D8F2 /* CocoaFobLicGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDC1B48E0240074D8F2 /* CocoaFobLicGenerator.swift */; };
 		C739DCE01B48E1450074D8F2 /* CocoaFobError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */; };
 		C739DCE11B48E1450074D8F2 /* CocoaFobError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */; };
+		C75B81D51B572E9E003D4BCD /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B81D41B572E9E003D4BCD /* Functions.swift */; };
+		C75B81D71B57300C003D4BCD /* Stderr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B81D61B57300C003D4BCD /* Stderr.swift */; };
 		C77D712A1B5496F00019F670 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77D71291B5496F00019F670 /* main.swift */; };
 		C7C398631B55F95200DCF644 /* CommandLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C398601B55F95200DCF644 /* CommandLine.swift */; };
 		C7C398641B55F95200DCF644 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C398611B55F95200DCF644 /* Option.swift */; };
@@ -60,6 +62,8 @@
 		C739DCD31B48DFA10074D8F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C739DCDC1B48E0240074D8F2 /* CocoaFobLicGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaFobLicGenerator.swift; sourceTree = "<group>"; };
 		C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaFobError.swift; sourceTree = "<group>"; };
+		C75B81D41B572E9E003D4BCD /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		C75B81D61B57300C003D4BCD /* Stderr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stderr.swift; sourceTree = "<group>"; };
 		C77D71271B5496F00019F670 /* cocoafob-keygen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "cocoafob-keygen"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C77D71291B5496F00019F670 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C7C398601B55F95200DCF644 /* CommandLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandLine.swift; path = vendor/CommandLine/CommandLine/CommandLine.swift; sourceTree = SOURCE_ROOT; };
@@ -141,6 +145,8 @@
 			children = (
 				C7C3985E1B55F87B00DCF644 /* vendor */,
 				C77D71291B5496F00019F670 /* main.swift */,
+				C75B81D41B572E9E003D4BCD /* Functions.swift */,
+				C75B81D61B57300C003D4BCD /* Stderr.swift */,
 			);
 			path = "cocoafob-keygen";
 			sourceTree = "<group>";
@@ -320,6 +326,8 @@
 				C7C398651B55F95200DCF644 /* StringExtensions.swift in Sources */,
 				C77D712A1B5496F00019F670 /* main.swift in Sources */,
 				C7C398641B55F95200DCF644 /* Option.swift in Sources */,
+				C75B81D51B572E9E003D4BCD /* Functions.swift in Sources */,
+				C75B81D71B57300C003D4BCD /* Stderr.swift in Sources */,
 				C7C398631B55F95200DCF644 /* CommandLine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
