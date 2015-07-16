@@ -8,10 +8,10 @@
 
 import Foundation
 
-func verifyRegKey(pubKeyPath: String, userName: String, regKey: String) -> Bool {
+func verifyRegKey(pubKeyPath: String, userName: String, regKey: String) throws -> Bool {
   return false
 }
 
-func generateRegKey(pvtKeyPath: String, userName: String) -> String {
+func generateRegKey(pvtKeyPath: String, userName: String) throws -> String {
   return ""
 }

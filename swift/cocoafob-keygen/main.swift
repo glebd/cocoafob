@@ -29,11 +29,16 @@ do {
 if let pub = pubKey.value {
   
   if let user = userName.value, let reg = regKey.value {
-    if verifyRegKey(pub, userName: user, regKey: reg) {
-      print("Registration is valid")
-    } else {
-      print("Registration is invalid")
-      exit(1)
+    do {
+      if try verifyRegKey(pub, userName: user, regKey: reg) {
+        print("Registration is valid")
+      } else {
+        print("Registration is invalid")
+        exit(1)
+      }
+    } catch {
+      print("ERROR: Unable to verify registration key -- \(error)", &errStream)
+      exit(EX_DATAERR)
     }
   } else {
     print("ERROR: Specifying a public key means 'verify' and requires both user name and registration key", &errStream)
@@ -47,8 +52,13 @@ if let pub = pubKey.value {
     if regKey.value != nil {
       print("WARNING: Specifying a private key means 'generate' and doesn't need a registration key", &errStream)
     }
-    let reg = generateRegKey(pvt, userName: user)
-    print(reg)
+    do {
+      let reg = try generateRegKey(pvt, userName: user)
+      print(reg)
+    } catch {
+      print("ERROR: Unable to generate registration key -- \(error)", &errStream)
+      exit(EX_DATAERR)
+    }
   } else {
     print("ERROR: Specifying a private key means 'verify' and requires a user name", &errStream)
     cli.printUsage()
