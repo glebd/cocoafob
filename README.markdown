@@ -170,7 +170,7 @@ additional test purchases.
 # Generating Keys
 
 IMPORTANT NOTE: Included keys are for demonstration and testing purposes only.
-DO NOT USE THE INCLUDE KEYS IN YOUR SOFTWARE. Before incorporating CocoaFob
+DO NOT USE THE INCLUDED KEYS IN YOUR SOFTWARE. Before incorporating CocoaFob
 into your application, you need to generate a pair of your own DSA keys. I used
 key length of 512 bit which I thought was enough for the registration code
 generation purposes.
@@ -236,7 +236,7 @@ Ruby base32 gem: <http://rubyforge.org/projects/base32/>.
 [3] Handling URL schemes in Cocoa: a blog post by Kimbro Staken
 
 [4] Registering a protocol handler for an App: a post on CocoaBuilder mailing
-list, <http://www.cocoabuilder.com/archive/message/cocoa/2009/2/2/229297>
+list
 
 [5] PHP implementation courtesy of Sandro Noel
 
