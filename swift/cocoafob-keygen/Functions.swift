@@ -19,3 +19,12 @@ func generateRegKey(pvtKeyPath: String, userName: String) throws -> String {
   let generator = try CocoaFobLicGenerator(privateKeyPEM: pvtKeyPEM)
   return try generator.generate(userName)
 }
+
+func generateRegURL(pvtKeyPath: String, userName: String, schema: String) throws -> String? {
+  let regKey = try generateRegKey(pvtKeyPath, userName: userName)
+  if let userNameData = userName.dataUsingEncoding(NSUTF8StringEncoding) {
+    let userNameBase64 = userNameData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+    return "\(schema)://\(userNameBase64)/\(regKey)"
+  }
+  return nil
+}
