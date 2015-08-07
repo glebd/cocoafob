@@ -16,6 +16,7 @@
 		303526981223DC9600AACD22 /* CFobError.m in Sources */ = {isa = PBXBuildFile; fileRef = 303526971223DC9600AACD22 /* CFobError.m */; };
 		303526F41223E4C900AACD22 /* CocoaFob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303524081223BB9600AACD22 /* CocoaFob.framework */; };
 		303526FC1223E56000AACD22 /* cocoafob.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* cocoafob.m */; };
+		65ABCE831C04F6A60063B6CB /* CFobLicVerifier-HeaderOnlyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ABCE821C04F6A60063B6CB /* CFobLicVerifier-HeaderOnlyTest.m */; };
 		C70720321B48C8D80083F859 /* CocoaFobTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C70720311B48C8D80083F859 /* CocoaFobTests.m */; };
 		C70720341B48C8D80083F859 /* CocoaFobARC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F7EF2C1577F3D90067C3A3 /* CocoaFobARC.framework */; };
 		C74F939215F28769004C00EA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74F939115F28769004C00EA /* Security.framework */; };
@@ -54,6 +55,8 @@
 		303526831223D4DA00AACD22 /* CFobError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFobError.h; sourceTree = "<group>"; };
 		303526971223DC9600AACD22 /* CFobError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFobError.m; sourceTree = "<group>"; };
 		303526E91223E45100AACD22 /* cocoafob */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocoafob; sourceTree = BUILT_PRODUCTS_DIR; };
+		65ABCE811C04F6510063B6CB /* CFobLicVerifier-HeaderOnly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CFobLicVerifier-HeaderOnly.h"; sourceTree = "<group>"; };
+		65ABCE821C04F6A60063B6CB /* CFobLicVerifier-HeaderOnlyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CFobLicVerifier-HeaderOnlyTest.m"; sourceTree = "<group>"; };
 		C6859EA3029092ED04C91782 /* cocoafob.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = cocoafob.1; sourceTree = "<group>"; };
 		C707202F1B48C8D80083F859 /* CocoaFobTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CocoaFobTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C70720311B48C8D80083F859 /* CocoaFobTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CocoaFobTests.m; sourceTree = "<group>"; };
@@ -129,6 +132,7 @@
 				C7E378490F59DB15002061CD /* CFobLicVerifier.h */,
 				C7E3784A0F59DB15002061CD /* CFobLicVerifier.m */,
 				303526831223D4DA00AACD22 /* CFobError.h */,
+				65ABCE811C04F6510063B6CB /* CFobLicVerifier-HeaderOnly.h */,
 				303526971223DC9600AACD22 /* CFobError.m */,
 			);
 			name = Source;
@@ -174,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				C70720311B48C8D80083F859 /* CocoaFobTests.m */,
+				65ABCE821C04F6A60063B6CB /* CFobLicVerifier-HeaderOnlyTest.m */,
 				C70720331B48C8D80083F859 /* Info.plist */,
 			);
 			path = CocoaFobTests;
@@ -366,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C70720321B48C8D80083F859 /* CocoaFobTests.m in Sources */,
+				65ABCE831C04F6A60063B6CB /* CFobLicVerifier-HeaderOnlyTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

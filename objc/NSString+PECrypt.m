@@ -25,12 +25,20 @@
 - (NSString *)base64DecodeWithBreaks:(BOOL)lineBreaks {
     SecTransformRef transform = SecDecodeTransformCreate(kSecBase64Encoding, NULL);
     NSData *output = nil;
+#if !__has_feature(objc_arc)
     if (SecTransformSetAttribute(transform, kSecTransformInputAttributeName, [self dataUsingEncoding:NSASCIIStringEncoding], NULL)) {
         output = (NSData *)SecTransformExecute(transform, NULL);
     }
+	CFRelease(transform);
+	NSString *decoded = [NSString stringWithUTF8String:[output bytes]];
+	[output release];
+#else
+    if (SecTransformSetAttribute(transform, kSecTransformInputAttributeName, (__bridge CFTypeRef _Nonnull)([self dataUsingEncoding:NSASCIIStringEncoding]), NULL)) {
+        output = (NSData *)CFBridgingRelease(SecTransformExecute(transform, NULL));
+    }
     CFRelease(transform);
     NSString *decoded = [NSString stringWithUTF8String:[output bytes]];
-    [output release];
+#endif
     return decoded;
 }
 
