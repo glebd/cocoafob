@@ -8,9 +8,9 @@
 
 import Foundation
 
-func cfTry(err: CocoaFobError, cfBlock: UnsafeMutablePointer<Unmanaged<CFError>?> -> Boolean) throws {
+func cfTry(err: CocoaFobError, cfBlock: UnsafeMutablePointer<Unmanaged<CFError>?> -> DarwinBoolean) throws {
   var cferr: Unmanaged<CFError>? = nil
-  if cfBlock(&cferr) == 0 {
+  if !cfBlock(&cferr).boolValue {
     if let nserr = cferr?.takeRetainedValue() {
       throw nserr as NSError
     } else {

@@ -23,22 +23,32 @@ public struct CocoaFobLicGenerator {
   - parameter privateKeyPEM: String containing PEM representation of the private key
   */
   public init(privateKeyPEM: String) throws {
-    var params = SecItemImportExportKeyParameters()
-    var keyFormat = SecExternalFormat(kSecFormatPEMSequence)
-    var keyType = SecExternalItemType(kSecItemTypePrivateKey)
+    var password = Unmanaged.passUnretained(NSString(string: "") as AnyObject)
+    var emptyString = "" as NSString
+    var params = SecItemImportExportKeyParameters(
+      version: UInt32(bitPattern: SEC_KEY_IMPORT_EXPORT_PARAMS_VERSION),
+      flags: SecKeyImportExportFlags.ImportOnlyOne,
+      passphrase: password,
+      alertTitle: Unmanaged.passUnretained(NSString(string: "")),
+      alertPrompt: Unmanaged.passUnretained(NSString(string: "")),
+      accessRef: nil,
+      keyUsage: nil,
+      keyAttributes: nil)
+    var keyFormat = SecExternalFormat.FormatPEMSequence
+    var keyType = SecExternalItemType.ItemTypePrivateKey
     if let keyData = privateKeyPEM.dataUsingEncoding(NSUTF8StringEncoding) {
-      var importArray: Unmanaged<CFArray>? = nil
+      var importArray: CFArray? = nil
       let osStatus = withUnsafeMutablePointer(&importArray) { importArrayPtr in
         SecItemImport(keyData, nil, &keyFormat, &keyType, 0, &params, nil, importArrayPtr)
       }
       if osStatus != errSecSuccess {
         throw CocoaFobError.InvalidKey(osStatus)
       }
-      let items = importArray!.takeRetainedValue() as NSArray
-      if items.count < 1 {
+      if let items = importArray as? NSArray where items.count >= 1 {
+        self.privKey = items[0] as! SecKeyRef
+      } else {
         throw CocoaFobError.InvalidKey(0)
       }
-      self.privKey = items[0] as! SecKeyRef
     } else {
       throw CocoaFobError.InvalidKey(0)
     }
@@ -57,27 +67,25 @@ public struct CocoaFobLicGenerator {
     let nameData = try getNameData(name)
     let signer = try getSigner(nameData)
     let encoder = try getEncoder()
-    let group = try connectTransforms(signer, encoder: encoder)
-    let regData = try cfTry(.ErrorGeneratingRegKey) { return SecTransformExecute(group.takeUnretainedValue(), $0) }
-    if let reg = NSString(data: regData as! NSData, encoding: NSUTF8StringEncoding) {
-      return String(reg).cocoaFobToReadableKey()
-    } else {
-      throw CocoaFobError.ErrorGeneratingRegKey
+    if let group = try connectTransforms(signer, encoder: encoder) {
+      let regData = try cfTry(CocoaFobError.ErrorGeneratingRegKey) { return SecTransformExecute(group, $0) }
+      if let reg = NSString(data: regData as! NSData, encoding: NSUTF8StringEncoding) {
+        return String(reg).cocoaFobToReadableKey()
+      } else {
+        throw CocoaFobError.ErrorGeneratingRegKey
+      }
     }
   }
   
   // MARK: - Utility functions
 
-  private func connectTransforms(signer: Unmanaged<SecTransform>, encoder: Unmanaged<SecTransform>) throws -> Unmanaged<SecGroupTransform> {
+  private func connectTransforms(signer: SecTransform, encoder: SecTransform) throws -> SecGroupTransform? {
     let groupTransform = try getGroupTransform()
-    return SecTransformConnectTransforms(signer.takeUnretainedValue(), kSecTransformOutputAttributeName, encoder.takeUnretainedValue(), kSecTransformInputAttributeName, groupTransform.takeUnretainedValue(), nil)
+    return SecTransformConnectTransforms(signer, kSecTransformOutputAttributeName, encoder, kSecTransformInputAttributeName, groupTransform, nil)
   }
 
-  private func getGroupTransform() throws -> Unmanaged<SecGroupTransform> {
-    if let group = SecTransformCreateGroupTransform() {
-      return group
-    }
-    throw CocoaFobError.ErrorCreatingGroupTransform
+  private func getGroupTransform() throws -> SecGroupTransform {
+    return SecTransformCreateGroupTransform()
   }
   
   func getNameData(name: String) throws -> NSData {
@@ -87,14 +95,14 @@ public struct CocoaFobLicGenerator {
     throw CocoaFobError.InvalidInput
   }
   
-  func getSigner(nameData: NSData) throws -> Unmanaged<SecTransform> {
+  func getSigner(nameData: NSData) throws -> SecTransform {
     let signer = try cfTry(.ErrorCreatingSignerTransform) { return SecSignTransformCreate(self.privKey, $0) }
-    try cfTry(.ErrorConfiguringSignerTransform) { return SecTransformSetAttribute(signer.takeUnretainedValue(), kSecTransformInputAttributeName, nameData, $0) }
-    try cfTry(.ErrorConfiguringSignerTransform) { return SecTransformSetAttribute(signer.takeUnretainedValue(), kSecDigestTypeAttribute, kSecDigestSHA1, $0) }
+    try cfTry(.ErrorConfiguringSignerTransform) { return SecTransformSetAttribute(signer, kSecTransformInputAttributeName, nameData, $0) }
+    try cfTry(.ErrorConfiguringSignerTransform) { return SecTransformSetAttribute(signer, kSecDigestTypeAttribute, kSecDigestSHA1, $0) }
     return signer
   }
   
-  private func getEncoder() throws -> Unmanaged<SecTransform> {
+  private func getEncoder() throws -> SecTransform {
     let encoder = try cfTry(.ErrorCreatingEncoderTransform) { return SecEncodeTransformCreate(kSecBase32Encoding, $0) }
     return encoder
   }
