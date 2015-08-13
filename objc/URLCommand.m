@@ -7,7 +7,7 @@
 //  Pay attention to the TODO: comments below.
 //
 //  Created by Gleb Dolgich on 20/03/2009.
-//  Follow me on Twitter @gbd
+//  Follow me on Twitter @glebd
 //  Copyright (C) 2009 PixelEspresso. All rights reserved.
 //  Licensed under CC Attribution License 3.0 <http://creativecommons.org/licenses/by/3.0/>
 //
