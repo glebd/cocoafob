@@ -10,14 +10,18 @@ import Foundation
 
 func verifyRegKey(pubKeyPath: String, userName: String, regKey: String) throws -> Bool {
   let pubKeyPEM = try NSString(contentsOfFile: pubKeyPath, encoding: NSUTF8StringEncoding) as String
-  let verifier = try CocoaFobLicVerifier(publicKeyPEM: pubKeyPEM)
-  return verifier.verify(regKey, forName: userName)
+  if let verifier = CocoaFobLicVerifier(publicKeyPEM: pubKeyPEM) {
+    return verifier.verify(regKey, forName: userName)
+  }
+  return false
 }
 
 func generateRegKey(pvtKeyPath: String, userName: String) throws -> String {
   let pvtKeyPEM = try NSString(contentsOfFile: pvtKeyPath, encoding: NSUTF8StringEncoding) as String
-  let generator = try CocoaFobLicGenerator(privateKeyPEM: pvtKeyPEM)
-  return try generator.generate(userName)
+  if let generator = CocoaFobLicGenerator(privateKeyPEM: pvtKeyPEM) {
+    return try generator.generate(userName)
+  }
+  throw CocoaFobError.Error
 }
 
 func generateRegURL(pvtKeyPath: String, userName: String, schema: String) throws -> String? {

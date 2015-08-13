@@ -30,56 +30,44 @@ class CocoaFobTests: XCTestCase {
   + "-----END PUBLIC KEY-----\n"
   
   func testInitGeneratorPass() {
-    do {
-      let keygen = try CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
-      XCTAssertNotNil(keygen.privKey)
-    } catch {
-      XCTAssert(false, "Importing private key must succeed but produced \(error)")
-    }
+    let keygen = CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+    XCTAssertNotNil(keygen?.privKey)
   }
   
   func testInitGeneratorFail() {
     let privateKeyPEM = "-----BEGIN DSA PRIVATE KEY-----\n"
-    do {
-      let _ = try CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
-    } catch let err as CocoaFobError {
-      switch err {
-      case CocoaFobError.InvalidKey(let osStatus):
-        XCTAssert(osStatus == -25257, "Wrong OSStatus: \(osStatus)")
-      default:
-        XCTAssert(false, "Expected CocoaFobError.InvalidKey(-25257), got \(err)")
-      }
-    } catch {
-      XCTAssert(false, "Expected CocoaFobError.InvalidKey(-25257), got \(error)")
-    }
+    let keygen = CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+    XCTAssert(keygen == nil)
   }
   
   func testGetNameData() {
-    do {
-      let keygen = try CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
-      XCTAssertNotNil(keygen.privKey)
-      let name = "Joe Bloggs"
-      let nameData = try keygen.getNameData(name)
-      let nameFromDataAsNSString = NSString(data: nameData, encoding: NSUTF8StringEncoding)
+    let keygen = CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+    XCTAssertNotNil(keygen?.privKey)
+    let name = "Joe Bloggs"
+    let nameData = keygen?.getNameData(name)
+    XCTAssertNotNil(nameData)
+    if let nameData_ = nameData {
+      let nameFromDataAsNSString = NSString(data: nameData_, encoding: NSUTF8StringEncoding)
       XCTAssertNotNil(nameFromDataAsNSString)
       let nameFromData = String(nameFromDataAsNSString!)
       XCTAssertEqual(nameFromData, name)
-    } catch {
-      XCTAssert(false, "\(error)")
     }
   }
   
   func testGetSignerPass() {
-    do {
-      let keygen = try CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
-      XCTAssertNotNil(keygen.privKey)
-      let name = "Joe Bloggs"
-      let nameData = try keygen.getNameData(name)
-      let signer = try keygen.getSigner(nameData)
-      
-      // check name attribute
-      let nameDataAttr = SecTransformGetAttribute(signer.takeUnretainedValue(), kSecTransformInputAttributeName)
-      let nameDataFromAttr = nameDataAttr.takeUnretainedValue() as! NSData
+    let keygen = CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+    XCTAssertNotNil(keygen?.privKey)
+    let name = "Joe Bloggs"
+    let nameData = keygen?.getNameData(name)
+    XCTAssertNotNil(nameData)
+    let signer = keygen?.getSigner(nameData!)
+    XCTAssertNotNil(signer)
+    
+    // check name attribute
+    if let signer_ = signer {
+      let nameDataAttr = SecTransformGetAttribute(signer_, kSecTransformInputAttributeName)
+      XCTAssertNotNil(nameDataAttr)
+      let nameDataFromAttr = nameDataAttr! as! NSData
       XCTAssertNotNil(nameDataFromAttr, "Expected to get name data back")
       let nameFromAttrAsNSString = NSString(data: nameDataFromAttr, encoding: NSUTF8StringEncoding)
       XCTAssertNotNil(nameFromAttrAsNSString)
@@ -87,12 +75,11 @@ class CocoaFobTests: XCTestCase {
       XCTAssertEqual(nameFromAttr, name)
       
       // check digest type attribute
-      let digestTypeAttr = SecTransformGetAttribute(signer.takeUnretainedValue(), kSecDigestTypeAttribute)
-      let digestTypeFromAttr = digestTypeAttr.takeUnretainedValue() as! NSString
+      let digestTypeAttr = SecTransformGetAttribute(signer!, kSecDigestTypeAttribute)
+      XCTAssertNotNil(digestTypeAttr)
+      let digestTypeFromAttr = digestTypeAttr! as! NSString
       XCTAssertNotNil(digestTypeFromAttr, "Expected to get SHA1 transform type back")
       XCTAssertEqual(digestTypeFromAttr, kSecDigestSHA1)
-    } catch {
-      XCTAssert(false, "\(error)")
     }
   }
   
@@ -111,130 +98,95 @@ class CocoaFobTests: XCTestCase {
   }
   
   func testGeneratePass() {
+    let keygen = CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+    XCTAssertNotNil(keygen?.privKey)
     do {
-      let keygen = try CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
-      XCTAssertNotNil(keygen.privKey)
-      let actual = try keygen.generate("Joe Bloggs")
-      print(actual)
-      XCTAssert(actual != "")
+      if let actual = try keygen?.generate("Joe Bloggs") {
+        print(actual)
+        XCTAssert(actual != "")
+      }
     } catch {
       XCTAssert(false, "\(error)")
     }
   }
   
   func testInitVerifierPass() {
-    do {
-      let verifier = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
-      XCTAssertNotNil(verifier.pubKey)
-    } catch {
-      XCTAssert(false, "Importing public key must succeed but produced \(error)")
-    }
+    let verifier = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    XCTAssertNotNil(verifier?.pubKey)
   }
   
   func testInitVerifierFail() {
     let publicKeyPEM = "-----BEGIN PUBLIC KEY-----\n"
-    do {
-      let _ = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
-    } catch let err as CocoaFobError {
-      switch err {
-      case CocoaFobError.InvalidKey(let osStatus):
-        XCTAssert(osStatus == -25257, "Wrong OSStatus: \(osStatus)")
-      default:
-        XCTAssert(false, "Expected CocoaFobError.InvalidKey(-25257), got \(err)")
-      }
-    } catch {
-      XCTAssert(false, "Expected CocoaFobError.InvalidKey(-25257), got \(error)")
-    }
+    let keychecker = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    XCTAssertNil(keychecker?.pubKey)
   }
   
   func testVerifyPass() {
-    do {
-      let verifier = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
-      XCTAssertNotNil(verifier.pubKey)
-      let name = "Joe Bloggs"
-      let regKey = "GAWQE-F9AQP-XJCCL-PAFAX-NU5XX-EUG6W-KLT3H-VTEB9-A9KHJ-8DZ5R-DL74G-TU4BN-7ATPY-3N4XB-V4V27-Q"
-      let result = verifier.verify(regKey, forName: name)
-      XCTAssertTrue(result)
-    } catch {
-      XCTAssert(false, "\(error)")
-    }
+    let verifier = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    XCTAssertNotNil(verifier?.pubKey)
+    let name = "Joe Bloggs"
+    let regKey = "GAWQE-F9AQP-XJCCL-PAFAX-NU5XX-EUG6W-KLT3H-VTEB9-A9KHJ-8DZ5R-DL74G-TU4BN-7ATPY-3N4XB-V4V27-Q"
+    let result = verifier?.verify(regKey, forName: name) ?? false
+    XCTAssertTrue(result)
   }
   
   func testVerifyBadNameFail() {
-    do {
-      let verifier = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
-      XCTAssertNotNil(verifier.pubKey)
-      let name = "Joe Bloggs II"
-      let regKey = "GAWQE-F9AQP-XJCCL-PAFAX-NU5XX-EUG6W-KLT3H-VTEB9-A9KHJ-8DZ5R-DL74G-TU4BN-7ATPY-3N4XB-V4V27-Q"
-      let result = verifier.verify(regKey, forName: name)
-      XCTAssertFalse(result)
-    } catch {
-      XCTAssert(false, "\(error)")
-    }
+    let verifier = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    XCTAssertNotNil(verifier?.pubKey)
+    let name = "Joe Bloggs II"
+    let regKey = "GAWQE-F9AQP-XJCCL-PAFAX-NU5XX-EUG6W-KLT3H-VTEB9-A9KHJ-8DZ5R-DL74G-TU4BN-7ATPY-3N4XB-V4V27-Q"
+    let result = verifier?.verify(regKey, forName: name) ?? false
+    XCTAssertFalse(result)
   }
   
   func testVerifyBadKeyFail() {
-    do {
-      let verifier = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
-      XCTAssertNotNil(verifier.pubKey)
-      let name = "Joe Bloggs"
-      let regKey = "foo bar"
-      let result = verifier.verify(regKey, forName: name)
-      XCTAssertFalse(result)
-    } catch {
-      XCTAssert(false, "\(error)")
-    }
+    let verifier = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    XCTAssertNotNil(verifier?.pubKey)
+    let name = "Joe Bloggs"
+    let regKey = "foo bar"
+    let result = verifier?.verify(regKey, forName: name) ?? false
+    XCTAssertFalse(result)
   }
   
   func testVerifyEmptyKeyFail() {
-    do {
-      let verifier = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
-      XCTAssertNotNil(verifier.pubKey)
-      let name = "Joe Bloggs"
-      let regKey = ""
-      let result = verifier.verify(regKey, forName: name)
-      XCTAssertFalse(result)
-    } catch {
-      XCTAssert(false, "\(error)")
-    }
+    let verifier = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    XCTAssertNotNil(verifier?.pubKey)
+    let name = "Joe Bloggs"
+    let regKey = ""
+    let result = verifier?.verify(regKey, forName: name) ?? false
+    XCTAssertFalse(result)
   }
   
   func testVerifyEmptyNameAndKeyFail() {
-    do {
-      let verifier = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
-      XCTAssertNotNil(verifier.pubKey)
-      let name = ""
-      let regKey = ""
-      let result = verifier.verify(regKey, forName: name)
-      XCTAssertFalse(result)
-    } catch {
-      XCTAssert(false, "\(error)")
-    }
+    let verifier = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    XCTAssertNotNil(verifier?.pubKey)
+    let name = ""
+    let regKey = ""
+    let result = verifier?.verify(regKey, forName: name) ?? false
+    XCTAssertFalse(result)
   }
   
   func testVerifyEmptyNameFail() {
-    do {
-      let verifier = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
-      XCTAssertNotNil(verifier.pubKey)
-      let name = ""
-      let regKey = "GAWQE-F9AQP-XJCCL-PAFAX-NU5XX-EUG6W-KLT3H-VTEB9-A9KHJ-8DZ5R-DL74G-TU4BN-7ATPY-3N4XB-V4V27-Q"
-      let result = verifier.verify(regKey, forName: name)
-      XCTAssertFalse(result)
-    } catch {
-      XCTAssert(false, "\(error)")
-    }
+    let verifier = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    XCTAssertNotNil(verifier?.pubKey)
+    let name = ""
+    let regKey = "GAWQE-F9AQP-XJCCL-PAFAX-NU5XX-EUG6W-KLT3H-VTEB9-A9KHJ-8DZ5R-DL74G-TU4BN-7ATPY-3N4XB-V4V27-Q"
+    let result = verifier?.verify(regKey, forName: name) ?? false
+    XCTAssertFalse(result)
   }
   
   func testGenerateAndVerifyPass() {
+    let keygen = CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+    XCTAssertTrue(keygen != nil)
+    XCTAssertNotNil(keygen?.privKey)
+    let name = "Joe Bloggs"
     do {
-      let keygen = try CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
-      XCTAssertNotNil(keygen.privKey)
-      let name = "Joe Bloggs"
-      let regKey = try keygen.generate(name)
-      let verifier = try CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
-      XCTAssertNotNil(verifier.pubKey)
-      let result = verifier.verify(regKey, forName: name)
-      XCTAssertTrue(result)
+      if let regKey = try keygen?.generate(name) {
+        let verifier = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+        XCTAssertNotNil(verifier?.pubKey)
+        let result = verifier?.verify(regKey, forName: name) ?? false
+        XCTAssertTrue(result)
+      }
     } catch {
       XCTAssert(false, "\(error)")
     }
