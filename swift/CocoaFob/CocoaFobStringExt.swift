@@ -25,7 +25,7 @@ extension String {
     
     var index = 5
     while index < key.utf8.count {
-      key.splice(["-"], atIndex: advance(key.startIndex, index))
+      key.insertContentsOf(["-"], at: key.startIndex.advancedBy(index))
       index += 6
     }
     
