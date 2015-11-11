@@ -1,5 +1,6 @@
 # Configurable mini license server with bare-bones logging.
 # See server.wsgi for deployment.
+# Usage: http://your-server/license/generate/?secret=donttellanybody&user=John%20Doe&email=john@doe.com
 
 from flask import Flask
 from flask import Response
