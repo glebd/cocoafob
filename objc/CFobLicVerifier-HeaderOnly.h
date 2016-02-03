@@ -58,7 +58,7 @@ static inline SecKeyRef CFobSetPublicKey(NSString *pubKey, NSError **err) {
 	// Validate the argument.
 	if (pubKey == nil || [pubKey length] < 1) {
 		CFobAssignErrorWithDescriptionAndCode(err, @"Invalid key.", CFobErrorCodeInvalidKey);
-		return NO;
+		return NULL;
 	}
 
 	SecItemImportExportKeyParameters params = {};
@@ -76,7 +76,7 @@ static inline SecKeyRef CFobSetPublicKey(NSString *pubKey, NSError **err) {
 		if (importArray) {
 			CFRelease(importArray);
 		}
-		return NO;
+		return NULL;
 	}
 
 	SecKeyRef keyRef = (SecKeyRef)CFRetain(CFArrayGetValueAtIndex(importArray, 0));
