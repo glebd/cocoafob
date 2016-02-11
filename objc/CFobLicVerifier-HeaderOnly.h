@@ -24,7 +24,7 @@ enum _CFobErrorCode {
 static inline void CFobAssignErrorWithDescriptionAndCode(NSError **err, NSString *description, NSInteger code)
 {
 	if (err != NULL)
-		*err = [NSError errorWithDomain:[[NSBundle bundleForClass:NSClassFromString(@"CFobLicVerifier")] bundleIdentifier] code:code userInfo:[NSDictionary dictionaryWithObject:NSLocalizedStringFromTableInBundle(description, nil, [NSBundle bundleForClass:NSClassFromString(@"CFobLicVerifier")], nil) forKey:NSLocalizedDescriptionKey]];
+		*err = [NSError errorWithDomain:@"cocoafob" code:code userInfo:[NSDictionary dictionaryWithObject:description forKey:NSLocalizedDescriptionKey]];
 }
 
 static inline NSString *CFobCompletePublicKeyPEM(NSString *partialPEM) {
