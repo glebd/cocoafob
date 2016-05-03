@@ -2,7 +2,7 @@
 include('base32.php');
 
 	$lic = new License_Generator;
-	$code = $lic->make_lincese('GESTOBM30', 'Sandro Noel', 'sandro.noel@gesosoft.com');
+	$code = $lic->make_license('GESTOBM30', 'Sandro Noel', 'sandro.noel@gesosoft.com');
 
 // to verify a Key from cocoafob place it in here.
 
@@ -28,9 +28,9 @@ echo "<br><br><strong>Verify the cocoafob License<br></strong>";
 
 class License_Generator
 {
-	
-	var $private_key;
-	var $public_key;
+
+	private $private_key;
+	private $public_key;
 
 	#-#############################################
 	# desc: constructor
@@ -44,7 +44,7 @@ class License_Generator
 
 	#-#############################################
 	# desc: Create a license
-	public function make_lincese($product_code, $name, $email)
+	public function make_license($product_code, $name, $email)
 	{
 		// Generae a sha1 digest with the passed parameters.
 		$stringData = $product_code.",".$name.",".$email;
