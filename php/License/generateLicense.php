@@ -15,8 +15,8 @@
 	
 		include_once('license_generator.php');
 		$lic = new License_Generator;
-		$code = $lic->make_lincese($_POST["pCode"], $_POST["name"], $_POST["email"]);
-		echo 'your License:<br><strong>' . $code ."</strong>";
+		$code = $lic->make_license($_POST["pCode"], $_POST["name"], $_POST["email"]);
+		echo 'Your License:<br><strong>' . $code ."</strong>";
 	}
 ?>
 
