@@ -2,8 +2,8 @@
 include('base32.php');
 class License_Generator
 {
-	var $private_key;
-	var $public_key;
+	private $private_key;
+	private $public_key;
 
 	#-#############################################
 	# desc: constructor
