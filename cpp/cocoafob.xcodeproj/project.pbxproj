@@ -41,7 +41,7 @@
 		2DBB60421CEB88BC00105970 /* CFobLicGenerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CFobLicGenerator.hpp; path = source/CFobLicGenerator.hpp; sourceTree = "<group>"; };
 		2DBB60451CEB88D400105970 /* CFobLicGenerator_ctest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFobLicGenerator_ctest.cpp; path = ctest/CFobLicGenerator_ctest.cpp; sourceTree = "<group>"; };
 		2DD05FC51CEB62C700214ECE /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = consoleapp/main.cpp; sourceTree = "<group>"; };
-		2DD05FC71CEB62E300214ECE /* REAME.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = REAME.md; sourceTree = "<group>"; };
+		2DD05FC71CEB62E300214ECE /* REAME.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = REAME.markdown; sourceTree = "<group>"; };
 		2DD05FCA1CEB636B00214ECE /* catch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = catch.hpp; path = components/catch/include/catch.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,7 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				2DD05FC91CEB636000214ECE /* unittest */,
-				2DD05FC71CEB62E300214ECE /* REAME.md */,
+				2DD05FC71CEB62E300214ECE /* REAME.markdown */,
 				2DD05FC41CEB62BC00214ECE /* consoleapp */,
 				2D15DA701CEB6274001F85AE /* Products */,
 			);
