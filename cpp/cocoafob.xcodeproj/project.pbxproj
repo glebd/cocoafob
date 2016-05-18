@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DBB60431CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */; };
+		2DBB60441CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */; };
+		2DBB60461CEB88D400105970 /* CFobLicGenerator_ctest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB60451CEB88D400105970 /* CFobLicGenerator_ctest.cpp */; };
 		2DD05FC61CEB62C700214ECE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DD05FC51CEB62C700214ECE /* main.cpp */; };
-		2DD05FC81CEB62E300214ECE /* REAME.md in Sources */ = {isa = PBXBuildFile; fileRef = 2DD05FC71CEB62E300214ECE /* REAME.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -21,10 +23,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		2DBB603C1CEB882700105970 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2D15DA6F1CEB6274001F85AE /* cocoafob */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocoafob; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DBB60401CEB882700105970 /* cocoafob_ctest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocoafob_ctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFobLicGenerator.cpp; path = source/CFobLicGenerator.cpp; sourceTree = "<group>"; };
+		2DBB60421CEB88BC00105970 /* CFobLicGenerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CFobLicGenerator.hpp; path = source/CFobLicGenerator.hpp; sourceTree = "<group>"; };
+		2DBB60451CEB88D400105970 /* CFobLicGenerator_ctest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFobLicGenerator_ctest.cpp; path = ctest/CFobLicGenerator_ctest.cpp; sourceTree = "<group>"; };
 		2DD05FC51CEB62C700214ECE /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = consoleapp/main.cpp; sourceTree = "<group>"; };
 		2DD05FC71CEB62E300214ECE /* REAME.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = REAME.md; sourceTree = "<group>"; };
 		2DD05FCA1CEB636B00214ECE /* catch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = catch.hpp; path = components/catch/include/catch.hpp; sourceTree = "<group>"; };
@@ -32,6 +47,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		2D15DA6C1CEB6274001F85AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DBB603B1CEB882700105970 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -55,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				2D15DA6F1CEB6274001F85AE /* cocoafob */,
+				2DBB60401CEB882700105970 /* cocoafob_ctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,6 +94,9 @@
 			isa = PBXGroup;
 			children = (
 				2DD05FCA1CEB636B00214ECE /* catch.hpp */,
+				2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */,
+				2DBB60421CEB88BC00105970 /* CFobLicGenerator.hpp */,
+				2DBB60451CEB88D400105970 /* CFobLicGenerator_ctest.cpp */,
 			);
 			name = unittest;
 			sourceTree = "<group>";
@@ -93,6 +119,23 @@
 			name = cocoafob;
 			productName = cocoafob;
 			productReference = 2D15DA6F1CEB6274001F85AE /* cocoafob */;
+			productType = "com.apple.product-type.tool";
+		};
+		2DBB60371CEB882700105970 /* cocoafob_ctest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2DBB603D1CEB882700105970 /* Build configuration list for PBXNativeTarget "cocoafob_ctest" */;
+			buildPhases = (
+				2DBB60381CEB882700105970 /* Sources */,
+				2DBB603B1CEB882700105970 /* Frameworks */,
+				2DBB603C1CEB882700105970 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cocoafob_ctest;
+			productName = cocoafob;
+			productReference = 2DBB60401CEB882700105970 /* cocoafob_ctest */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -122,6 +165,7 @@
 			projectRoot = "";
 			targets = (
 				2D15DA6E1CEB6274001F85AE /* cocoafob */,
+				2DBB60371CEB882700105970 /* cocoafob_ctest */,
 			);
 		};
 /* End PBXProject section */
@@ -132,7 +176,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DD05FC61CEB62C700214ECE /* main.cpp in Sources */,
-				2DD05FC81CEB62E300214ECE /* REAME.md in Sources */,
+				2DBB60431CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DBB60381CEB882700105970 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DBB60441CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */,
+				2DBB60461CEB88D400105970 /* CFobLicGenerator_ctest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +229,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = $PROJECT_DIR/components/cryptopp/include;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -214,6 +268,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = $PROJECT_DIR/components/cryptopp/include;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
@@ -230,6 +285,24 @@
 		2D15DA781CEB6274001F85AE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		2DBB603E1CEB882700105970 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				GCC_C_LANGUAGE_STANDARD = c11;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2DBB603F1CEB882700105970 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				GCC_C_LANGUAGE_STANDARD = c11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -251,6 +324,15 @@
 			buildConfigurations = (
 				2D15DA771CEB6274001F85AE /* Debug */,
 				2D15DA781CEB6274001F85AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2DBB603D1CEB882700105970 /* Build configuration list for PBXNativeTarget "cocoafob_ctest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DBB603E1CEB882700105970 /* Debug */,
+				2DBB603F1CEB882700105970 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
