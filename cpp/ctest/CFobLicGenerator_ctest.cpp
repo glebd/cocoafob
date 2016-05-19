@@ -25,7 +25,7 @@ TEST_CASE("Construct class", "[base]")
                                 -----END DSA PRIVATE KEY-----\n
                                 )PEM";
     
-    auto licenseGen = std::make_unique<CFobLicGenerator>(privateKeyPEM);
+    auto licenseGen = CreateCFobLicGenerator< std::unique_ptr<CFobLicGenerator> >(privateKeyPEM);
     REQUIRE(licenseGen != nullptr);
     
     auto name = "Joe Bloggs";
@@ -41,6 +41,6 @@ TEST_CASE("Construct class bad", "[base]")
 {
     const auto privateKeyPEM = "-----BEGIN DSA PRIVATE KEY-----\n";
     
-    auto licenseGen = std::make_unique<CFobLicGenerator>(privateKeyPEM);
+    auto licenseGen = CreateCFobLicGenerator< std::unique_ptr<CFobLicGenerator> >(privateKeyPEM);
     REQUIRE(licenseGen == nullptr);
 }
