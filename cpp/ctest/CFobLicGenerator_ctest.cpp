@@ -12,7 +12,7 @@
 #include <memory>
 #include "CFobLicGenerator.hpp"
 
-TEST_CASE("Construct class", "[base]")
+TEST_CASE("Construct class", "[base] [generator]")
 {
     const auto privateKeyPEM = R"PEM(
                                 -----BEGIN DSA PRIVATE KEY-----\n
@@ -37,7 +37,7 @@ TEST_CASE("Construct class", "[base]")
     REQUIRE(regCodeResult);
 }
 
-TEST_CASE("Construct class bad", "[base]")
+TEST_CASE("Construct class bad", "[base] [generator]")
 {
     const auto privateKeyPEM = "-----BEGIN DSA PRIVATE KEY-----\n";
     

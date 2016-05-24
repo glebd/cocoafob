@@ -50,7 +50,7 @@ private:
     CFobLicGenerator(const std::string privateKey);
     
     CFobLicGenerator() = delete;
-    const std::string _privateKey;
+    const UTF8String _privateKey;
 };
 
 
