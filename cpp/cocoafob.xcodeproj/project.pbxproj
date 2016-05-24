@@ -11,6 +11,9 @@
 		2DBB60441CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */; };
 		2DBB60461CEB88D400105970 /* CFobLicGenerator_ctest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB60451CEB88D400105970 /* CFobLicGenerator_ctest.cpp */; };
 		2DD05FC61CEB62C700214ECE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DD05FC51CEB62C700214ECE /* main.cpp */; };
+		2DE994DB1CF501A60078994D /* CFobLicVerifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DE994D91CF501A60078994D /* CFobLicVerifier.cpp */; };
+		2DE994DC1CF501A60078994D /* CFobLicVerifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DE994D91CF501A60078994D /* CFobLicVerifier.cpp */; };
+		2DE994DF1CF501CA0078994D /* CFobLicVerifier_ctest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DE994DE1CF501CA0078994D /* CFobLicVerifier_ctest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +46,9 @@
 		2DD05FC51CEB62C700214ECE /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = consoleapp/main.cpp; sourceTree = "<group>"; };
 		2DD05FC71CEB62E300214ECE /* REAME.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = REAME.markdown; sourceTree = "<group>"; };
 		2DD05FCA1CEB636B00214ECE /* catch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = catch.hpp; path = components/catch/include/catch.hpp; sourceTree = "<group>"; };
+		2DE994D91CF501A60078994D /* CFobLicVerifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFobLicVerifier.cpp; path = source/CFobLicVerifier.cpp; sourceTree = "<group>"; };
+		2DE994DA1CF501A60078994D /* CFobLicVerifier.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CFobLicVerifier.hpp; path = source/CFobLicVerifier.hpp; sourceTree = "<group>"; };
+		2DE994DE1CF501CA0078994D /* CFobLicVerifier_ctest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFobLicVerifier_ctest.cpp; path = ctest/CFobLicVerifier_ctest.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,7 @@
 		2D15DA661CEB6273001F85AE = {
 			isa = PBXGroup;
 			children = (
+				2DE994DD1CF501AC0078994D /* source */,
 				2DD05FC91CEB636000214ECE /* unittest */,
 				2DD05FC71CEB62E300214ECE /* REAME.markdown */,
 				2DD05FC41CEB62BC00214ECE /* consoleapp */,
@@ -94,11 +101,21 @@
 			isa = PBXGroup;
 			children = (
 				2DD05FCA1CEB636B00214ECE /* catch.hpp */,
-				2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */,
-				2DBB60421CEB88BC00105970 /* CFobLicGenerator.hpp */,
 				2DBB60451CEB88D400105970 /* CFobLicGenerator_ctest.cpp */,
+				2DE994DE1CF501CA0078994D /* CFobLicVerifier_ctest.cpp */,
 			);
 			name = unittest;
+			sourceTree = "<group>";
+		};
+		2DE994DD1CF501AC0078994D /* source */ = {
+			isa = PBXGroup;
+			children = (
+				2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */,
+				2DBB60421CEB88BC00105970 /* CFobLicGenerator.hpp */,
+				2DE994D91CF501A60078994D /* CFobLicVerifier.cpp */,
+				2DE994DA1CF501A60078994D /* CFobLicVerifier.hpp */,
+			);
+			name = source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DD05FC61CEB62C700214ECE /* main.cpp in Sources */,
+				2DE994DB1CF501A60078994D /* CFobLicVerifier.cpp in Sources */,
 				2DBB60431CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,6 +203,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DBB60441CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */,
+				2DE994DC1CF501A60078994D /* CFobLicVerifier.cpp in Sources */,
+				2DE994DF1CF501CA0078994D /* CFobLicVerifier_ctest.cpp in Sources */,
 				2DBB60461CEB88D400105970 /* CFobLicGenerator_ctest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
