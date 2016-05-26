@@ -16,3 +16,6 @@ This is the C++ port of CocoaFob, which allows for the same type of functionalit
    * Placed single_include header file into ./components/catch/include/
 * Crypo++ 5.6.3 lib: https://www.cryptopp.com/
    * Place binary into into ./components/cryptopp/
+
+### Download script
+A bash shell script named download_required_libs.sh is in the same directory as this README file and can be used for downloading the required files, which builds the crypto library from source and places the headers and binaries in the components directory.
