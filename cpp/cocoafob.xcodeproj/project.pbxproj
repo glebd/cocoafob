@@ -39,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		2D15DA6F1CEB6274001F85AE /* cocoafob */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocoafob; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D9128EF1CFFD500009A335D /* cocoafob.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = cocoafob.xcconfig; sourceTree = "<group>"; };
 		2DBB60401CEB882700105970 /* cocoafob_ctest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocoafob_ctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFobLicGenerator.cpp; path = source/CFobLicGenerator.cpp; sourceTree = "<group>"; };
 		2DBB60421CEB88BC00105970 /* CFobLicGenerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CFobLicGenerator.hpp; path = source/CFobLicGenerator.hpp; sourceTree = "<group>"; };
@@ -72,6 +73,7 @@
 		2D15DA661CEB6273001F85AE = {
 			isa = PBXGroup;
 			children = (
+				2D9128F01CFFD504009A335D /* xcconfig */,
 				2DE994DD1CF501AC0078994D /* source */,
 				2DD05FC91CEB636000214ECE /* unittest */,
 				2DD05FC71CEB62E300214ECE /* README.markdown */,
@@ -87,6 +89,14 @@
 				2DBB60401CEB882700105970 /* cocoafob_ctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2D9128F01CFFD504009A335D /* xcconfig */ = {
+			isa = PBXGroup;
+			children = (
+				2D9128EF1CFFD500009A335D /* cocoafob.xcconfig */,
+			);
+			name = xcconfig;
 			sourceTree = "<group>";
 		};
 		2DD05FC41CEB62BC00214ECE /* consoleapp */ = {
@@ -214,6 +224,7 @@
 /* Begin XCBuildConfiguration section */
 		2D15DA741CEB6274001F85AE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D9128EF1CFFD500009A335D /* cocoafob.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -249,7 +260,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = $PROJECT_DIR/components/cryptopp/include;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -259,6 +269,7 @@
 		};
 		2D15DA751CEB6274001F85AE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D9128EF1CFFD500009A335D /* cocoafob.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -288,7 +299,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = $PROJECT_DIR/components/cryptopp/include;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;

@@ -1,0 +1,14 @@
+//
+//  cocoafob.xcconfig
+//  cocoafob
+//
+//  Created by Jaime Rios on 2016-06-01.
+//  Copyright © 2016 Jaime O. Rios. All rights reserved.
+//
+
+
+//HEADER_SEARCH_PATHS =
+
+OTHER_CFLAGS = -isystem $PROJECT_DIR/components/cryptopp/include
+
+OTHER_LDFLAGS = $PROJECT_DIR/components/cryptopp/lib/libcryptopp.a
