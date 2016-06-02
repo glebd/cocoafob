@@ -14,14 +14,14 @@
 #include <string>
 
 #include <cryptopp/dsa.h>
-using CryptoPP::DSA;
+//using CryptoPP::DSA;
 
 using ErrorMessage = std::string;
 using RegCode      = std::string;
 using UTF8String   = std::string;
 
 auto CompletePublicKeyPEM(const UTF8String partialPEM) -> UTF8String;
-
+auto CreateDSAPubKeyFromPartialPubKeyPEM(const UTF8String partialPEM) -> std::tuple<bool, ErrorMessage, CryptoPP::DSA::PublicKey>;
 
 class CFobLicVerifier
 {
@@ -32,12 +32,12 @@ private:
     template <typename T>
     friend T CreateCFobLicVerifier(const UTF8String partialPubKey );
     
-    CFobLicVerifier(const UTF8String partialPubKey);
+    CFobLicVerifier(CryptoPP::DSA::PublicKey pubKey);
     
     CFobLicVerifier() = delete;
-    const UTF8String _pubKey;
+    //const UTF8String _pubKey;
     
-    DSA::PublicKey _dsaPubKey;
+    CryptoPP::DSA::PublicKey _dsaPubKey;
 };
 
 
@@ -51,9 +51,20 @@ T CreateCFobLicVerifier(const UTF8String partialPubKey )
     if (partialPubKey.length() == 0)
         return T{};
     
-    auto verifier = T {new CFobLicVerifier(partialPubKey)};
+    auto dsaKeyResult = CreateDSAPubKeyFromPartialPubKeyPEM(partialPubKey);
     
-    return verifier;
+    const auto success = std::get<0>(dsaKeyResult);
+    if (success)
+    {
+        auto pubKey = std::get<2>(dsaKeyResult);
+        auto verifier = T {new CFobLicVerifier(pubKey)};
+        
+        return verifier;
+    }
+    else
+    {
+        return T{};
+    }
 }
 
 

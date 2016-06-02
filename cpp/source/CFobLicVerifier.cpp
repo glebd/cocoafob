@@ -8,10 +8,11 @@
 
 #include "CFobLicVerifier.hpp"
 #include <string>
+#include <iostream>
 
 #include <cryptopp/cryptlib.h>
 #include <cryptopp/filters.h>
-using CryptoPP::StringSource;
+//using CryptoPP::StringSource;
 
 
 
@@ -47,13 +48,33 @@ auto CompletePublicKeyPEM(const UTF8String partialPEM) -> UTF8String
     return pem;
 }
 
-CFobLicVerifier::CFobLicVerifier(const UTF8String partialPubKey)
-:  _dsaPubKey{DSA::PublicKey{}}
+auto CreateDSAPubKeyFromPartialPubKeyPEM(const UTF8String partialPEM) -> std::tuple<bool, ErrorMessage, CryptoPP::DSA::PublicKey>
 {
-    const auto completeKey = CompletePublicKeyPEM(partialPubKey);
+    if (partialPEM.length()==0)
+    {
+        return std::make_tuple(false, UTF8String{"Empty PEM string detected"}, CryptoPP::DSA::PublicKey{});
+    }
     
-    auto&& ss = StringSource(completeKey, true /*pumpAll*/);
-    _dsaPubKey.Load(ss);
+    const auto completeKey = CompletePublicKeyPEM(partialPEM);
+    
+    try
+    {
+        auto&& ss = CryptoPP::StringSource(completeKey, true /*pumpAll*/);
+        auto pubKey = CryptoPP::DSA::PublicKey{};
+        pubKey.Load(ss);
+        
+        return std::make_tuple(true, UTF8String{"Success"}, pubKey);
+    }
+    catch( CryptoPP::Exception& e )
+    {
+        return std::make_tuple(false, UTF8String{e.what()}, CryptoPP::DSA::PublicKey{});
+    }
+}
+
+CFobLicVerifier::CFobLicVerifier(CryptoPP::DSA::PublicKey pubKey)
+:  _dsaPubKey{pubKey}
+{
+    ;
 }
 
 auto CFobLicVerifier::VerifyRegCodeForName(const UTF8String regCode, const UTF8String forName) -> std::tuple<bool, ErrorMessage>
