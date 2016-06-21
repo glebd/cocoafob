@@ -25,9 +25,14 @@ cd cryptopp563_src
 curl -O https://www.cryptopp.com/cryptopp563.zip
 unzip cryptopp563.zip
 
+echo 'Attempting to get PEM pack, required for PEM decoding'
+curl -O http://www.cryptopp.com/w/images/5/5a/Pem-pack.zip
+unzip Pem-pack.zip
+
 echo "Building cryptopp563"
 PREFIX=./xbuild_dir make
 PREFIX=./xbuild_dir make install
+
 
 echo "Moving output to components folder"
 mv xbuild_dir/bin ../components/cryptopp/
