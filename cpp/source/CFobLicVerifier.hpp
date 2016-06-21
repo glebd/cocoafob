@@ -54,6 +54,9 @@ T CreateCFobLicVerifier(const UTF8String partialPubKey )
     auto dsaKeyResult = CreateDSAPubKeyFromPartialPubKeyPEM(partialPubKey);
     
     const auto success = std::get<0>(dsaKeyResult);
+    const auto reason  = std::get<1>(dsaKeyResult);
+    (void)reason; // for debugging purposes
+    
     if (success)
     {
         auto pubKey = std::get<2>(dsaKeyResult);
