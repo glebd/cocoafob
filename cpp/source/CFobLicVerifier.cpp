@@ -12,7 +12,7 @@
 
 #include <cryptopp/cryptlib.h>
 #include <cryptopp/filters.h>
-//using CryptoPP::StringSource;
+#include <cryptopp/pem.h>
 
 
 
@@ -61,7 +61,8 @@ auto CreateDSAPubKeyFromPartialPubKeyPEM(const UTF8String partialPEM) -> std::tu
     {
         auto&& ss = CryptoPP::StringSource(completeKey, true /*pumpAll*/);
         auto pubKey = CryptoPP::DSA::PublicKey{};
-        pubKey.Load(ss);
+        
+        PEM_Load(ss, pubKey);
         
         return std::make_tuple(true, UTF8String{"Success"}, pubKey);
     }
