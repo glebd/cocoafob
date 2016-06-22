@@ -80,5 +80,49 @@ CFobLicVerifier::CFobLicVerifier(CryptoPP::DSA::PublicKey pubKey)
 
 auto CFobLicVerifier::VerifyRegCodeForName(const UTF8String regCode, const UTF8String forName) -> std::tuple<bool, ErrorMessage>
 {
-    return std::make_tuple(false, std::string(""));
+    if(regCode.length()==0)
+    {
+        return std::make_tuple(false, UTF8String{"Empty regCode string detected"});
+    }
+    
+    if(forName.length()==0)
+    {
+        return std::make_tuple(false, UTF8String{"Empty name string detected"});
+    }
+    
+    try
+    {
+        auto regCodeTmp = regCode;
+        std::replace( regCodeTmp.begin(), regCodeTmp.end(), '9', 'I');
+        std::replace( regCodeTmp.begin(), regCodeTmp.end(), '8', 'O');
+        regCodeTmp.erase(std::remove(regCodeTmp.begin(), regCodeTmp.end(), '-'), regCodeTmp.end());
+        
+        auto verifier = CryptoPP::DSA::Verifier{ _dsaPubKey };
+        auto message = forName;
+        auto signature = regCodeTmp;
+        CryptoPP::StringSource( message+signature, true,
+                               new CryptoPP::SignatureVerificationFilter(
+                                                                         verifier, nullptr,
+                                                                         CryptoPP::SignatureVerificationFilter::THROW_EXCEPTION
+                                                                         )
+                               );
+        
+        return std::make_tuple(true, std::string("Verified signature on message"));
+    }
+    catch( CryptoPP::SignatureVerificationFilter::SignatureVerificationFailed& e )
+    {
+        auto errMsg = UTF8String{"SignatureVerificationFailed: "};
+        errMsg += e.what();
+        
+        return std::make_tuple(false, errMsg);
+    }
+    catch( CryptoPP::Exception& e )
+    {
+        auto errMsg = UTF8String{"Exception caught: "};
+        errMsg += e.what();
+        
+        return std::make_tuple(false, errMsg);
+    }
+        
+    return std::make_tuple(false, std::string("Uknown error"));
 }
