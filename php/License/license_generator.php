@@ -21,7 +21,7 @@ class License_Generator
 
 	#-#############################################
 	# desc: Create a license
-	public function make_lincese($product_code, $name, $email)
+	public function make_license($product_code, $name, $email)
 	{
 		## NOTE ###############################################
 		# If you change the parameters the function acepts do not 
