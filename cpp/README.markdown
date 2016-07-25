@@ -9,12 +9,13 @@ This is the C++ port of CocoaFob, which allows for the same type of functionalit
 
 ## Requirements
 * Catch C++ Unit Testing Header
-* Crypo++ 5.6.3 lib 
+* Crypto++ 5.6.3 lib 
+* Crypto PEM Pack (http://www.cryptopp.com/wiki/Pem_pack)
 
 ### Git repos for libraries
 * Catch Unit Testing: https://github.com/philsquared/Catch
    * Placed single_include header file into ./components/catch/include/
-* Crypo++ 5.6.3 lib: https://www.cryptopp.com/
+* Crypto++ 5.6.3 lib: https://www.cryptopp.com/
    * Place binary into into ./components/cryptopp/
 
 ### Download script
