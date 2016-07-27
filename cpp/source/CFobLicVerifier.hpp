@@ -20,8 +20,9 @@ using ErrorMessage = std::string;
 using RegCode      = std::string;
 using UTF8String   = std::string;
 
+auto IsPublicKeyComplete(const UTF8String publicKey) -> bool;
 auto CompletePublicKeyPEM(const UTF8String partialPEM) -> UTF8String;
-auto CreateDSAPubKeyFromPartialPubKeyPEM(const UTF8String partialPEM) -> std::tuple<bool, ErrorMessage, CryptoPP::DSA::PublicKey>;
+auto CreateDSAPubKeyFromPublicKeyPEM(const UTF8String publicKey) -> std::tuple<bool, ErrorMessage, CryptoPP::DSA::PublicKey>;
 
 class CFobLicVerifier
 {
@@ -35,7 +36,6 @@ private:
     CFobLicVerifier(CryptoPP::DSA::PublicKey pubKey);
     
     CFobLicVerifier() = delete;
-    //const UTF8String _pubKey;
     
     CryptoPP::DSA::PublicKey _dsaPubKey;
 };
@@ -46,12 +46,12 @@ private:
  is valid before returning an instance to CFobLicGenerator.
  */
 template <typename T = std::shared_ptr<CFobLicVerifier> >
-T CreateCFobLicVerifier(const UTF8String partialPubKey )
+T CreateCFobLicVerifier(const UTF8String publicKey )
 {
-    if (partialPubKey.length() == 0)
+    if (publicKey.length() == 0)
         return T{};
     
-    auto dsaKeyResult = CreateDSAPubKeyFromPartialPubKeyPEM(partialPubKey);
+    auto dsaKeyResult = CreateDSAPubKeyFromPublicKeyPEM(publicKey);
     
     const auto success = std::get<0>(dsaKeyResult);
     const auto reason  = std::get<1>(dsaKeyResult);

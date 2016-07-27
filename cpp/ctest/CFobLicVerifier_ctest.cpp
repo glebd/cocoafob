@@ -10,7 +10,7 @@
 
 #include "CFobLicVerifier.hpp"
 
-SCENARIO( "License generators should only be created if a public key is passed in", "[verifier]" )
+SCENARIO( "License generators should only be created if a public key is passed in", "[verifier] [publicKey]" )
 {
     GIVEN("No public key")
     {
@@ -107,5 +107,24 @@ SCENARIO( "License verifier should handle good data", "[verifier]" )
                 REQUIRE( errorMessage.length() == 0 );
             }
         }
+    }
+}
+
+SCENARIO("License verifier should work with complete PEM key", "[verifier] [publicKey]")
+{
+    GIVEN("A constructed non-nullptr instance to license verifier")
+    {
+        const auto publicKey = R"PEM(-----BEGIN PUBLIC KEY-----
+        MIHxMIGoBgcqhkjOOAQBMIGcAkEA8wm04e0QcQRoAVJWWnUw/4rQEKbLKjujJu6o
+        yEv7Y2oT3itY5pbObgYCHEu9FBizqq7apsWYSF3YXiRjKlg10wIVALfs9eVL10Ph
+        oV6zczFpi3C7FzWNAkBaPhALEKlgIltHsumHdTSBqaVoR1/bmlgw/BCC13IAsW40
+        nkFNsK1OVwjo2ocn3MwW4Rdq6uLm3DlENRZ5bYrTA0QAAkEA4reDYZKAl1vx+8EI
+        MP/+2Z7ekydHfX0sTMDgkxhtRm6qtcywg01X847Y9ySgNepqleD+Ka2Wbucj1pOr
+        y8MoDQ==
+        -----END PUBLIC KEY-----
+        )PEM";
+        
+        auto licenseVer = CreateCFobLicVerifier(publicKey);
+        REQUIRE(licenseVer != nullptr);
     }
 }

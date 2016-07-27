@@ -15,6 +15,12 @@
 #include <cryptopp/pem.h>
 
 
+auto IsPublicKeyComplete(const UTF8String publicKey) -> bool
+{
+    auto found = publicKey.find(std::string{"-----BEGIN PUBLIC KEY-----"});
+    return found != std::string::npos;
+}
+
 
 auto CompletePublicKeyPEM(const UTF8String partialPEM) -> UTF8String
 {
@@ -48,14 +54,14 @@ auto CompletePublicKeyPEM(const UTF8String partialPEM) -> UTF8String
     return pem;
 }
 
-auto CreateDSAPubKeyFromPartialPubKeyPEM(const UTF8String partialPEM) -> std::tuple<bool, ErrorMessage, CryptoPP::DSA::PublicKey>
+auto CreateDSAPubKeyFromPublicKeyPEM(const UTF8String publicKeyPEM) -> std::tuple<bool, ErrorMessage, CryptoPP::DSA::PublicKey>
 {
-    if (partialPEM.length()==0)
+    if (publicKeyPEM.length()==0)
     {
         return std::make_tuple(false, UTF8String{"Empty PEM string detected"}, CryptoPP::DSA::PublicKey{});
     }
     
-    const auto completeKey = CompletePublicKeyPEM(partialPEM);
+    const auto completeKey = IsPublicKeyComplete(publicKeyPEM) ? publicKeyPEM : CompletePublicKeyPEM(publicKeyPEM);
     
     try
     {
@@ -71,6 +77,7 @@ auto CreateDSAPubKeyFromPartialPubKeyPEM(const UTF8String partialPEM) -> std::tu
         return std::make_tuple(false, UTF8String{e.what()}, CryptoPP::DSA::PublicKey{});
     }
 }
+
 
 CFobLicVerifier::CFobLicVerifier(CryptoPP::DSA::PublicKey pubKey)
 :  _dsaPubKey{pubKey}
