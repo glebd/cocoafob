@@ -93,8 +93,10 @@ auto CFobLicVerifier::VerifyRegCodeForName(const UTF8String regCode, const UTF8S
     try
     {
         auto regCodeTmp = regCode;
+        // Replace 9s with Is and 8s with Os
         std::replace( regCodeTmp.begin(), regCodeTmp.end(), '9', 'I');
         std::replace( regCodeTmp.begin(), regCodeTmp.end(), '8', 'O');
+        // Remove dashes from the registration key if they are there (dashes are optional).
         regCodeTmp.erase(std::remove(regCodeTmp.begin(), regCodeTmp.end(), '-'), regCodeTmp.end());
         
         auto verifier = CryptoPP::DSA::Verifier{ _dsaPubKey };
