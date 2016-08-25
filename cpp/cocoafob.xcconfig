@@ -9,6 +9,6 @@
 
 //HEADER_SEARCH_PATHS =
 
-OTHER_CFLAGS = -isystem $PROJECT_DIR/components/cryptopp/include
+OTHER_CFLAGS = -isystem $PROJECT_DIR/components/openssl/mac/include
 
-OTHER_LDFLAGS = $PROJECT_DIR/components/cryptopp/lib/libcryptopp.a
+//OTHER_LDFLAGS =
