@@ -32,4 +32,4 @@ You can install the openssl libraries in your system or you can install into a c
 using ./config --prefix=./build/openssl , as an example
 
 In my case, I built using the following config command: ./config --prefix=./macos_build_10.11
-then copied my binaries into a lib directory in the root of the project folder
+then copied my binaries into the components directory in the root of the project folder
