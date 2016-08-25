@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D8C37151D6F98D80070093E /* CFobCrypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C37131D6F98D80070093E /* CFobCrypto.cpp */; };
+		2D8C37161D6F98D80070093E /* CFobCrypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C37131D6F98D80070093E /* CFobCrypto.cpp */; };
+		2D8C37191D6F9A510070093E /* CFobInternal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C37171D6F9A510070093E /* CFobInternal.cpp */; };
+		2D8C371A1D6F9A510070093E /* CFobInternal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C37171D6F9A510070093E /* CFobInternal.cpp */; };
 		2DBB60431CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */; };
 		2DBB60441CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */; };
 		2DBB60461CEB88D400105970 /* CFobLicGenerator_ctest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB60451CEB88D400105970 /* CFobLicGenerator_ctest.cpp */; };
@@ -39,6 +43,11 @@
 
 /* Begin PBXFileReference section */
 		2D15DA6F1CEB6274001F85AE /* cocoafob */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocoafob; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D8C37121D6F98590070093E /* CFobDataTypes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = CFobDataTypes.hpp; path = source/CFobDataTypes.hpp; sourceTree = "<group>"; };
+		2D8C37131D6F98D80070093E /* CFobCrypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFobCrypto.cpp; path = source/CFobCrypto.cpp; sourceTree = "<group>"; };
+		2D8C37141D6F98D80070093E /* CFobCrypto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CFobCrypto.hpp; path = source/CFobCrypto.hpp; sourceTree = "<group>"; };
+		2D8C37171D6F9A510070093E /* CFobInternal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFobInternal.cpp; path = source/CFobInternal.cpp; sourceTree = "<group>"; };
+		2D8C37181D6F9A510070093E /* CFobInternal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CFobInternal.hpp; path = source/CFobInternal.hpp; sourceTree = "<group>"; };
 		2D9128EF1CFFD500009A335D /* cocoafob.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = cocoafob.xcconfig; sourceTree = "<group>"; };
 		2DBB60401CEB882700105970 /* cocoafob_ctest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocoafob_ctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFobLicGenerator.cpp; path = source/CFobLicGenerator.cpp; sourceTree = "<group>"; };
@@ -124,6 +133,11 @@
 				2DBB60421CEB88BC00105970 /* CFobLicGenerator.hpp */,
 				2DE994D91CF501A60078994D /* CFobLicVerifier.cpp */,
 				2DE994DA1CF501A60078994D /* CFobLicVerifier.hpp */,
+				2D8C37121D6F98590070093E /* CFobDataTypes.hpp */,
+				2D8C37131D6F98D80070093E /* CFobCrypto.cpp */,
+				2D8C37141D6F98D80070093E /* CFobCrypto.hpp */,
+				2D8C37171D6F9A510070093E /* CFobInternal.cpp */,
+				2D8C37181D6F9A510070093E /* CFobInternal.hpp */,
 			);
 			name = source;
 			sourceTree = "<group>";
@@ -204,6 +218,8 @@
 			files = (
 				2DD05FC61CEB62C700214ECE /* main.cpp in Sources */,
 				2DE994DB1CF501A60078994D /* CFobLicVerifier.cpp in Sources */,
+				2D8C37151D6F98D80070093E /* CFobCrypto.cpp in Sources */,
+				2D8C37191D6F9A510070093E /* CFobInternal.cpp in Sources */,
 				2DBB60431CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -214,7 +230,9 @@
 			files = (
 				2DBB60441CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */,
 				2DE3FA261D51A68B009EDCFB /* CFobLicVerifier.cpp in Sources */,
+				2D8C371A1D6F9A510070093E /* CFobInternal.cpp in Sources */,
 				2DE994DF1CF501CA0078994D /* CFobLicVerifier_ctest.cpp in Sources */,
+				2D8C37161D6F98D80070093E /* CFobCrypto.cpp in Sources */,
 				2DBB60461CEB88D400105970 /* CFobLicGenerator_ctest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
