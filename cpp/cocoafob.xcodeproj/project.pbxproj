@@ -11,8 +11,8 @@
 		2DBB60441CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */; };
 		2DBB60461CEB88D400105970 /* CFobLicGenerator_ctest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB60451CEB88D400105970 /* CFobLicGenerator_ctest.cpp */; };
 		2DD05FC61CEB62C700214ECE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DD05FC51CEB62C700214ECE /* main.cpp */; };
+		2DE3FA261D51A68B009EDCFB /* CFobLicVerifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DE994D91CF501A60078994D /* CFobLicVerifier.cpp */; };
 		2DE994DB1CF501A60078994D /* CFobLicVerifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DE994D91CF501A60078994D /* CFobLicVerifier.cpp */; };
-		2DE994DC1CF501A60078994D /* CFobLicVerifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DE994D91CF501A60078994D /* CFobLicVerifier.cpp */; };
 		2DE994DF1CF501CA0078994D /* CFobLicVerifier_ctest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DE994DE1CF501CA0078994D /* CFobLicVerifier_ctest.cpp */; };
 /* End PBXBuildFile section */
 
@@ -213,7 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DBB60441CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */,
-				2DE994DC1CF501A60078994D /* CFobLicVerifier.cpp in Sources */,
+				2DE3FA261D51A68B009EDCFB /* CFobLicVerifier.cpp in Sources */,
 				2DE994DF1CF501CA0078994D /* CFobLicVerifier_ctest.cpp in Sources */,
 				2DBB60461CEB88D400105970 /* CFobLicGenerator_ctest.cpp in Sources */,
 			);
