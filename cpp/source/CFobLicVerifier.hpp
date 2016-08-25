@@ -9,20 +9,7 @@
 #ifndef CFobLicVerifier_hpp
 #define CFobLicVerifier_hpp
 
-#include <memory>
-#include <tuple>
-#include <string>
-#include <openssl/dsa.h>
-
-using ErrorMessage = std::string;
-using RegCode      = std::string;
-using UTF8String   = std::string;
-
-auto FormatString(UTF8String stringToFormat) -> UTF8String;
-
-auto IsPublicKeyComplete(const UTF8String publicKey) -> bool;
-auto CompletePublicKeyPEM(const UTF8String partialPEM) -> UTF8String;
-auto CreateDSAPubKeyFromPublicKeyPEM(const UTF8String publicKey) -> std::tuple<bool, ErrorMessage, DSA*>;
+#include "CFobCrypto.hpp"
 
 class CFobLicVerifier
 {

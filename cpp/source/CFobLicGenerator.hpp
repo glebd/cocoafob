@@ -9,27 +9,7 @@
 #ifndef CFobLicGenerator_hpp
 #define CFobLicGenerator_hpp
 
-#include <string>
-#include <tuple>
-
-using ErrorMessage = std::string;
-using RegCode      = std::string;
-using UTF8String   = std::string;
-
-class CFobLicGenerator;
-
-/*
- Factory function, which will check if the private key
- is valid before returning an instance to CFobLicGenerator.
- */
-template <typename T = std::shared_ptr<CFobLicGenerator> >
-T CreateCFobLicGenerator(const UTF8String privateKey )
-{
-    if (privateKey.length() == 0)
-        return T{};
-    
-    return T{};
-}
+#include "CFobDataTypes.hpp"
 
 /*
  Class follows model created in Swift
@@ -37,8 +17,6 @@ T CreateCFobLicGenerator(const UTF8String privateKey )
 class CFobLicGenerator
 {
 public:
-
-    
     auto SetPrivateKey() -> std::tuple<bool, ErrorMessage>;
     
     auto GenerateRegCodeForName(const std::string name) -> std::tuple<bool, RegCode>;
@@ -53,5 +31,17 @@ private:
     const UTF8String _privateKey;
 };
 
+/*
+ Factory function, which will check if the private key
+ is valid before returning an instance to CFobLicGenerator.
+ */
+template <typename T = std::shared_ptr<CFobLicGenerator> >
+T CreateCFobLicGenerator(const UTF8String privateKey )
+{
+    if (privateKey.length() == 0)
+        return T{};
+    
+    return T{};
+}
 
 #endif /* CFobLicGenerator_hpp */
