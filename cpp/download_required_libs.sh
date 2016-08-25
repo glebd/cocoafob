@@ -47,13 +47,38 @@ function OpenSSLSetup()
 	git clone -b OpenSSL_1_0_2-stable git://git.openssl.org/openssl.git
 }
 
-if [[ ! -d components ]]; then
-	echo "components/catch/include/ path not found; attempting to create directory"
-	mkdir -p components/catch/include/
+function SetupXcodeCoverage()
+{
+	cd components/
+#	git clone https://github.com/jonreid/XcodeCoverage.git
+	curl -O https://github.com/jonreid/XcodeCoverage/archive/master.zip
+	unzip master.zip
+}
 
-	echo "components/cryptopp/ path not found; attempting to create directory"
-	mkdir -p components/cryptopp/
-fi
+function MakeRequiredFolders()
+{
+	if [[ ! -d components ]]; then
+		mkdir components/
+	fi
+	
+	if [[ ! -d components/catch/ ]]; then
+		echo "components/catch/include/ path not found; attempting to create directory"
+		mkdir -p components/catch/include/
+	fi
 
+#	if [[ ! -d components/cryptopp/ ]]; then
+#		echo "components/cryptopp/ path not found; attempting to create directory"
+#		mkdir -p components/cryptopp/
+#	fi
+
+#	if [[ ! -d components/XcodeCoverage/ ]]; then
+#		echo "components/XcodeCoverage/ path not found; attempting to create directory"
+#		mkdir -p components/XcodeCoverage/
+#	fi
+}
+
+
+MakeRequiredFolders
+SetupXcodeCoverage
 
 echo "Download and install operation complete"
