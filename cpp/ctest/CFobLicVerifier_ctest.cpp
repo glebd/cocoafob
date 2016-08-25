@@ -7,8 +7,8 @@
 //
 
 #include "catch.hpp"
-
 #include "CFobLicVerifier.hpp"
+
 
 SCENARIO( "License generators should only be created if a public key is passed in", "[verifier] [publicKey]" )
 {
@@ -101,10 +101,10 @@ SCENARIO( "License verifier should handle good data", "[verifier]" )
             THEN( "The result should not have any error" )
             {
                 auto boolResult = std::get<0>(result);
-                REQUIRE(boolResult);
+                CHECK(boolResult);
                 
                 auto errorMessage = std::get<1>(result);
-                REQUIRE( errorMessage.length() == 0 );
+                CHECK( errorMessage.length() == 0 );
             }
         }
     }
@@ -126,5 +126,26 @@ SCENARIO("License verifier should work with complete PEM key", "[verifier] [publ
         
         auto licenseVer = CreateCFobLicVerifier(publicKey);
         REQUIRE(licenseVer != nullptr);
+        
+        WHEN( "Good data is passed in" )
+        {
+            const auto regCode = UTF8String{"GAWQE-F9AQP-XJCCL-PAFAX-NU5XX-EUG6W-KLT3H-"\
+                "VTEB9-A9KHJ-8DZ5R-DL74G-TU4BN-7ATPY-3N4XB-V4V27-Q"};
+            const auto name    = UTF8String{"Joe Bloggs"};
+            
+            auto result = licenseVer->VerifyRegCodeForName(regCode, name);
+            
+            THEN( "The result should not have any error" )
+            {
+                auto boolResult = std::get<0>(result);
+                CHECK(boolResult);
+                
+                auto errorMessage = std::get<1>(result);
+                CHECK( errorMessage.length() == 0 );
+            }
+        }
+
     }
 }
+
+
