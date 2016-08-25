@@ -100,6 +100,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2D8C371B1D6F9BBB0070093E /* support */ = {
+			isa = PBXGroup;
+			children = (
+				2D8C37121D6F98590070093E /* CFobDataTypes.hpp */,
+				2D8C37131D6F98D80070093E /* CFobCrypto.cpp */,
+				2D8C37141D6F98D80070093E /* CFobCrypto.hpp */,
+				2D8C37171D6F9A510070093E /* CFobInternal.cpp */,
+				2D8C37181D6F9A510070093E /* CFobInternal.hpp */,
+			);
+			name = support;
+			sourceTree = "<group>";
+		};
 		2D9128F01CFFD504009A335D /* xcconfig */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,15 +141,11 @@
 		2DE994DD1CF501AC0078994D /* source */ = {
 			isa = PBXGroup;
 			children = (
+				2D8C371B1D6F9BBB0070093E /* support */,
 				2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */,
 				2DBB60421CEB88BC00105970 /* CFobLicGenerator.hpp */,
 				2DE994D91CF501A60078994D /* CFobLicVerifier.cpp */,
 				2DE994DA1CF501A60078994D /* CFobLicVerifier.hpp */,
-				2D8C37121D6F98590070093E /* CFobDataTypes.hpp */,
-				2D8C37131D6F98D80070093E /* CFobCrypto.cpp */,
-				2D8C37141D6F98D80070093E /* CFobCrypto.hpp */,
-				2D8C37171D6F9A510070093E /* CFobInternal.cpp */,
-				2D8C37181D6F9A510070093E /* CFobInternal.hpp */,
 			);
 			name = source;
 			sourceTree = "<group>";
