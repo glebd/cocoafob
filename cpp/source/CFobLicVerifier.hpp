@@ -12,17 +12,17 @@
 #include <memory>
 #include <tuple>
 #include <string>
-
-#include <cryptopp/dsa.h>
-//using CryptoPP::DSA;
+#include <openssl/dsa.h>
 
 using ErrorMessage = std::string;
 using RegCode      = std::string;
 using UTF8String   = std::string;
 
+auto FormatString(UTF8String stringToFormat) -> UTF8String;
+
 auto IsPublicKeyComplete(const UTF8String publicKey) -> bool;
 auto CompletePublicKeyPEM(const UTF8String partialPEM) -> UTF8String;
-auto CreateDSAPubKeyFromPublicKeyPEM(const UTF8String publicKey) -> std::tuple<bool, ErrorMessage, CryptoPP::DSA::PublicKey>;
+auto CreateDSAPubKeyFromPublicKeyPEM(const UTF8String publicKey) -> std::tuple<bool, ErrorMessage, DSA*>;
 
 class CFobLicVerifier
 {
@@ -31,13 +31,14 @@ public:
     
 private:
     template <typename T>
-    friend T CreateCFobLicVerifier(const UTF8String partialPubKey );
+    friend T CreateCFobLicVerifier(const UTF8String publicKey );
     
-    CFobLicVerifier(CryptoPP::DSA::PublicKey pubKey);
+    CFobLicVerifier(DSA* pubKey, const UTF8String dsaPubKeyAsString);
     
     CFobLicVerifier() = delete;
     
-    CryptoPP::DSA::PublicKey _dsaPubKey;
+    DSA* _dsaPubKey;
+    const UTF8String _dsaPubKeyAsString;
 };
 
 
@@ -60,7 +61,7 @@ T CreateCFobLicVerifier(const UTF8String publicKey )
     if (success)
     {
         auto pubKey = std::get<2>(dsaKeyResult);
-        auto verifier = T {new CFobLicVerifier(pubKey)};
+        auto verifier = T {new CFobLicVerifier(pubKey, publicKey)};
         
         return verifier;
     }

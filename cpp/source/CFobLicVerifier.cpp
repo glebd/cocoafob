@@ -10,10 +10,8 @@
 #include <string>
 #include <iostream>
 
-#include <cryptopp/cryptlib.h>
-#include <cryptopp/filters.h>
-#include <cryptopp/pem.h>
-
+#include <openssl/engine.h>
+#include <openssl/pem.h>
 
 auto IsPublicKeyComplete(const UTF8String publicKey) -> bool
 {
@@ -54,36 +52,65 @@ auto CompletePublicKeyPEM(const UTF8String partialPEM) -> UTF8String
     return pem;
 }
 
-auto CreateDSAPubKeyFromPublicKeyPEM(const UTF8String publicKeyPEM) -> std::tuple<bool, ErrorMessage, CryptoPP::DSA::PublicKey>
+auto CreateDSAPubKeyFromPublicKeyPEM(const UTF8String publicKeyPEM) -> std::tuple<bool, ErrorMessage, DSA*>
 {
     if (publicKeyPEM.length()==0)
     {
-        return std::make_tuple(false, UTF8String{"Empty PEM string detected"}, CryptoPP::DSA::PublicKey{});
+        return std::make_tuple(false, UTF8String{"Empty PEM string detected"}, nullptr);
     }
     
     const auto completeKey = IsPublicKeyComplete(publicKeyPEM) ? publicKeyPEM : CompletePublicKeyPEM(publicKeyPEM);
     
-    try
-    {
-        auto&& ss = CryptoPP::StringSource(completeKey, true /*pumpAll*/);
-        auto pubKey = CryptoPP::DSA::PublicKey{};
-        
-        PEM_Load(ss, pubKey);
-        
-        return std::make_tuple(true, UTF8String{"Success"}, pubKey);
-    }
-    catch( CryptoPP::Exception& e )
-    {
-        return std::make_tuple(false, UTF8String{e.what()}, CryptoPP::DSA::PublicKey{});
-    }
+   return std::make_tuple(false, UTF8String{"Empty PEM string detected"}, nullptr);
 }
 
 
-CFobLicVerifier::CFobLicVerifier(CryptoPP::DSA::PublicKey pubKey)
-:  _dsaPubKey{pubKey}
+CFobLicVerifier::CFobLicVerifier(DSA* pubKey, const UTF8String dsaPubKeyAsString)
+: _dsaPubKey{pubKey}
+, _dsaPubKeyAsString{dsaPubKeyAsString}
 {
     ;
 }
+
+
+auto StripFormattingFromBase32EncodedString(UTF8String stringToFormat) -> UTF8String
+{
+    // Replace 9s with Is and 8s with Os
+    std::replace( stringToFormat.begin(), stringToFormat.end(), '9', 'I');
+    std::replace( stringToFormat.begin(), stringToFormat.end(), '8', 'O');
+    
+    // Remove dashes from the registration key if they are there (dashes are optional).
+    stringToFormat.erase(std::remove(stringToFormat.begin(),
+                                     stringToFormat.end(),
+                                     '-'),
+                         stringToFormat.end());
+    
+    return stringToFormat;
+}
+
+auto FormatBase32EncodedString(UTF8String stringToFormat) -> UTF8String
+{
+    // Replace 9s with Is and 8s with Os
+    std::replace( stringToFormat.begin(), stringToFormat.end(), 'I', '9');
+    std::replace( stringToFormat.begin(), stringToFormat.end(), 'O', '8');
+    
+    // Remove dashes from the registration key if they are there (dashes are optional).
+    stringToFormat.erase(std::remove(stringToFormat.begin(),
+                                     stringToFormat.end(),
+                                     '='),
+                         stringToFormat.end());
+    
+    auto index      = 5;
+    const auto dash = UTF8String{"-"};
+    while(index < stringToFormat.length())
+    {
+        stringToFormat.insert(index, dash);
+        index += 6;
+    }
+    return stringToFormat;
+}
+
+
 
 auto CFobLicVerifier::VerifyRegCodeForName(const UTF8String regCode, const UTF8String forName) -> std::tuple<bool, ErrorMessage>
 {
@@ -97,41 +124,5 @@ auto CFobLicVerifier::VerifyRegCodeForName(const UTF8String regCode, const UTF8S
         return std::make_tuple(false, UTF8String{"Empty name string detected"});
     }
     
-    try
-    {
-        auto regCodeTmp = regCode;
-        // Replace 9s with Is and 8s with Os
-        std::replace( regCodeTmp.begin(), regCodeTmp.end(), '9', 'I');
-        std::replace( regCodeTmp.begin(), regCodeTmp.end(), '8', 'O');
-        // Remove dashes from the registration key if they are there (dashes are optional).
-        regCodeTmp.erase(std::remove(regCodeTmp.begin(), regCodeTmp.end(), '-'), regCodeTmp.end());
-        
-        auto verifier = CryptoPP::DSA::Verifier{ _dsaPubKey };
-        auto message = forName;
-        auto signature = regCodeTmp;
-        CryptoPP::StringSource( message+signature, true,
-                               new CryptoPP::SignatureVerificationFilter(
-                                                                         verifier, nullptr,
-                                                                         CryptoPP::SignatureVerificationFilter::THROW_EXCEPTION
-                                                                         )
-                               );
-        
-        return std::make_tuple(true, std::string("Verified signature on message"));
-    }
-    catch( CryptoPP::SignatureVerificationFilter::SignatureVerificationFailed& e )
-    {
-        auto errMsg = UTF8String{"SignatureVerificationFailed: "};
-        errMsg += e.what();
-        
-        return std::make_tuple(false, errMsg);
-    }
-    catch( CryptoPP::Exception& e )
-    {
-        auto errMsg = UTF8String{"Exception caught: "};
-        errMsg += e.what();
-        
-        return std::make_tuple(false, errMsg);
-    }
-        
     return std::make_tuple(false, std::string("Uknown error"));
 }
