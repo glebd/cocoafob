@@ -11,7 +11,13 @@
 
 #include "CFobDataTypes.hpp"
 
-auto StripFormattingFromBase32EncodedString(UTF8String stringToFormat) -> UTF8String;
-auto FormatBase32EncodedString(UTF8String stringToFormat) -> UTF8String;
+namespace CFob
+{
+    namespace Internal
+    {
+        auto StripFormattingFromBase32EncodedString(UTF8String stringToFormat) -> UTF8String;
+        auto FormatBase32EncodedString(UTF8String stringToFormat) -> UTF8String;
+    }
+}
 
 #endif /* CFobInternal_hpp */

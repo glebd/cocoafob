@@ -8,7 +8,11 @@
 
 #include "CFobInternal.hpp"
 
-
+namespace CFob
+{
+    namespace Internal
+    {
+        
 auto StripFormattingFromBase32EncodedString(UTF8String stringToFormat) -> UTF8String
 {
     // Replace 9s with Is and 8s with Os
@@ -45,3 +49,6 @@ auto FormatBase32EncodedString(UTF8String stringToFormat) -> UTF8String
     }
     return stringToFormat;
 }
+
+    } // Internal
+} // CFob

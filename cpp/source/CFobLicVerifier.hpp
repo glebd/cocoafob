@@ -39,7 +39,7 @@ T CreateCFobLicVerifier(const UTF8String publicKey )
     if (publicKey.length() == 0)
         return T{};
     
-    auto dsaKeyResult = CreateDSAPubKeyFromPublicKeyPEM(publicKey);
+    auto dsaKeyResult = CFob::CreateDSAPubKeyFromPublicKeyPEM(publicKey);
     
     const auto success = std::get<0>(dsaKeyResult);
     const auto reason  = std::get<1>(dsaKeyResult);
