@@ -7,7 +7,6 @@
 //
 
 #include "CFobLicGenerator.hpp"
-#include "cryptopp/cryptlib.h"
 
 CFobLicGenerator::CFobLicGenerator(const std::string privateKey)
 : _privateKey(privateKey)
