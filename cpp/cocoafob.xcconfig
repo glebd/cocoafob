@@ -6,9 +6,10 @@
 //  Copyright © 2016 Jaime O. Rios. All rights reserved.
 //
 
-
-//HEADER_SEARCH_PATHS =
-
 OTHER_CFLAGS = -isystem $PROJECT_DIR/components/openssl/include
 
-//OTHER_LDFLAGS =
+GCC_C_LANGUAGE_STANDARD     = c11
+CLANG_CXX_LANGUAGE_STANDARD = c++14
+CLANG_CXX_LIBRARY           = libc++
+
+OTHER_LDFLAGS = $PROJECT_DIR/components/openssl/lib/libcrypto.a $PROJECT_DIR/components/openssl/lib/libssl.a
