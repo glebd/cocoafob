@@ -9,6 +9,6 @@
 
 //HEADER_SEARCH_PATHS =
 
-OTHER_CFLAGS = -isystem $PROJECT_DIR/components/openssl/mac/include
+OTHER_CFLAGS = -isystem $PROJECT_DIR/components/openssl/include
 
 //OTHER_LDFLAGS =
