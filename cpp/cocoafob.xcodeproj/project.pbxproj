@@ -14,6 +14,7 @@
 		2DBB60431CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */; };
 		2DBB60441CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */; };
 		2DBB60461CEB88D400105970 /* CFobLicGenerator_ctest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB60451CEB88D400105970 /* CFobLicGenerator_ctest.cpp */; };
+		2DC375A21D6FDFE3005A486F /* CFobCrypto_ctest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DC375A11D6FDFE3005A486F /* CFobCrypto_ctest.cpp */; };
 		2DD05FC61CEB62C700214ECE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DD05FC51CEB62C700214ECE /* main.cpp */; };
 		2DE3FA261D51A68B009EDCFB /* CFobLicVerifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DE994D91CF501A60078994D /* CFobLicVerifier.cpp */; };
 		2DE994DB1CF501A60078994D /* CFobLicVerifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DE994D91CF501A60078994D /* CFobLicVerifier.cpp */; };
@@ -53,6 +54,7 @@
 		2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFobLicGenerator.cpp; path = source/CFobLicGenerator.cpp; sourceTree = "<group>"; };
 		2DBB60421CEB88BC00105970 /* CFobLicGenerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CFobLicGenerator.hpp; path = source/CFobLicGenerator.hpp; sourceTree = "<group>"; };
 		2DBB60451CEB88D400105970 /* CFobLicGenerator_ctest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFobLicGenerator_ctest.cpp; path = ctest/CFobLicGenerator_ctest.cpp; sourceTree = "<group>"; };
+		2DC375A11D6FDFE3005A486F /* CFobCrypto_ctest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFobCrypto_ctest.cpp; path = ctest/CFobCrypto_ctest.cpp; sourceTree = "<group>"; };
 		2DD05FC51CEB62C700214ECE /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = consoleapp/main.cpp; sourceTree = "<group>"; };
 		2DD05FC71CEB62E300214ECE /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
 		2DD05FCA1CEB636B00214ECE /* catch.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = catch.hpp; path = components/catch/include/catch.hpp; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				2DD05FCA1CEB636B00214ECE /* catch.hpp */,
 				2DBB60451CEB88D400105970 /* CFobLicGenerator_ctest.cpp */,
 				2DE994DE1CF501CA0078994D /* CFobLicVerifier_ctest.cpp */,
+				2DC375A11D6FDFE3005A486F /* CFobCrypto_ctest.cpp */,
 			);
 			name = unittest;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				2DBB60381CEB882700105970 /* Sources */,
 				2DBB603B1CEB882700105970 /* Frameworks */,
 				2DBB603C1CEB882700105970 /* CopyFiles */,
+				2DC375A01D6FDDCF005A486F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -229,6 +233,23 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2DC375A01D6FDDCF005A486F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nif [[ -d components/XcodeCoverage ]]; then\n    cd components/XcodeCoverage\n    ./cleancov\n    ./exportenv.sh\nfi";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2D15DA6B1CEB6274001F85AE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -248,6 +269,7 @@
 			files = (
 				2DBB60441CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */,
 				2DE3FA261D51A68B009EDCFB /* CFobLicVerifier.cpp in Sources */,
+				2DC375A21D6FDFE3005A486F /* CFobCrypto_ctest.cpp in Sources */,
 				2D8C371A1D6F9A510070093E /* CFobInternal.cpp in Sources */,
 				2DE994DF1CF501CA0078994D /* CFobLicVerifier_ctest.cpp in Sources */,
 				2D8C37161D6F98D80070093E /* CFobCrypto.cpp in Sources */,
@@ -360,6 +382,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -369,6 +393,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
