@@ -59,6 +59,7 @@
 		2DE994D91CF501A60078994D /* CFobLicVerifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFobLicVerifier.cpp; path = source/CFobLicVerifier.cpp; sourceTree = "<group>"; };
 		2DE994DA1CF501A60078994D /* CFobLicVerifier.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CFobLicVerifier.hpp; path = source/CFobLicVerifier.hpp; sourceTree = "<group>"; };
 		2DE994DE1CF501CA0078994D /* CFobLicVerifier_ctest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFobLicVerifier_ctest.cpp; path = ctest/CFobLicVerifier_ctest.cpp; sourceTree = "<group>"; };
+		2DEFBE691D6FB77200F211B1 /* download_required_libs.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = download_required_libs.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +83,7 @@
 		2D15DA661CEB6273001F85AE = {
 			isa = PBXGroup;
 			children = (
+				2DEFBE681D6FB76800F211B1 /* script */,
 				2D9128F01CFFD504009A335D /* xcconfig */,
 				2DE994DD1CF501AC0078994D /* source */,
 				2DD05FC91CEB636000214ECE /* unittest */,
@@ -148,6 +150,14 @@
 				2DE994DA1CF501A60078994D /* CFobLicVerifier.hpp */,
 			);
 			name = source;
+			sourceTree = "<group>";
+		};
+		2DEFBE681D6FB76800F211B1 /* script */ = {
+			isa = PBXGroup;
+			children = (
+				2DEFBE691D6FB77200F211B1 /* download_required_libs.sh */,
+			);
+			name = script;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
