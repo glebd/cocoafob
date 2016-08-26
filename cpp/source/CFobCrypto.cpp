@@ -8,6 +8,10 @@
 
 #include "CFobCrypto.hpp"
 
+#import <openssl/evp.h>
+#import <openssl/err.h>
+#import <openssl/pem.h>
+
 namespace CFob
 {
     
@@ -21,7 +25,18 @@ auto CreateDSAPubKeyFromPublicKeyPEM(const UTF8String publicKeyPEM) -> std::tupl
     
     const auto completeKey = IsPublicKeyComplete(publicKeyPEM) ? publicKeyPEM : CompletePublicKeyPEM(publicKeyPEM);
     
-    return std::make_tuple(false, UTF8String{"Empty PEM string detected"}, nullptr);
+    auto bio    = BIO_MEM_uptr{BIO_new_mem_buf((void *)completeKey.c_str(), -1), ::BIO_free};
+    auto dsa    = DSA_new();
+    auto result = PEM_read_bio_DSA_PUBKEY(bio.get(), &dsa, NULL, NULL);
+    
+    if (result)
+    {
+        return std::make_tuple(true, UTF8String{"Success"}, dsa);
+    }
+    else
+    {
+        return std::make_tuple(false, UTF8String{"Empty PEM string detected"}, nullptr);
+    }
 }
 
 auto IsPublicKeyComplete(const UTF8String publicKey) -> bool
