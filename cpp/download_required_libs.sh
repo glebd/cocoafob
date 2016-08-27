@@ -62,7 +62,7 @@ function SetupOpenSSL()
         git clone -b OpenSSL_1_0_2-stable git://git.openssl.org/openssl.git
         cd openssl
 
-        ./config darwin64-x86_64-cc --prefix=$PWD/macos_build_10.11 --openssldir=$PWD/macos_build_10.11/openssl
+        ./Configure darwin64-x86_64-cc --prefix=$PWD/macos_build_10.11 --openssldir=$PWD/macos_build_10.11/openssl
         make
         make test
         make -j 8 install
