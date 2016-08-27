@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D4AA8C31D708E560021AAB6 /* CFob_ctest_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D4AA8C11D708E560021AAB6 /* CFob_ctest_common.cpp */; };
 		2D8C37151D6F98D80070093E /* CFobCrypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C37131D6F98D80070093E /* CFobCrypto.cpp */; };
 		2D8C37161D6F98D80070093E /* CFobCrypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C37131D6F98D80070093E /* CFobCrypto.cpp */; };
 		2D8C37191D6F9A510070093E /* CFobInternal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C37171D6F9A510070093E /* CFobInternal.cpp */; };
@@ -44,6 +45,8 @@
 
 /* Begin PBXFileReference section */
 		2D15DA6F1CEB6274001F85AE /* cocoafob */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocoafob; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D4AA8C11D708E560021AAB6 /* CFob_ctest_common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFob_ctest_common.cpp; path = ctest/CFob_ctest_common.cpp; sourceTree = "<group>"; };
+		2D4AA8C21D708E560021AAB6 /* CFob_ctest_common.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CFob_ctest_common.hpp; path = ctest/CFob_ctest_common.hpp; sourceTree = "<group>"; };
 		2D8C37121D6F98590070093E /* CFobDataTypes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = CFobDataTypes.hpp; path = source/CFobDataTypes.hpp; sourceTree = "<group>"; };
 		2D8C37131D6F98D80070093E /* CFobCrypto.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFobCrypto.cpp; path = source/CFobCrypto.cpp; sourceTree = "<group>"; };
 		2D8C37141D6F98D80070093E /* CFobCrypto.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CFobCrypto.hpp; path = source/CFobCrypto.hpp; sourceTree = "<group>"; };
@@ -104,6 +107,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2D4AA8C41D708FBB0021AAB6 /* support */ = {
+			isa = PBXGroup;
+			children = (
+				2DD05FCA1CEB636B00214ECE /* catch.hpp */,
+				2D4AA8C11D708E560021AAB6 /* CFob_ctest_common.cpp */,
+				2D4AA8C21D708E560021AAB6 /* CFob_ctest_common.hpp */,
+			);
+			name = support;
+			sourceTree = "<group>";
+		};
 		2D8C371B1D6F9BBB0070093E /* support */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,7 +148,7 @@
 		2DD05FC91CEB636000214ECE /* unittest */ = {
 			isa = PBXGroup;
 			children = (
-				2DD05FCA1CEB636B00214ECE /* catch.hpp */,
+				2D4AA8C41D708FBB0021AAB6 /* support */,
 				2DBB60451CEB88D400105970 /* CFobLicGenerator_ctest.cpp */,
 				2DE994DE1CF501CA0078994D /* CFobLicVerifier_ctest.cpp */,
 				2DC375A11D6FDFE3005A486F /* CFobCrypto_ctest.cpp */,
@@ -269,6 +282,7 @@
 			files = (
 				2DBB60441CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */,
 				2DE3FA261D51A68B009EDCFB /* CFobLicVerifier.cpp in Sources */,
+				2D4AA8C31D708E560021AAB6 /* CFob_ctest_common.cpp in Sources */,
 				2DC375A21D6FDFE3005A486F /* CFobCrypto_ctest.cpp in Sources */,
 				2D8C371A1D6F9A510070093E /* CFobInternal.cpp in Sources */,
 				2DE994DF1CF501CA0078994D /* CFobLicVerifier_ctest.cpp in Sources */,
