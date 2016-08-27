@@ -23,3 +23,23 @@ SCENARIO("CreateDSAPubKeyFromPublicKeyPEM", "[]")
         }
     }
 }
+
+SCENARIO("Public key exercise", "")
+{
+    WHEN("An empty string is passed")
+    {
+        auto result = CFob::IsPublicKeyComplete("");
+        THEN("result should be false")
+        {
+            CHECK_FALSE(result);
+        }
+    }
+    WHEN("A garbage string is passed")
+    {
+        auto result = CFob::IsPublicKeyComplete("Holy cow");
+        THEN("result should be false")
+        {
+            CHECK_FALSE(result);
+        }
+    }
+}
