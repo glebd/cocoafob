@@ -8,39 +8,41 @@
 
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-
-#include <memory>
+#include "CFob_ctest_common.hpp"
 #include "CFobLicGenerator.hpp"
 
-TEST_CASE("Construct class", "[base] [generator]")
-{
-    const auto privateKeyPEM = R"PEM(
-                                -----BEGIN DSA PRIVATE KEY-----\n
-                                MIH5AgEAAkEA8wm04e0QcQRoAVJWWnUw/4rQEKbLKjujJu6oyEv7Y2oT3itY5pbO\n
-                                bgYCHEu9FBizqq7apsWYSF3YXiRjKlg10wIVALfs9eVL10PhoV6zczFpi3C7FzWN\n
-                                AkBaPhALEKlgIltHsumHdTSBqaVoR1/bmlgw/BCC13IAsW40nkFNsK1OVwjo2ocn\n
-                                3MwW4Rdq6uLm3DlENRZ5bYrTAkEA4reDYZKAl1vx+8EIMP/+2Z7ekydHfX0sTMDg\n
-                                kxhtRm6qtcywg01X847Y9ySgNepqleD+Ka2Wbucj1pOry8MoDQIVAIXgAB9GBLh4\n
-                                keUwLHBtpClnD5E8\n
-                                -----END DSA PRIVATE KEY-----\n
-                                )PEM";
-    
-    auto licenseGen = CreateCFobLicGenerator< std::unique_ptr<CFobLicGenerator> >(privateKeyPEM);
-    REQUIRE(licenseGen != nullptr);
-    
-    auto name = "Joe Bloggs";
-    //auto nameData = licenseGen->GetNameData(name);
-    
-    auto regCodeVals = licenseGen->GenerateRegCodeForName(name);
-    auto regCodeResult = std::get<0>(regCodeVals);
-    
-    REQUIRE(regCodeResult);
-}
-
-TEST_CASE("Construct class bad", "[base] [generator]")
+SCENARIO("When given a bad private key", "[base] [generator]")
 {
     const auto privateKeyPEM = "-----BEGIN DSA PRIVATE KEY-----\n";
-    
     auto licenseGen = CreateCFobLicGenerator< std::unique_ptr<CFobLicGenerator> >(privateKeyPEM);
-    REQUIRE(licenseGen == nullptr);
+    THEN("Factory function should return a nullptr")
+    {
+        REQUIRE(licenseGen == nullptr);
+    }
+}
+
+SCENARIO("With valid data, generator should create registration code", "[base] [generator]")
+{
+    WHEN("Generator has a valid private key")
+    {
+        const auto privateKeyPEM = GetPrivateKey();
+        auto licenseGen = CreateCFobLicGenerator<std::unique_ptr<CFobLicGenerator>>(privateKeyPEM);
+
+        THEN("Generator should not be a nullptr")
+        {
+            REQUIRE(licenseGen != nullptr);
+        }
+        AND_THEN("Generator should produce a valid registration code")
+        {
+            auto name = "Joe Bloggs";
+            //auto nameData = licenseGen->GetNameData(name);
+
+            auto values = licenseGen->GenerateRegCodeForName(name);
+            auto sucess = std::get<0>(values);
+            auto registrationCode = std::get<1>(values);
+
+            REQUIRE(sucess);
+            REQUIRE(registrationCode.length() > 0);
+        }
+    }
 }
