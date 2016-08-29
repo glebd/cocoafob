@@ -7,14 +7,19 @@
 //
 
 #include "CFobLicVerifier.hpp"
+#include "CFobInternal.hpp"
 #include <string>
 #include <iostream>
-
+#include <vector>
 #include <openssl/engine.h>
 #include <openssl/pem.h>
 
+extern "C" {
+#include "decoder.h"
+}
+
 CFobLicVerifier::CFobLicVerifier(DSA* pubKey, const UTF8String dsaPubKeyAsString)
-: _dsaPubKey{pubKey}
+: _dsaPubKey{pubKey, ::DSA_free}
 , _dsaPubKeyAsString{dsaPubKeyAsString}
 {
     ;
@@ -32,5 +37,27 @@ auto CFobLicVerifier::VerifyRegCodeForName(const UTF8String regCode, const UTF8S
         return std::make_tuple(false, UTF8String{"Empty name string detected"});
     }
     
-    return std::make_tuple(false, std::string("Uknown error"));
+    const auto strippedRegCode = CFob::Internal::StripFormattingFromBase32EncodedString(regCode);
+    const auto decodedSize     = base32_decoder_buffer_size(strippedRegCode.length());
+    
+    auto sig           = std::vector<uint8_t>(decodedSize, 0);
+    const auto sigSize = base32_decode(sig.data(),
+                                       decodedSize,
+                                       (unsigned char *)strippedRegCode.c_str(),
+                                       strippedRegCode.length());
+    
+    auto digest = std::vector<uint8_t>(0, SHA_DIGEST_LENGTH);
+    SHA1((unsigned char *)forName.data(), forName.length(), digest.data());
+    
+    const auto check = DSA_verify(0,
+                                  digest.data(),
+                                  digest.size(),
+                                  sig.data(),
+                                  (int)sigSize,
+                                  _dsaPubKey.get());
+    
+    const auto result        = check > 0;
+    const auto resultMessage = result ? UTF8String{"Verified"} : UTF8String{"Failed"};
+    
+    return std::make_tuple(result, resultMessage);
 }
