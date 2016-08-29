@@ -41,12 +41,8 @@ public struct CocoaFobLicGenerator {
       let keyDataCF = CFDataCreate(nil, keyBytes, keyData.count)!
       var importArray: CFArray? = nil
       let osStatus = withUnsafeMutablePointer(to: &keyFormat, {pKeyFormat -> OSStatus in
-        return withUnsafeMutablePointer(to: &keyType, {pKeyType in
-          return withUnsafeMutablePointer(to: &params, {pParams in
-            return withUnsafeMutablePointer(to: &importArray, {pImportArray in
-              return SecItemImport(keyDataCF, nil, pKeyFormat, pKeyType, SecItemImportExportFlags(rawValue: 0), pParams, nil, pImportArray)
-            })
-          })
+        withUnsafeMutablePointer(to: &keyType, {pKeyType in
+          SecItemImport(keyDataCF, nil, pKeyFormat, pKeyType, SecItemImportExportFlags(rawValue: 0), &params, nil, &importArray)
         })
       })
       if osStatus != errSecSuccess || importArray == nil {
