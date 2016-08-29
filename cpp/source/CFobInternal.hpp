@@ -15,7 +15,7 @@ namespace CFob
 {
     namespace Internal
     {
-        auto StripFormattingFromBase32EncodedString(UTF8String stringToFormat) -> UTF8String;
+        auto StripFormattingFromBase32EncodedString(UTF8String formattedString) -> UTF8String;
         auto FormatBase32EncodedString(UTF8String stringToFormat) -> UTF8String;
     }
 }
