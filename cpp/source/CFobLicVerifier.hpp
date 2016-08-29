@@ -24,7 +24,7 @@ private:
     
     CFobLicVerifier() = delete;
     
-    DSA* _dsaPubKey;
+    std::unique_ptr<DSA, decltype(&::DSA_free)> _dsaPubKey;
     const UTF8String _dsaPubKeyAsString;
 };
 
