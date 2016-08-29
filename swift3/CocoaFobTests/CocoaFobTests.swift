@@ -47,7 +47,7 @@ class CocoaFobTests: XCTestCase {
     let nameData = keygen?.getNameData(name)
     XCTAssertNotNil(nameData)
     if let nameData_ = nameData {
-      let nameFromDataAsNSString = NSString(data: nameData_, encoding: String.Encoding.utf8)
+      let nameFromDataAsNSString = NSString(data: nameData_, encoding: String.Encoding.utf8.rawValue)
       XCTAssertNotNil(nameFromDataAsNSString)
       let nameFromData = String(nameFromDataAsNSString!)
       XCTAssertEqual(nameFromData, name)
@@ -69,7 +69,7 @@ class CocoaFobTests: XCTestCase {
       XCTAssertNotNil(nameDataAttr)
       let nameDataFromAttr = nameDataAttr! as! Data
       XCTAssertNotNil(nameDataFromAttr, "Expected to get name data back")
-      let nameFromAttrAsNSString = NSString(data: nameDataFromAttr, encoding: String.Encoding.utf8)
+      let nameFromAttrAsNSString = NSString(data: nameDataFromAttr, encoding: String.Encoding.utf8.rawValue)
       XCTAssertNotNil(nameFromAttrAsNSString)
       let nameFromAttr = String(nameFromAttrAsNSString!)
       XCTAssertEqual(nameFromAttr, name)
