@@ -34,7 +34,7 @@ SCENARIO("Public key exercise", "")
             CHECK_FALSE(result);
         }
     }
-    WHEN("A garbage string is passed")
+    AND_WHEN("A garbage string is passed")
     {
         auto result = CFob::IsPublicKeyComplete("Holy cow");
         THEN("result should be false")
