@@ -40,8 +40,10 @@ public struct CocoaFobLicVerifier {
       let keyBytes = unsafeBitCast((keyData as NSData).bytes, to: UnsafePointer<UInt8>.self)
       let keyDataCF = CFDataCreate(nil, keyBytes, keyData.count)!
       var importArray: CFArray? = nil
-      let osStatus = withUnsafeMutablePointers(&keyFormat, &keyType) { (pKeyFormat, pKeyType) -> OSStatus in
-        SecItemImport(keyDataCF, nil, pKeyFormat, pKeyType, SecItemImportExportFlags(rawValue: 0), &params, nil, &importArray)
+      let osStatus = withUnsafeMutablePointer(to: &keyFormat) {pKeyFormat in
+        withUnsafeMutablePointer(to: &keyType, {pKeyType in
+          SecItemImport(keyDataCF, nil, pKeyFormat, pKeyType, SecItemImportExportFlags(rawValue: 0), &params, nil, &importArray)
+        })
       }
       if osStatus != errSecSuccess || importArray == nil {
         return nil
@@ -71,7 +73,7 @@ public struct CocoaFobLicVerifier {
         let signature = try cfTry(.error) { SecTransformExecute(decoder, $0) }
         let verifier = try getVerifier(self.pubKey, signature: signature as! Data, nameData: nameData)
         let result = try cfTry(.error) { SecTransformExecute(verifier, $0) }
-        let boolResult = result as! CFBooleanRef
+        let boolResult = result as! CFBoolean
         return Bool(boolResult)
       } else {
         return false
@@ -85,14 +87,14 @@ public struct CocoaFobLicVerifier {
   
   fileprivate func getDecoder(_ keyData: Data) throws -> SecTransform {
     let decoder = try cfTry(.error) { return SecDecodeTransformCreate(kSecBase32Encoding, $0) }
-    try cfTry(.error) { return SecTransformSetAttribute(decoder, kSecTransformInputAttributeName, keyData, $0) }
+    let _ = try cfTry(.error) { return SecTransformSetAttribute(decoder, kSecTransformInputAttributeName, keyData as CFTypeRef, $0) }
     return decoder
   }
   
   fileprivate func getVerifier(_ publicKey: SecKey, signature: Data, nameData: Data) throws -> SecTransform {
     let verifier = try cfTry(.error) { return SecVerifyTransformCreate(publicKey, signature as CFData?, $0) }
-    try cfTry(.error) { return SecTransformSetAttribute(verifier, kSecTransformInputAttributeName, nameData, $0) }
-    try cfTry(.error) { return SecTransformSetAttribute(verifier, kSecDigestTypeAttribute, kSecDigestSHA1, $0) }
+    let _ = try cfTry(.error) { return SecTransformSetAttribute(verifier, kSecTransformInputAttributeName, nameData as CFTypeRef, $0) }
+    let _ = try cfTry(.error) { return SecTransformSetAttribute(verifier, kSecDigestTypeAttribute, kSecDigestSHA1, $0) }
     return verifier
   }
   
