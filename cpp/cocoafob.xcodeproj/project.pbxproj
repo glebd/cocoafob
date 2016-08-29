@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D153B2D1D73DA7F00B4273D /* decoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 2D153B291D73DA7F00B4273D /* decoder.c */; };
+		2D153B2E1D73DA7F00B4273D /* decoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 2D153B291D73DA7F00B4273D /* decoder.c */; };
+		2D153B2F1D73DA7F00B4273D /* encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 2D153B2B1D73DA7F00B4273D /* encoder.c */; };
+		2D153B301D73DA7F00B4273D /* encoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 2D153B2B1D73DA7F00B4273D /* encoder.c */; };
 		2D4AA8C31D708E560021AAB6 /* CFob_ctest_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D4AA8C11D708E560021AAB6 /* CFob_ctest_common.cpp */; };
 		2D8C37151D6F98D80070093E /* CFobCrypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C37131D6F98D80070093E /* CFobCrypto.cpp */; };
 		2D8C37161D6F98D80070093E /* CFobCrypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D8C37131D6F98D80070093E /* CFobCrypto.cpp */; };
@@ -16,7 +20,6 @@
 		2DBB60441CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */; };
 		2DBB60461CEB88D400105970 /* CFobLicGenerator_ctest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DBB60451CEB88D400105970 /* CFobLicGenerator_ctest.cpp */; };
 		2DC375A21D6FDFE3005A486F /* CFobCrypto_ctest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DC375A11D6FDFE3005A486F /* CFobCrypto_ctest.cpp */; };
-		2DD05FC61CEB62C700214ECE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DD05FC51CEB62C700214ECE /* main.cpp */; };
 		2DE3FA261D51A68B009EDCFB /* CFobLicVerifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DE994D91CF501A60078994D /* CFobLicVerifier.cpp */; };
 		2DE994DB1CF501A60078994D /* CFobLicVerifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DE994D91CF501A60078994D /* CFobLicVerifier.cpp */; };
 		2DE994DF1CF501CA0078994D /* CFobLicVerifier_ctest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2DE994DE1CF501CA0078994D /* CFobLicVerifier_ctest.cpp */; };
@@ -44,6 +47,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2D153B291D73DA7F00B4273D /* decoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = decoder.c; path = source/base32/decoder.c; sourceTree = "<group>"; };
+		2D153B2A1D73DA7F00B4273D /* decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = decoder.h; path = source/base32/decoder.h; sourceTree = "<group>"; };
+		2D153B2B1D73DA7F00B4273D /* encoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = encoder.c; path = source/base32/encoder.c; sourceTree = "<group>"; };
+		2D153B2C1D73DA7F00B4273D /* encoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = encoder.h; path = source/base32/encoder.h; sourceTree = "<group>"; };
 		2D15DA6F1CEB6274001F85AE /* cocoafob */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cocoafob; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D4AA8C11D708E560021AAB6 /* CFob_ctest_common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFob_ctest_common.cpp; path = ctest/CFob_ctest_common.cpp; sourceTree = "<group>"; };
 		2D4AA8C21D708E560021AAB6 /* CFob_ctest_common.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CFob_ctest_common.hpp; path = ctest/CFob_ctest_common.hpp; sourceTree = "<group>"; };
@@ -85,6 +92,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D153B201D73D9D800B4273D /* base32 */ = {
+			isa = PBXGroup;
+			children = (
+				2D153B291D73DA7F00B4273D /* decoder.c */,
+				2D153B2A1D73DA7F00B4273D /* decoder.h */,
+				2D153B2B1D73DA7F00B4273D /* encoder.c */,
+				2D153B2C1D73DA7F00B4273D /* encoder.h */,
+			);
+			name = base32;
+			sourceTree = "<group>";
+		};
 		2D15DA661CEB6273001F85AE = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +177,7 @@
 		2DE994DD1CF501AC0078994D /* source */ = {
 			isa = PBXGroup;
 			children = (
+				2D153B201D73D9D800B4273D /* base32 */,
 				2D8C371B1D6F9BBB0070093E /* support */,
 				2DBB60411CEB88BC00105970 /* CFobLicGenerator.cpp */,
 				2DBB60421CEB88BC00105970 /* CFobLicGenerator.hpp */,
@@ -268,8 +287,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DD05FC61CEB62C700214ECE /* main.cpp in Sources */,
+				2D153B2D1D73DA7F00B4273D /* decoder.c in Sources */,
 				2DE994DB1CF501A60078994D /* CFobLicVerifier.cpp in Sources */,
+				2D153B2F1D73DA7F00B4273D /* encoder.c in Sources */,
 				2D8C37151D6F98D80070093E /* CFobCrypto.cpp in Sources */,
 				2D8C37191D6F9A510070093E /* CFobInternal.cpp in Sources */,
 				2DBB60431CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */,
@@ -282,11 +302,13 @@
 			files = (
 				2DBB60441CEB88BC00105970 /* CFobLicGenerator.cpp in Sources */,
 				2DE3FA261D51A68B009EDCFB /* CFobLicVerifier.cpp in Sources */,
+				2D153B301D73DA7F00B4273D /* encoder.c in Sources */,
 				2D4AA8C31D708E560021AAB6 /* CFob_ctest_common.cpp in Sources */,
 				2DC375A21D6FDFE3005A486F /* CFobCrypto_ctest.cpp in Sources */,
 				2D8C371A1D6F9A510070093E /* CFobInternal.cpp in Sources */,
 				2DE994DF1CF501CA0078994D /* CFobLicVerifier_ctest.cpp in Sources */,
 				2D8C37161D6F98D80070093E /* CFobCrypto.cpp in Sources */,
+				2D153B2E1D73DA7F00B4273D /* decoder.c in Sources */,
 				2DBB60461CEB88D400105970 /* CFobLicGenerator_ctest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
