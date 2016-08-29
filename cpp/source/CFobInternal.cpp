@@ -13,19 +13,27 @@ namespace CFob
     namespace Internal
     {
         
-auto StripFormattingFromBase32EncodedString(UTF8String stringToFormat) -> UTF8String
+auto StripFormattingFromBase32EncodedString(UTF8String formattedString) -> UTF8String
 {
     // Replace 9s with Is and 8s with Os
-    std::replace( stringToFormat.begin(), stringToFormat.end(), '9', 'I');
-    std::replace( stringToFormat.begin(), stringToFormat.end(), '8', 'O');
+    std::replace( formattedString.begin(), formattedString.end(), '9', 'I');
+    std::replace( formattedString.begin(), formattedString.end(), '8', 'O');
     
     // Remove dashes from the registration key if they are there (dashes are optional).
-    stringToFormat.erase(std::remove(stringToFormat.begin(),
-                                     stringToFormat.end(),
+    formattedString.erase(std::remove(formattedString.begin(),
+                                     formattedString.end(),
                                      '-'),
-                         stringToFormat.end());
+                         formattedString.end());
     
-    return stringToFormat;
+    const auto keyLength = formattedString.length();
+    const auto paddedLength = keyLength%8 ? ((keyLength/8 + 1)*8) - keyLength : 0;
+
+    if (paddedLength > 0)
+    {
+        formattedString.append(paddedLength, '=');
+    }
+    
+    return formattedString;
 }
 
 auto FormatBase32EncodedString(UTF8String stringToFormat) -> UTF8String
