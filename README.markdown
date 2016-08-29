@@ -197,12 +197,12 @@ Written by Gleb Dolgich and contributors
 
 Twitter: @glebd
 
-Web: <http://pixelespressoapps.com>
+Web: <https://pixelespressoapps.com>
 
 CocoaFob is distributed under the BSD License
 <http://www.opensource.org/licenses/bsd-license.php>
 
-Copyright &copy; 2009-2015, PixelEspresso. All rights reserved.
+Copyright &copy; 2009-2016, PixelEspresso. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
