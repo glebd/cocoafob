@@ -10,7 +10,7 @@
 
 auto GetPublicKey() -> UTF8String
 {
-    auto publicKey = UTF8String{""};
+    auto publicKey = UTF8String{"-----BEGIN DSA PUBLIC KEY-----\n"};
     
     publicKey += "MIHxMIGoBgcqhkj";
     publicKey += "OOAQBMIGcAkEA8wm04e0QcQRoAVJW";
@@ -29,7 +29,7 @@ auto GetPublicKey() -> UTF8String
     publicKey += "2Z7ekydHfX0sTMDgkxhtRm6qtcywg01X847Y9ySgNepqleD+Ka2Wbucj1pOr\n";
     publicKey += "y8MoDQ==\n";
     
-    return publicKey;
+    return publicKey + "-----END DSA PUBLIC KEY-----\n";
 }
 
 auto GetPrivateKey() -> UTF8String
