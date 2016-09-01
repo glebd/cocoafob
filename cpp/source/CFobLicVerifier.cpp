@@ -48,7 +48,7 @@ auto CFobLicVerifier::VerifyRegCodeForName(const UTF8String regCode, const UTF8S
                                        strippedRegCode.length());
     
     auto digest = std::vector<uint8_t>(0, SHA_DIGEST_LENGTH);
-    SHA1((unsigned char *)forName.data(), forName.length(), digest.data());
+    SHA1((unsigned char *)forName.c_str(), forName.length(), digest.data());
     
     const auto check = DSA_verify(0,
                                   digest.data(),
