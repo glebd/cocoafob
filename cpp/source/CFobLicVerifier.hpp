@@ -48,7 +48,7 @@ T CreateCFobLicVerifier(const UTF8String publicKey )
     if (success)
     {
         auto pubKey = std::get<2>(dsaKeyResult);
-        auto verifier = T {new CFobLicVerifier(pubKey, publicKey)};
+        auto verifier = T {new CFobLicVerifier(pubKey, CFob::CompletePublicKeyPEM(publicKey))};
         
         return verifier;
     }
