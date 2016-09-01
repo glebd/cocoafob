@@ -82,7 +82,7 @@ SCENARIO( "License verifier should handle good data", "[verifier]" )
                 CHECK(boolResult);
                 
                 auto errorMessage = std::get<1>(result);
-                CHECK( errorMessage.length() == 0 );
+                CHECK(errorMessage == "");
             }
         }
     }
@@ -109,7 +109,7 @@ SCENARIO("License verifier should work with complete PEM key", "[verifier] [publ
                 CHECK(boolResult);
                 
                 auto errorMessage = std::get<1>(result);
-                CHECK( errorMessage.length() == 0 );
+                CHECK(errorMessage == "");
             }
         }
 
