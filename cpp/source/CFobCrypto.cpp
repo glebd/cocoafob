@@ -48,7 +48,7 @@ auto CreateDSAPubKeyFromPublicKeyPEM(const UTF8String publicKeyPEM) -> std::tupl
 
 auto IsPublicKeyComplete(const UTF8String publicKey) -> bool
 {
-    auto found = publicKey.find(std::string{"-----BEGIN PUBLIC KEY-----"});
+    auto found = publicKey.find(std::string{"-----BEGIN DSA PUBLIC KEY-----"});
     return found != std::string::npos;
 }
 
