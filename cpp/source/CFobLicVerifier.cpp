@@ -9,6 +9,7 @@
 #include "CFobLicVerifier.hpp"
 #include "CFobInternal.hpp"
 #include <string>
+#include <sstream>
 #include <iostream>
 #include <vector>
 #include <openssl/engine.h>
@@ -22,7 +23,7 @@ CFobLicVerifier::CFobLicVerifier(DSA* pubKey, const UTF8String dsaPubKeyAsString
 : _dsaPubKey{pubKey, ::DSA_free}
 , _dsaPubKeyAsString{dsaPubKeyAsString}
 {
-    ;
+    ERR_load_crypto_strings();
 }
 
 auto CFobLicVerifier::VerifyRegCodeForName(const UTF8String regCode, const UTF8String forName) -> std::tuple<bool, ErrorMessage>
@@ -57,7 +58,13 @@ auto CFobLicVerifier::VerifyRegCodeForName(const UTF8String regCode, const UTF8S
                                   _dsaPubKey.get());
     
     const auto result        = check > 0;
-    const auto resultMessage = result ? UTF8String{"Verified"} : UTF8String{"Failed"};
+
+    std::ostringstream errMsg;
+    errMsg << "Failed";
+    if (!result)
+        errMsg << ": " << ERR_error_string(ERR_get_error(), nullptr);
+
+    const auto resultMessage = result ? UTF8String{"Verified"} : errMsg.str();
     
     return std::make_tuple(result, resultMessage);
 }
