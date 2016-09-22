@@ -1,5 +1,5 @@
 //
-//  CocoaFobKeyGenerator.swift
+//  CocoaFobLicGenerator.swift
 //  CocoaFob
 //
 //  Created by Gleb Dolgich on 05/07/2015.
@@ -8,10 +8,13 @@
 
 import Foundation
 
+@available(*, deprecated: 1.0, renamed: "LicenseGenerator")
+typealias CocoaFobLicGenerator = LicenseGenerator
+
 /**
 Generates CocoaFob registration keys
 */
-public struct CocoaFobLicGenerator {
+public struct LicenseGenerator {
   
   var privKey: SecKey
   

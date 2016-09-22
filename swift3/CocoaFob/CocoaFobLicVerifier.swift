@@ -8,10 +8,13 @@
 
 import Foundation
 
+@available(*, deprecated: 1.0, renamed: "LicenseVerifier")
+typealias CocoaFobLicVerifier = LicenseVerifier
+
 /**
 Verifies CocoaFob registration keys
 */
-public struct CocoaFobLicVerifier {
+public struct LicenseVerifier {
   
   var pubKey: SecKey
   
