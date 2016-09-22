@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		501FA93C1D94174800D8D68C /* CocoaFobLicGenerator.swift in Headers */ = {isa = PBXBuildFile; fileRef = C739DCDC1B48E0240074D8F2 /* CocoaFobLicGenerator.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		501FA93D1D94174D00D8D68C /* CocoaFobError.swift in Headers */ = {isa = PBXBuildFile; fileRef = C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		501FA9441D94178600D8D68C /* CocoaFobLicVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501FA9431D94178600D8D68C /* CocoaFobLicVerifier.swift */; };
+		501FA9451D94178C00D8D68C /* CocoaFobLicVerifier.swift in Headers */ = {isa = PBXBuildFile; fileRef = 501FA9431D94178600D8D68C /* CocoaFobLicVerifier.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		C7101B6E1B52C4A900A71BA8 /* CFUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7101B6D1B52C4A900A71BA8 /* CFUtil.swift */; };
 		C7101B6F1B52C4A900A71BA8 /* CFUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7101B6D1B52C4A900A71BA8 /* CFUtil.swift */; };
 		C7101B741B52C66D00A71BA8 /* CocoaFobStringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7101B731B52C66D00A71BA8 /* CocoaFobStringExt.swift */; };
@@ -55,6 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		501FA9431D94178600D8D68C /* CocoaFobLicVerifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaFobLicVerifier.swift; sourceTree = "<group>"; };
 		C7101B6D1B52C4A900A71BA8 /* CFUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFUtil.swift; sourceTree = "<group>"; };
 		C7101B731B52C66D00A71BA8 /* CocoaFobStringExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaFobStringExt.swift; sourceTree = "<group>"; };
 		C739DCC21B48DFA00074D8F2 /* CocoaFob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaFob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +136,7 @@
 				C739DCC51B48DFA00074D8F2 /* CocoaFob.h */,
 				C739DCC71B48DFA10074D8F2 /* Info.plist */,
 				C739DCDC1B48E0240074D8F2 /* CocoaFobLicGenerator.swift */,
+				501FA9431D94178600D8D68C /* CocoaFobLicVerifier.swift */,
 				C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */,
 				C7101B6D1B52C4A900A71BA8 /* CFUtil.swift */,
 				C7101B731B52C66D00A71BA8 /* CocoaFobStringExt.swift */,
@@ -197,6 +203,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C739DCC61B48DFA00074D8F2 /* CocoaFob.h in Headers */,
+				501FA93C1D94174800D8D68C /* CocoaFobLicGenerator.swift in Headers */,
+				501FA9451D94178C00D8D68C /* CocoaFobLicVerifier.swift in Headers */,
+				501FA93D1D94174D00D8D68C /* CocoaFobError.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +331,7 @@
 			files = (
 				C7101B741B52C66D00A71BA8 /* CocoaFobStringExt.swift in Sources */,
 				C739DCE01B48E1450074D8F2 /* CocoaFobError.swift in Sources */,
+				501FA9441D94178600D8D68C /* CocoaFobLicVerifier.swift in Sources */,
 				C7101B6E1B52C4A900A71BA8 /* CFUtil.swift in Sources */,
 				C739DCDD1B48E0240074D8F2 /* CocoaFobLicGenerator.swift in Sources */,
 			);
