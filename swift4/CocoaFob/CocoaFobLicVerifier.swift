@@ -36,27 +36,19 @@ public struct LicenseVerifier {
       keyAttributes: nil)
     var keyFormat = SecExternalFormat.formatPEMSequence
     var keyType = SecExternalItemType.itemTypePublicKey
-    if let keyData = publicKeyPEM.data(using: String.Encoding.utf8) {
-      let keyBytes = [UInt8](keyData)
-      let keyDataCF = CFDataCreate(nil, keyBytes, keyData.count)!
-      var importArray: CFArray? = nil
-      let osStatus = withUnsafeMutablePointer(to: &keyFormat) {pKeyFormat in
-        withUnsafeMutablePointer(to: &keyType, {pKeyType in
-          SecItemImport(keyDataCF, nil, pKeyFormat, pKeyType, SecItemImportExportFlags(rawValue: 0), &params, nil, &importArray)
-        })
-      }
-      if osStatus != errSecSuccess || importArray == nil {
-        return nil
-      }
-      let items = importArray! as NSArray
-      if items.count >= 1 {
-        self.pubKey = items[0] as! SecKey
-      } else {
-        return nil
-      }
-    } else {
-      return nil
+    guard let keyData = publicKeyPEM.data(using: String.Encoding.utf8) else { return nil }
+    let keyBytes = [UInt8](keyData)
+    let keyDataCF = CFDataCreate(nil, keyBytes, keyData.count)!
+    var importArray: CFArray? = nil
+    let osStatus = withUnsafeMutablePointer(to: &keyFormat) { pKeyFormat in
+      withUnsafeMutablePointer(to: &keyType, {pKeyType in
+        SecItemImport(keyDataCF, nil, pKeyFormat, pKeyType, SecItemImportExportFlags(rawValue: 0), &params, nil, &importArray)
+      })
     }
+    guard osStatus == errSecSuccess, importArray != nil else { return nil }
+    let items = importArray! as NSArray
+    guard items.count > 0 else { return nil }
+    self.pubKey = items[0] as! SecKey
   }
   
   /**
@@ -68,16 +60,14 @@ public struct LicenseVerifier {
   */
   public func verify(_ regKey: String, forName name: String) -> Bool {
     do {
-      if let keyData = regKey.cocoaFobFromReadableKey().data(using: String.Encoding.utf8), let nameData = name.data(using: String.Encoding.utf8) {
-        let decoder = try getDecoder(keyData)
-        let signature = try cfTry(.error) { SecTransformExecute(decoder, $0) }
-        let verifier = try getVerifier(self.pubKey, signature: signature as! Data, nameData: nameData)
-        let result = try cfTry(.error) { SecTransformExecute(verifier, $0) }
-        let boolResult = result as! CFBoolean
-        return Bool(truncating: boolResult)
-      } else {
-        return false
-      }
+      guard let keyData = regKey.cocoaFobFromReadableKey().data(using: String.Encoding.utf8) else { return false }
+      guard let nameData = name.data(using: String.Encoding.utf8) else { return false }
+      let decoder = try getDecoder(keyData)
+      let signature = try cfTry(.error) { SecTransformExecute(decoder, $0) }
+      let verifier = try getVerifier(self.pubKey, signature: signature as! Data, nameData: nameData)
+      let result = try cfTry(.error) { SecTransformExecute(verifier, $0) }
+      let boolResult = result as! CFBoolean
+      return Bool(truncating: boolResult)
     } catch {
       return false
     }

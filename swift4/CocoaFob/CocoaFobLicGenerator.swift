@@ -36,27 +36,19 @@ public struct LicenseGenerator {
       keyAttributes: nil)
     var keyFormat = SecExternalFormat.formatPEMSequence
     var keyType = SecExternalItemType.itemTypePrivateKey
-    if let keyData = privateKeyPEM.data(using: String.Encoding.utf8) {
-      let keyBytes = [UInt8](keyData)
-      let keyDataCF = CFDataCreate(nil, keyBytes, keyData.count)!
-      var importArray: CFArray? = nil
-      let osStatus = withUnsafeMutablePointer(to: &keyFormat, {pKeyFormat -> OSStatus in
-        withUnsafeMutablePointer(to: &keyType, {pKeyType in
-          SecItemImport(keyDataCF, nil, pKeyFormat, pKeyType, SecItemImportExportFlags(rawValue: 0), &params, nil, &importArray)
-        })
+    guard let keyData = privateKeyPEM.data(using: String.Encoding.utf8) else { return nil }
+    let keyBytes = [UInt8](keyData)
+    let keyDataCF = CFDataCreate(nil, keyBytes, keyData.count)!
+    var importArray: CFArray? = nil
+    let osStatus = withUnsafeMutablePointer(to: &keyFormat, {pKeyFormat -> OSStatus in
+      withUnsafeMutablePointer(to: &keyType, { pKeyType in
+        SecItemImport(keyDataCF, nil, pKeyFormat, pKeyType, SecItemImportExportFlags(rawValue: 0), &params, nil, &importArray)
       })
-      if osStatus != errSecSuccess || importArray == nil {
-        return nil
-      }
-      let items = importArray! as NSArray
-      if items.count >= 1 {
-        self.privKey = items[0] as! SecKey
-      } else {
-        return nil
-      }
-    } else {
-      return nil
-    }
+    })
+    guard osStatus == errSecSuccess, importArray != nil else { return nil }
+    let items = importArray! as NSArray
+    guard items.count > 0 else { return nil }
+    self.privKey = items[0] as! SecKey
   }
   
   // MARK: - Key generation
@@ -69,24 +61,21 @@ public struct LicenseGenerator {
   */
   public func generate(_ name: String) throws -> String {
     guard name != "" else { throw CocoaFobError.error }
-    if let nameData = getNameData(name), let signer = getSigner(nameData), let encoder = getEncoder(), let group = connectTransforms(signer, encoder: encoder) {
-      let regData = try cfTry(CocoaFobError.error) { return SecTransformExecute(group, $0) }
-      if let reg = NSString(data: regData as! Data, encoding: String.Encoding.utf8.rawValue) {
-        return String(reg).cocoaFobToReadableKey()
-      } else {
-        throw CocoaFobError.error
-      }
-    }
-    throw CocoaFobError.error
+    guard let nameData = getNameData(name) else { throw CocoaFobError.error }
+    guard let signer = getSigner(nameData) else { throw CocoaFobError.error }
+    guard let encoder = getEncoder() else { throw CocoaFobError.error }
+    guard let group = connectTransforms(signer, encoder: encoder) else { throw CocoaFobError.error }
+    let regDataCF = try cfTry(CocoaFobError.error) { return SecTransformExecute(group, $0) }
+    guard let regData = regDataCF as? Data else { throw CocoaFobError.error }
+    guard let reg = String(data: regData, encoding: .utf8) else { throw CocoaFobError.error }
+    return reg.cocoaFobToReadableKey()
   }
   
   // MARK: - Utility functions
 
   fileprivate func connectTransforms(_ signer: SecTransform, encoder: SecTransform) -> SecGroupTransform? {
-    if let groupTransform = getGroupTransform() {
-      return SecTransformConnectTransforms(signer, kSecTransformOutputAttributeName, encoder, kSecTransformInputAttributeName, groupTransform, nil)
-    }
-    return nil
+    guard let groupTransform = getGroupTransform() else { return nil }
+    return SecTransformConnectTransforms(signer, kSecTransformOutputAttributeName, encoder, kSecTransformInputAttributeName, groupTransform, nil)
   }
 
   fileprivate func getGroupTransform() -> SecGroupTransform? {
