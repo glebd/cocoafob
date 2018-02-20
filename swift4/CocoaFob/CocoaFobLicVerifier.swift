@@ -77,7 +77,7 @@ public struct LicenseVerifier {
         let verifier = try getVerifier(self.pubKey, signature: signature as! Data, nameData: nameData)
         let result = try cfTry(.error) { SecTransformExecute(verifier, $0) }
         let boolResult = result as! CFBoolean
-        return Bool(boolResult)
+        return Bool(truncating: boolResult)
       } else {
         return false
       }
