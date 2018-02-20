@@ -1,0 +1,596 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		501FA93C1D94174800D8D68C /* CocoaFobLicGenerator.swift in Headers */ = {isa = PBXBuildFile; fileRef = C739DCDC1B48E0240074D8F2 /* CocoaFobLicGenerator.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		501FA93D1D94174D00D8D68C /* CocoaFobError.swift in Headers */ = {isa = PBXBuildFile; fileRef = C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		501FA9441D94178600D8D68C /* CocoaFobLicVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501FA9431D94178600D8D68C /* CocoaFobLicVerifier.swift */; };
+		501FA9451D94178C00D8D68C /* CocoaFobLicVerifier.swift in Headers */ = {isa = PBXBuildFile; fileRef = 501FA9431D94178600D8D68C /* CocoaFobLicVerifier.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		C7101B6E1B52C4A900A71BA8 /* CFUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7101B6D1B52C4A900A71BA8 /* CFUtil.swift */; };
+		C7101B6F1B52C4A900A71BA8 /* CFUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7101B6D1B52C4A900A71BA8 /* CFUtil.swift */; };
+		C7101B741B52C66D00A71BA8 /* CocoaFobStringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7101B731B52C66D00A71BA8 /* CocoaFobStringExt.swift */; };
+		C7101B751B52C66D00A71BA8 /* CocoaFobStringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7101B731B52C66D00A71BA8 /* CocoaFobStringExt.swift */; };
+		C739DCC61B48DFA00074D8F2 /* CocoaFob.h in Headers */ = {isa = PBXBuildFile; fileRef = C739DCC51B48DFA00074D8F2 /* CocoaFob.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C739DCCD1B48DFA10074D8F2 /* CocoaFob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C739DCC21B48DFA00074D8F2 /* CocoaFob.framework */; };
+		C739DCD21B48DFA10074D8F2 /* CocoaFobTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCD11B48DFA10074D8F2 /* CocoaFobTests.swift */; };
+		C739DCDD1B48E0240074D8F2 /* CocoaFobLicGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDC1B48E0240074D8F2 /* CocoaFobLicGenerator.swift */; };
+		C739DCDE1B48E0240074D8F2 /* CocoaFobLicGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDC1B48E0240074D8F2 /* CocoaFobLicGenerator.swift */; };
+		C739DCE01B48E1450074D8F2 /* CocoaFobError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */; };
+		C739DCE11B48E1450074D8F2 /* CocoaFobError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */; };
+		C75B81D51B572E9E003D4BCD /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B81D41B572E9E003D4BCD /* Functions.swift */; };
+		C75B81D71B57300C003D4BCD /* Stderr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B81D61B57300C003D4BCD /* Stderr.swift */; };
+		C75B81DA1B5741D4003D4BCD /* CocoaFobLicVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B81D91B5741D4003D4BCD /* CocoaFobLicVerifier.swift */; };
+		C75B81DC1B574207003D4BCD /* CFUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B81DB1B574207003D4BCD /* CFUtil.swift */; };
+		C75B81DE1B57420F003D4BCD /* CocoaFobError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B81DD1B57420F003D4BCD /* CocoaFobError.swift */; };
+		C75B81E01B57421A003D4BCD /* CocoaFobStringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B81DF1B57421A003D4BCD /* CocoaFobStringExt.swift */; };
+		C75B81E21B574222003D4BCD /* CocoaFobLicGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B81E11B574222003D4BCD /* CocoaFobLicGenerator.swift */; };
+		C77D712A1B5496F00019F670 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77D71291B5496F00019F670 /* main.swift */; };
+		C782622C1B7D8C80001C41CE /* CocoaFobLicVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B81D91B5741D4003D4BCD /* CocoaFobLicVerifier.swift */; };
+		C7C398631B55F95200DCF644 /* CommandLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C398601B55F95200DCF644 /* CommandLine.swift */; };
+		C7C398641B55F95200DCF644 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C398611B55F95200DCF644 /* Option.swift */; };
+		C7C398651B55F95200DCF644 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C398621B55F95200DCF644 /* StringExtensions.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C739DCCE1B48DFA10074D8F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C739DCB91B48DFA00074D8F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C739DCC11B48DFA00074D8F2;
+			remoteInfo = CocoaFob;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C77D71251B5496F00019F670 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		501FA9431D94178600D8D68C /* CocoaFobLicVerifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaFobLicVerifier.swift; sourceTree = "<group>"; };
+		C7101B6D1B52C4A900A71BA8 /* CFUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFUtil.swift; sourceTree = "<group>"; };
+		C7101B731B52C66D00A71BA8 /* CocoaFobStringExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaFobStringExt.swift; sourceTree = "<group>"; };
+		C739DCC21B48DFA00074D8F2 /* CocoaFob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaFob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C739DCC51B48DFA00074D8F2 /* CocoaFob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaFob.h; sourceTree = "<group>"; };
+		C739DCC71B48DFA10074D8F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C739DCCC1B48DFA10074D8F2 /* CocoaFobTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CocoaFobTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C739DCD11B48DFA10074D8F2 /* CocoaFobTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocoaFobTests.swift; sourceTree = "<group>"; };
+		C739DCD31B48DFA10074D8F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C739DCDC1B48E0240074D8F2 /* CocoaFobLicGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaFobLicGenerator.swift; sourceTree = "<group>"; };
+		C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaFobError.swift; sourceTree = "<group>"; };
+		C75B81D41B572E9E003D4BCD /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		C75B81D61B57300C003D4BCD /* Stderr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stderr.swift; sourceTree = "<group>"; };
+		C75B81D91B5741D4003D4BCD /* CocoaFobLicVerifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CocoaFobLicVerifier.swift; path = CocoaFob/CocoaFobLicVerifier.swift; sourceTree = SOURCE_ROOT; };
+		C75B81DB1B574207003D4BCD /* CFUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CFUtil.swift; path = CocoaFob/CFUtil.swift; sourceTree = SOURCE_ROOT; };
+		C75B81DD1B57420F003D4BCD /* CocoaFobError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CocoaFobError.swift; path = CocoaFob/CocoaFobError.swift; sourceTree = SOURCE_ROOT; };
+		C75B81DF1B57421A003D4BCD /* CocoaFobStringExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CocoaFobStringExt.swift; path = CocoaFob/CocoaFobStringExt.swift; sourceTree = SOURCE_ROOT; };
+		C75B81E11B574222003D4BCD /* CocoaFobLicGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CocoaFobLicGenerator.swift; path = CocoaFob/CocoaFobLicGenerator.swift; sourceTree = SOURCE_ROOT; };
+		C77D71271B5496F00019F670 /* cocoafob-keygen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "cocoafob-keygen"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C77D71291B5496F00019F670 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		C7C398601B55F95200DCF644 /* CommandLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandLine.swift; path = vendor/CommandLine/CommandLine/CommandLine.swift; sourceTree = SOURCE_ROOT; };
+		C7C398611B55F95200DCF644 /* Option.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Option.swift; path = vendor/CommandLine/CommandLine/Option.swift; sourceTree = SOURCE_ROOT; };
+		C7C398621B55F95200DCF644 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = vendor/CommandLine/CommandLine/StringExtensions.swift; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C739DCBE1B48DFA00074D8F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C739DCC91B48DFA10074D8F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C739DCCD1B48DFA10074D8F2 /* CocoaFob.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C77D71241B5496F00019F670 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C739DCB81B48DFA00074D8F2 = {
+			isa = PBXGroup;
+			children = (
+				C739DCC41B48DFA00074D8F2 /* CocoaFob */,
+				C739DCD01B48DFA10074D8F2 /* CocoaFobTests */,
+				C77D71281B5496F00019F670 /* cocoafob-keygen */,
+				C739DCC31B48DFA00074D8F2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C739DCC31B48DFA00074D8F2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C739DCC21B48DFA00074D8F2 /* CocoaFob.framework */,
+				C739DCCC1B48DFA10074D8F2 /* CocoaFobTests.xctest */,
+				C77D71271B5496F00019F670 /* cocoafob-keygen */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C739DCC41B48DFA00074D8F2 /* CocoaFob */ = {
+			isa = PBXGroup;
+			children = (
+				C739DCC51B48DFA00074D8F2 /* CocoaFob.h */,
+				C739DCC71B48DFA10074D8F2 /* Info.plist */,
+				C739DCDC1B48E0240074D8F2 /* CocoaFobLicGenerator.swift */,
+				501FA9431D94178600D8D68C /* CocoaFobLicVerifier.swift */,
+				C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */,
+				C7101B6D1B52C4A900A71BA8 /* CFUtil.swift */,
+				C7101B731B52C66D00A71BA8 /* CocoaFobStringExt.swift */,
+			);
+			path = CocoaFob;
+			sourceTree = "<group>";
+		};
+		C739DCD01B48DFA10074D8F2 /* CocoaFobTests */ = {
+			isa = PBXGroup;
+			children = (
+				C739DCD11B48DFA10074D8F2 /* CocoaFobTests.swift */,
+				C739DCD31B48DFA10074D8F2 /* Info.plist */,
+			);
+			path = CocoaFobTests;
+			sourceTree = "<group>";
+		};
+		C75B81D81B57416E003D4BCD /* CocoaFob */ = {
+			isa = PBXGroup;
+			children = (
+				C75B81DB1B574207003D4BCD /* CFUtil.swift */,
+				C75B81DD1B57420F003D4BCD /* CocoaFobError.swift */,
+				C75B81DF1B57421A003D4BCD /* CocoaFobStringExt.swift */,
+				C75B81D91B5741D4003D4BCD /* CocoaFobLicVerifier.swift */,
+				C75B81E11B574222003D4BCD /* CocoaFobLicGenerator.swift */,
+			);
+			name = CocoaFob;
+			sourceTree = "<group>";
+		};
+		C77D71281B5496F00019F670 /* cocoafob-keygen */ = {
+			isa = PBXGroup;
+			children = (
+				C75B81D81B57416E003D4BCD /* CocoaFob */,
+				C7C3985E1B55F87B00DCF644 /* vendor */,
+				C77D71291B5496F00019F670 /* main.swift */,
+				C75B81D41B572E9E003D4BCD /* Functions.swift */,
+				C75B81D61B57300C003D4BCD /* Stderr.swift */,
+			);
+			path = "cocoafob-keygen";
+			sourceTree = "<group>";
+		};
+		C7C3985E1B55F87B00DCF644 /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				C7C3985F1B55F88300DCF644 /* CommandLine */,
+			);
+			name = vendor;
+			sourceTree = "<group>";
+		};
+		C7C3985F1B55F88300DCF644 /* CommandLine */ = {
+			isa = PBXGroup;
+			children = (
+				C7C398601B55F95200DCF644 /* CommandLine.swift */,
+				C7C398611B55F95200DCF644 /* Option.swift */,
+				C7C398621B55F95200DCF644 /* StringExtensions.swift */,
+			);
+			name = CommandLine;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		C739DCBF1B48DFA00074D8F2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C739DCC61B48DFA00074D8F2 /* CocoaFob.h in Headers */,
+				501FA93C1D94174800D8D68C /* CocoaFobLicGenerator.swift in Headers */,
+				501FA9451D94178C00D8D68C /* CocoaFobLicVerifier.swift in Headers */,
+				501FA93D1D94174D00D8D68C /* CocoaFobError.swift in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		C739DCC11B48DFA00074D8F2 /* CocoaFob */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C739DCD61B48DFA10074D8F2 /* Build configuration list for PBXNativeTarget "CocoaFob" */;
+			buildPhases = (
+				C739DCBD1B48DFA00074D8F2 /* Sources */,
+				C739DCBE1B48DFA00074D8F2 /* Frameworks */,
+				C739DCBF1B48DFA00074D8F2 /* Headers */,
+				C739DCC01B48DFA00074D8F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CocoaFob;
+			productName = CocoaFob;
+			productReference = C739DCC21B48DFA00074D8F2 /* CocoaFob.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C739DCCB1B48DFA10074D8F2 /* CocoaFobTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C739DCD91B48DFA10074D8F2 /* Build configuration list for PBXNativeTarget "CocoaFobTests" */;
+			buildPhases = (
+				C739DCC81B48DFA10074D8F2 /* Sources */,
+				C739DCC91B48DFA10074D8F2 /* Frameworks */,
+				C739DCCA1B48DFA10074D8F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C739DCCF1B48DFA10074D8F2 /* PBXTargetDependency */,
+			);
+			name = CocoaFobTests;
+			productName = CocoaFobTests;
+			productReference = C739DCCC1B48DFA10074D8F2 /* CocoaFobTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C77D71261B5496F00019F670 /* cocoafob-keygen */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C77D712D1B5496F00019F670 /* Build configuration list for PBXNativeTarget "cocoafob-keygen" */;
+			buildPhases = (
+				C77D71231B5496F00019F670 /* Sources */,
+				C77D71241B5496F00019F670 /* Frameworks */,
+				C77D71251B5496F00019F670 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "cocoafob-keygen";
+			productName = "cocoafob-keygen";
+			productReference = C77D71271B5496F00019F670 /* cocoafob-keygen */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C739DCB91B48DFA00074D8F2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = PixelEspresso;
+				TargetAttributes = {
+					C739DCC11B48DFA00074D8F2 = {
+						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
+					};
+					C739DCCB1B48DFA10074D8F2 = {
+						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
+					};
+					C77D71261B5496F00019F670 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+				};
+			};
+			buildConfigurationList = C739DCBC1B48DFA00074D8F2 /* Build configuration list for PBXProject "CocoaFob" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C739DCB81B48DFA00074D8F2;
+			productRefGroup = C739DCC31B48DFA00074D8F2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C739DCC11B48DFA00074D8F2 /* CocoaFob */,
+				C739DCCB1B48DFA10074D8F2 /* CocoaFobTests */,
+				C77D71261B5496F00019F670 /* cocoafob-keygen */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C739DCC01B48DFA00074D8F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C739DCCA1B48DFA10074D8F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C739DCBD1B48DFA00074D8F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7101B741B52C66D00A71BA8 /* CocoaFobStringExt.swift in Sources */,
+				C739DCE01B48E1450074D8F2 /* CocoaFobError.swift in Sources */,
+				501FA9441D94178600D8D68C /* CocoaFobLicVerifier.swift in Sources */,
+				C7101B6E1B52C4A900A71BA8 /* CFUtil.swift in Sources */,
+				C739DCDD1B48E0240074D8F2 /* CocoaFobLicGenerator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C739DCC81B48DFA10074D8F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C782622C1B7D8C80001C41CE /* CocoaFobLicVerifier.swift in Sources */,
+				C739DCD21B48DFA10074D8F2 /* CocoaFobTests.swift in Sources */,
+				C7101B751B52C66D00A71BA8 /* CocoaFobStringExt.swift in Sources */,
+				C739DCDE1B48E0240074D8F2 /* CocoaFobLicGenerator.swift in Sources */,
+				C739DCE11B48E1450074D8F2 /* CocoaFobError.swift in Sources */,
+				C7101B6F1B52C4A900A71BA8 /* CFUtil.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C77D71231B5496F00019F670 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7C398651B55F95200DCF644 /* StringExtensions.swift in Sources */,
+				C77D712A1B5496F00019F670 /* main.swift in Sources */,
+				C7C398641B55F95200DCF644 /* Option.swift in Sources */,
+				C75B81D51B572E9E003D4BCD /* Functions.swift in Sources */,
+				C75B81DA1B5741D4003D4BCD /* CocoaFobLicVerifier.swift in Sources */,
+				C75B81DE1B57420F003D4BCD /* CocoaFobError.swift in Sources */,
+				C75B81E01B57421A003D4BCD /* CocoaFobStringExt.swift in Sources */,
+				C75B81E21B574222003D4BCD /* CocoaFobLicGenerator.swift in Sources */,
+				C75B81D71B57300C003D4BCD /* Stderr.swift in Sources */,
+				C75B81DC1B574207003D4BCD /* CFUtil.swift in Sources */,
+				C7C398631B55F95200DCF644 /* CommandLine.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C739DCCF1B48DFA10074D8F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C739DCC11B48DFA00074D8F2 /* CocoaFob */;
+			targetProxy = C739DCCE1B48DFA10074D8F2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C739DCD41B48DFA10074D8F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C739DCD51B48DFA10074D8F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C739DCD71B48DFA10074D8F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = CocoaFob/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelespresso.CocoaFob;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		C739DCD81B48DFA10074D8F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = CocoaFob/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelespresso.CocoaFob;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		C739DCDA1B48DFA10074D8F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CocoaFobTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelespresso.CocoaFobTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		C739DCDB1B48DFA10074D8F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = CocoaFobTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixelespresso.CocoaFobTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		C77D712B1B5496F00019F670 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DSTROOT = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C77D712C1B5496F00019F670 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DSTROOT = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C739DCBC1B48DFA00074D8F2 /* Build configuration list for PBXProject "CocoaFob" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C739DCD41B48DFA10074D8F2 /* Debug */,
+				C739DCD51B48DFA10074D8F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C739DCD61B48DFA10074D8F2 /* Build configuration list for PBXNativeTarget "CocoaFob" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C739DCD71B48DFA10074D8F2 /* Debug */,
+				C739DCD81B48DFA10074D8F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C739DCD91B48DFA10074D8F2 /* Build configuration list for PBXNativeTarget "CocoaFobTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C739DCDA1B48DFA10074D8F2 /* Debug */,
+				C739DCDB1B48DFA10074D8F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C77D712D1B5496F00019F670 /* Build configuration list for PBXNativeTarget "cocoafob-keygen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C77D712B1B5496F00019F670 /* Debug */,
+				C77D712C1B5496F00019F670 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C739DCB91B48DFA00074D8F2 /* Project object */;
+}
