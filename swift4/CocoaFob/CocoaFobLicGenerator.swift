@@ -40,7 +40,7 @@ public struct LicenseGenerator {
     var keyFormat = SecExternalFormat.formatPEMSequence
     var keyType = SecExternalItemType.itemTypePrivateKey
     if let keyData = privateKeyPEM.data(using: String.Encoding.utf8) {
-      let keyBytes = unsafeBitCast((keyData as NSData).bytes, to: UnsafePointer<UInt8>.self)
+      let keyBytes = [UInt8](keyData)
       let keyDataCF = CFDataCreate(nil, keyBytes, keyData.count)!
       var importArray: CFArray? = nil
       let osStatus = withUnsafeMutablePointer(to: &keyFormat, {pKeyFormat -> OSStatus in
