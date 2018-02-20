@@ -79,7 +79,7 @@ class CocoaFobTests: XCTestCase {
       XCTAssertNotNil(digestTypeAttr)
       let digestTypeFromAttr = digestTypeAttr! as! NSString
       XCTAssertNotNil(digestTypeFromAttr, "Expected to get SHA1 transform type back")
-      XCTAssertEqual(digestTypeFromAttr, kSecDigestSHA1)
+      XCTAssertEqual(digestTypeFromAttr, kSecDigestSHA1 as NSString)
     }
   }
   
