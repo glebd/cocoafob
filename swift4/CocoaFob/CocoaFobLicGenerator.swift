@@ -8,9 +8,6 @@
 
 import Foundation
 
-@available(*, deprecated: 1.0, renamed: "LicenseGenerator")
-typealias CocoaFobLicGenerator = LicenseGenerator
-
 /**
 Generates CocoaFob registration keys
 */
