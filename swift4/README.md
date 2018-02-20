@@ -1,4 +1,4 @@
-# CocoaFob Swift 3.0 Port
+# CocoaFob Swift 4.0 Port
 
 ## Instructions
 
