@@ -19,5 +19,5 @@ FastSpring <http://fastspring.com>.
   s.platform = :osx
   s.osx.deployment_target = '10.10'
 
-  s.source_files = ['swift3/CocoaFob/*.swift']
+  s.source_files = ['swift4/CocoaFob/*.swift']
 end
