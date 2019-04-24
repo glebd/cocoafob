@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:swift5/CocoaFob.xcodeproj">
+      location = "self:CommandLine.xcodeproj">
    </FileRef>
 </Workspace>
