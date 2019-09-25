@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'CocoaFob'
-  s.version          = '1.0.0'
-  s.swift_version    = '5.0'
+  s.version          = '2.1.0'
+  s.swift_versions   = ['5.1', '5.0']
   s.summary          = 'macOS app registration code verification & generation.'
   s.description      = <<-DESC
 CocoaFob is a set of helper code snippets for registration code generation and
