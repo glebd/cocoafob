@@ -17,7 +17,7 @@ end
 # receives a product code string, a registration name and quantity. I'm not
 # using quantity here, but you're free to do it.
 def make_license(product_code, name, copies)
-  sign_dss1 = OpenSSL::Digest::DSS1.new
+  sign_dss1 = OpenSSL::Digest::SHA1.new
   priv = OpenSSL::PKey::DSA.new(File.read("lib/dsapriv512.pem"))
   b32 = Base32.encode(priv.sign(sign_dss1, make_license_source(product_code, name)))
   # Replace Os with 8s and Is with 9s
@@ -29,7 +29,7 @@ def make_license(product_code, name, copies)
 end
 
 def verify_license(product_code, name, copies, lic)
-  verify_dss1 = OpenSSL::Digest::DSS1.new
+  verify_dss1 = OpenSSL::Digest::SHA1.new
   pub = OpenSSL::PKey::DSA.new(File.read("lib/dsapub512.pem"))
   lic.delete!("-")
   lic.gsub!(/9/, 'I')
