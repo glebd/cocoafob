@@ -19,7 +19,7 @@ func cfTry(_ err: CocoaFobError, cfBlock: (UnsafeMutablePointer<Unmanaged<CFErro
   }
 }
 
-func cfTry<T>(_ err: CocoaFobError, cfBlock: (UnsafeMutablePointer<Unmanaged<CFError>?>) -> T!) throws -> T {
+func cfTry<T>(_ err: CocoaFobError, cfBlock: (UnsafeMutablePointer<Unmanaged<CFError>?>) -> T?) throws -> T {
   var cferr: Unmanaged<CFError>? = nil
   if let result = cfBlock(&cferr) {
     return result

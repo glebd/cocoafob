@@ -1,5 +1,7 @@
 # CocoaFob Swift 4.0 Port
 
+For a version targeting Swift 5, see https://github.com/glebd/cocoafob/tree/master/swift5
+
 ## Instructions
 
 Add the necessary files directly to your project. For your app they are:

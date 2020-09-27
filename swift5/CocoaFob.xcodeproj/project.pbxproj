@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		501FA93C1D94174800D8D68C /* CocoaFobLicGenerator.swift in Headers */ = {isa = PBXBuildFile; fileRef = C739DCDC1B48E0240074D8F2 /* CocoaFobLicGenerator.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		501FA93C1D94174800D8D68C /* LicenseGenerator.swift in Headers */ = {isa = PBXBuildFile; fileRef = C739DCDC1B48E0240074D8F2 /* LicenseGenerator.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		501FA93D1D94174D00D8D68C /* CocoaFobError.swift in Headers */ = {isa = PBXBuildFile; fileRef = C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		501FA9441D94178600D8D68C /* CocoaFobLicVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501FA9431D94178600D8D68C /* CocoaFobLicVerifier.swift */; };
-		501FA9451D94178C00D8D68C /* CocoaFobLicVerifier.swift in Headers */ = {isa = PBXBuildFile; fileRef = 501FA9431D94178600D8D68C /* CocoaFobLicVerifier.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		501FA9441D94178600D8D68C /* LicenseVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501FA9431D94178600D8D68C /* LicenseVerifier.swift */; };
+		501FA9451D94178C00D8D68C /* LicenseVerifier.swift in Headers */ = {isa = PBXBuildFile; fileRef = 501FA9431D94178600D8D68C /* LicenseVerifier.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		C7101B6E1B52C4A900A71BA8 /* CFUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7101B6D1B52C4A900A71BA8 /* CFUtil.swift */; };
 		C7101B6F1B52C4A900A71BA8 /* CFUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7101B6D1B52C4A900A71BA8 /* CFUtil.swift */; };
-		C7101B741B52C66D00A71BA8 /* CocoaFobStringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7101B731B52C66D00A71BA8 /* CocoaFobStringExt.swift */; };
-		C7101B751B52C66D00A71BA8 /* CocoaFobStringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7101B731B52C66D00A71BA8 /* CocoaFobStringExt.swift */; };
+		C7101B741B52C66D00A71BA8 /* String+CocoaFob.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7101B731B52C66D00A71BA8 /* String+CocoaFob.swift */; };
+		C7101B751B52C66D00A71BA8 /* String+CocoaFob.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7101B731B52C66D00A71BA8 /* String+CocoaFob.swift */; };
 		C739DCC61B48DFA00074D8F2 /* CocoaFob.h in Headers */ = {isa = PBXBuildFile; fileRef = C739DCC51B48DFA00074D8F2 /* CocoaFob.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C739DCCD1B48DFA10074D8F2 /* CocoaFob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C739DCC21B48DFA00074D8F2 /* CocoaFob.framework */; };
 		C739DCD21B48DFA10074D8F2 /* CocoaFobTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCD11B48DFA10074D8F2 /* CocoaFobTests.swift */; };
-		C739DCDD1B48E0240074D8F2 /* CocoaFobLicGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDC1B48E0240074D8F2 /* CocoaFobLicGenerator.swift */; };
-		C739DCDE1B48E0240074D8F2 /* CocoaFobLicGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDC1B48E0240074D8F2 /* CocoaFobLicGenerator.swift */; };
+		C739DCDD1B48E0240074D8F2 /* LicenseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDC1B48E0240074D8F2 /* LicenseGenerator.swift */; };
+		C739DCDE1B48E0240074D8F2 /* LicenseGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDC1B48E0240074D8F2 /* LicenseGenerator.swift */; };
 		C739DCE01B48E1450074D8F2 /* CocoaFobError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */; };
 		C739DCE11B48E1450074D8F2 /* CocoaFobError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */; };
 		C75B81D51B572E9E003D4BCD /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75B81D41B572E9E003D4BCD /* Functions.swift */; };
@@ -59,16 +59,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		501FA9431D94178600D8D68C /* CocoaFobLicVerifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaFobLicVerifier.swift; sourceTree = "<group>"; };
+		501FA9431D94178600D8D68C /* LicenseVerifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicenseVerifier.swift; sourceTree = "<group>"; };
 		C7101B6D1B52C4A900A71BA8 /* CFUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFUtil.swift; sourceTree = "<group>"; };
-		C7101B731B52C66D00A71BA8 /* CocoaFobStringExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaFobStringExt.swift; sourceTree = "<group>"; };
+		C7101B731B52C66D00A71BA8 /* String+CocoaFob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+CocoaFob.swift"; sourceTree = "<group>"; };
 		C739DCC21B48DFA00074D8F2 /* CocoaFob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaFob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C739DCC51B48DFA00074D8F2 /* CocoaFob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CocoaFob.h; sourceTree = "<group>"; };
 		C739DCC71B48DFA10074D8F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C739DCCC1B48DFA10074D8F2 /* CocoaFobTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CocoaFobTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C739DCD11B48DFA10074D8F2 /* CocoaFobTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CocoaFobTests.swift; sourceTree = "<group>"; };
 		C739DCD31B48DFA10074D8F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C739DCDC1B48E0240074D8F2 /* CocoaFobLicGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaFobLicGenerator.swift; sourceTree = "<group>"; };
+		C739DCDC1B48E0240074D8F2 /* LicenseGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicenseGenerator.swift; sourceTree = "<group>"; };
 		C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaFobError.swift; sourceTree = "<group>"; };
 		C75B81D41B572E9E003D4BCD /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		C75B81D61B57300C003D4BCD /* Stderr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stderr.swift; sourceTree = "<group>"; };
@@ -135,11 +135,11 @@
 			children = (
 				C739DCC51B48DFA00074D8F2 /* CocoaFob.h */,
 				C739DCC71B48DFA10074D8F2 /* Info.plist */,
-				C739DCDC1B48E0240074D8F2 /* CocoaFobLicGenerator.swift */,
-				501FA9431D94178600D8D68C /* CocoaFobLicVerifier.swift */,
+				C739DCDC1B48E0240074D8F2 /* LicenseGenerator.swift */,
+				501FA9431D94178600D8D68C /* LicenseVerifier.swift */,
 				C739DCDF1B48E1450074D8F2 /* CocoaFobError.swift */,
 				C7101B6D1B52C4A900A71BA8 /* CFUtil.swift */,
-				C7101B731B52C66D00A71BA8 /* CocoaFobStringExt.swift */,
+				C7101B731B52C66D00A71BA8 /* String+CocoaFob.swift */,
 			);
 			path = CocoaFob;
 			sourceTree = "<group>";
@@ -203,8 +203,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C739DCC61B48DFA00074D8F2 /* CocoaFob.h in Headers */,
-				501FA93C1D94174800D8D68C /* CocoaFobLicGenerator.swift in Headers */,
-				501FA9451D94178C00D8D68C /* CocoaFobLicVerifier.swift in Headers */,
+				501FA93C1D94174800D8D68C /* LicenseGenerator.swift in Headers */,
+				501FA9451D94178C00D8D68C /* LicenseVerifier.swift in Headers */,
 				501FA93D1D94174D00D8D68C /* CocoaFobError.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,16 +272,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = PixelEspresso;
 				TargetAttributes = {
 					C739DCC11B48DFA00074D8F2 = {
 						CreatedOnToolsVersion = 7.0;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1020;
 					};
 					C739DCCB1B48DFA10074D8F2 = {
 						CreatedOnToolsVersion = 7.0;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1020;
 					};
 					C77D71261B5496F00019F670 = {
 						CreatedOnToolsVersion = 7.0;
@@ -290,10 +290,11 @@
 			};
 			buildConfigurationList = C739DCBC1B48DFA00074D8F2 /* Build configuration list for PBXProject "CocoaFob" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = C739DCB81B48DFA00074D8F2;
 			productRefGroup = C739DCC31B48DFA00074D8F2 /* Products */;
@@ -329,11 +330,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7101B741B52C66D00A71BA8 /* CocoaFobStringExt.swift in Sources */,
+				C7101B741B52C66D00A71BA8 /* String+CocoaFob.swift in Sources */,
 				C739DCE01B48E1450074D8F2 /* CocoaFobError.swift in Sources */,
-				501FA9441D94178600D8D68C /* CocoaFobLicVerifier.swift in Sources */,
+				501FA9441D94178600D8D68C /* LicenseVerifier.swift in Sources */,
 				C7101B6E1B52C4A900A71BA8 /* CFUtil.swift in Sources */,
-				C739DCDD1B48E0240074D8F2 /* CocoaFobLicGenerator.swift in Sources */,
+				C739DCDD1B48E0240074D8F2 /* LicenseGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,8 +344,8 @@
 			files = (
 				C782622C1B7D8C80001C41CE /* CocoaFobLicVerifier.swift in Sources */,
 				C739DCD21B48DFA10074D8F2 /* CocoaFobTests.swift in Sources */,
-				C7101B751B52C66D00A71BA8 /* CocoaFobStringExt.swift in Sources */,
-				C739DCDE1B48E0240074D8F2 /* CocoaFobLicGenerator.swift in Sources */,
+				C7101B751B52C66D00A71BA8 /* String+CocoaFob.swift in Sources */,
+				C739DCDE1B48E0240074D8F2 /* LicenseGenerator.swift in Sources */,
 				C739DCE11B48E1450074D8F2 /* CocoaFobError.swift in Sources */,
 				C7101B6F1B52C4A900A71BA8 /* CFUtil.swift in Sources */,
 			);
@@ -383,18 +384,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -431,18 +441,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -485,7 +504,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -505,7 +524,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelespresso.CocoaFob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -517,7 +536,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelespresso.CocoaFobTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -529,13 +548,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pixelespresso.CocoaFobTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 		C77D712B1B5496F00019F670 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DSTROOT = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -545,6 +565,7 @@
 		C77D712C1B5496F00019F670 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DSTROOT = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";

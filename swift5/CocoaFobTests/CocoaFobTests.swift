@@ -30,18 +30,18 @@ class CocoaFobTests: XCTestCase {
   + "-----END PUBLIC KEY-----\n"
   
   func testInitGeneratorPass() {
-    let keygen = CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+    let keygen = LicenseGenerator(privateKeyPEM: privateKeyPEM)
     XCTAssertNotNil(keygen?.privKey)
   }
   
   func testInitGeneratorFail() {
     let privateKeyPEM = "-----BEGIN DSA PRIVATE KEY-----\n"
-    let keygen = CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+    let keygen = LicenseGenerator(privateKeyPEM: privateKeyPEM)
     XCTAssert(keygen == nil)
   }
   
   func testGetNameData() {
-    let keygen = CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+    let keygen = LicenseGenerator(privateKeyPEM: privateKeyPEM)
     XCTAssertNotNil(keygen?.privKey)
     let name = "Joe Bloggs"
     let nameData = keygen?.getNameData(name)
@@ -55,7 +55,7 @@ class CocoaFobTests: XCTestCase {
   }
   
   func testGetSignerPass() {
-    let keygen = CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+    let keygen = LicenseGenerator(privateKeyPEM: privateKeyPEM)
     XCTAssertNotNil(keygen?.privKey)
     let name = "Joe Bloggs"
     let nameData = keygen?.getNameData(name)
@@ -79,7 +79,7 @@ class CocoaFobTests: XCTestCase {
       XCTAssertNotNil(digestTypeAttr)
       let digestTypeFromAttr = digestTypeAttr! as! NSString
       XCTAssertNotNil(digestTypeFromAttr, "Expected to get SHA1 transform type back")
-      XCTAssertEqual(digestTypeFromAttr, kSecDigestSHA1)
+      XCTAssertEqual(digestTypeFromAttr, kSecDigestSHA1 as NSString)
     }
   }
   
@@ -98,7 +98,7 @@ class CocoaFobTests: XCTestCase {
   }
   
   func testGeneratePass() {
-    let keygen = CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+    let keygen = LicenseGenerator(privateKeyPEM: privateKeyPEM)
     XCTAssertNotNil(keygen?.privKey)
     do {
       if let actual = try keygen?.generate("Joe Bloggs") {
@@ -111,18 +111,18 @@ class CocoaFobTests: XCTestCase {
   }
   
   func testInitVerifierPass() {
-    let verifier = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    let verifier = LicenseVerifier(publicKeyPEM: publicKeyPEM)
     XCTAssertNotNil(verifier?.pubKey)
   }
   
   func testInitVerifierFail() {
     let publicKeyPEM = "-----BEGIN PUBLIC KEY-----\n"
-    let keychecker = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    let keychecker = LicenseVerifier(publicKeyPEM: publicKeyPEM)
     XCTAssertNil(keychecker?.pubKey)
   }
   
   func testVerifyPass() {
-    let verifier = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    let verifier = LicenseVerifier(publicKeyPEM: publicKeyPEM)
     XCTAssertNotNil(verifier?.pubKey)
     let name = "Joe Bloggs"
     let regKey = "GAWQE-F9AQP-XJCCL-PAFAX-NU5XX-EUG6W-KLT3H-VTEB9-A9KHJ-8DZ5R-DL74G-TU4BN-7ATPY-3N4XB-V4V27-Q"
@@ -131,7 +131,7 @@ class CocoaFobTests: XCTestCase {
   }
   
   func testVerifyBadNameFail() {
-    let verifier = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    let verifier = LicenseVerifier(publicKeyPEM: publicKeyPEM)
     XCTAssertNotNil(verifier?.pubKey)
     let name = "Joe Bloggs II"
     let regKey = "GAWQE-F9AQP-XJCCL-PAFAX-NU5XX-EUG6W-KLT3H-VTEB9-A9KHJ-8DZ5R-DL74G-TU4BN-7ATPY-3N4XB-V4V27-Q"
@@ -140,7 +140,7 @@ class CocoaFobTests: XCTestCase {
   }
   
   func testVerifyBadKeyFail() {
-    let verifier = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    let verifier = LicenseVerifier(publicKeyPEM: publicKeyPEM)
     XCTAssertNotNil(verifier?.pubKey)
     let name = "Joe Bloggs"
     let regKey = "foo bar"
@@ -149,7 +149,7 @@ class CocoaFobTests: XCTestCase {
   }
   
   func testVerifyEmptyKeyFail() {
-    let verifier = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    let verifier = LicenseVerifier(publicKeyPEM: publicKeyPEM)
     XCTAssertNotNil(verifier?.pubKey)
     let name = "Joe Bloggs"
     let regKey = ""
@@ -158,7 +158,7 @@ class CocoaFobTests: XCTestCase {
   }
   
   func testVerifyEmptyNameAndKeyFail() {
-    let verifier = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    let verifier = LicenseVerifier(publicKeyPEM: publicKeyPEM)
     XCTAssertNotNil(verifier?.pubKey)
     let name = ""
     let regKey = ""
@@ -167,7 +167,7 @@ class CocoaFobTests: XCTestCase {
   }
   
   func testVerifyEmptyNameFail() {
-    let verifier = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+    let verifier = LicenseVerifier(publicKeyPEM: publicKeyPEM)
     XCTAssertNotNil(verifier?.pubKey)
     let name = ""
     let regKey = "GAWQE-F9AQP-XJCCL-PAFAX-NU5XX-EUG6W-KLT3H-VTEB9-A9KHJ-8DZ5R-DL74G-TU4BN-7ATPY-3N4XB-V4V27-Q"
@@ -176,13 +176,13 @@ class CocoaFobTests: XCTestCase {
   }
   
   func testGenerateAndVerifyPass() {
-    let keygen = CocoaFobLicGenerator(privateKeyPEM: privateKeyPEM)
+    let keygen = LicenseGenerator(privateKeyPEM: privateKeyPEM)
     XCTAssertTrue(keygen != nil)
     XCTAssertNotNil(keygen?.privKey)
     let name = "Joe Bloggs"
     do {
       if let regKey = try keygen?.generate(name) {
-        let verifier = CocoaFobLicVerifier(publicKeyPEM: publicKeyPEM)
+        let verifier = LicenseVerifier(publicKeyPEM: publicKeyPEM)
         XCTAssertNotNil(verifier?.pubKey)
         let result = verifier?.verify(regKey, forName: name) ?? false
         XCTAssertTrue(result)

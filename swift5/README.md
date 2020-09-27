@@ -1,4 +1,6 @@
-# CocoaFob Swift 3.0 Port
+# CocoaFob Swift 5.0 Port
+
+For a Swift 4-based version, see https://github.com/glebd/cocoafob/tree/master/swift4
 
 ## Instructions
 

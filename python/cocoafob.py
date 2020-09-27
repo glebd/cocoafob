@@ -11,8 +11,8 @@ def make_license_source(product_code, name):
 # a product code string and a registration name.
 def make_license(private_key_string, product_code, name):
   private_key = crypto.load_privatekey(crypto.FILETYPE_PEM, private_key_string)
-  signature = crypto.sign(private_key, make_license_source(product_code, name), 'dss1')
-  
+  signature = crypto.sign(private_key, make_license_source(product_code, name), 'sha1')
+  # Use sha1 instead of dss1 to avoid 'ValueError("No such digest method")'
   encoded_signature = base64.b32encode(signature)
   # Replace 'O' with 8, 'I' with 9
   # See http://members.shaw.ca/akochoi-old/blog/2004/11-07/index.html
@@ -31,7 +31,8 @@ def verify_license(public_key_string, encoded_signature, product_code, name):
   certificate = crypto.X509()
   certificate.set_pubkey(public_key)
   try:
-    crypto.verify(certificate, decoded_signature, make_license_source(product_code, name), 'dss1')
+    crypto.verify(certificate, decoded_signature, make_license_source(product_code, name), 'sha1')
+    # Use sha1 instead of dss1 to avoid 'ValueError("No such digest method")'
     return True
   except:
     return False
