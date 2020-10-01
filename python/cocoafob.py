@@ -5,7 +5,7 @@ from OpenSSL import crypto # requires at least version 0.15.2 (or the latest ver
 # A source string the contains product code name and the user's registration name,
 # separated by a comma.
 def make_license_source(product_code, name):
-  return product_code + ',' + name
+  return (product_code + ',' + name).encode('utf8')
 
 # This method generates a registration code. It receives your private key,
 # a product code string and a registration name.
@@ -13,7 +13,7 @@ def make_license(private_key_string, product_code, name):
   private_key = crypto.load_privatekey(crypto.FILETYPE_PEM, private_key_string)
   signature = crypto.sign(private_key, make_license_source(product_code, name), 'sha1')
   # Use sha1 instead of dss1 to avoid 'ValueError("No such digest method")'
-  encoded_signature = base64.b32encode(signature)
+  encoded_signature = base64.b32encode(signature).decode('utf8')
   # Replace 'O' with 8, 'I' with 9
   # See http://members.shaw.ca/akochoi-old/blog/2004/11-07/index.html
   encoded_signature = encoded_signature.replace('O', '8').replace('I', '9')
@@ -45,15 +45,15 @@ def main():
   
   # test generation
   license = make_license(private_key_string, 'product', 'user')
-  print 'license is ' + license
+  print ('license is ' + license)
   
   # test verification
   assert(verify_license(public_key_string, license, 'product', 'user'))  # This throws on an invalid license
-  print 'verification successful'
+  print ('verification successful')
 
   # test rejection of invalid signature
   assert(not verify_license(public_key_string, license, 'product', 'WRONGUSER'))
-  print 'rejection successful'
+  print ('rejection successful')
 
 if __name__ == '__main__':
   main()
