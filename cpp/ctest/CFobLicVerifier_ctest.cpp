@@ -8,7 +8,7 @@
 
 #include <catch2/catch.hpp>
 #include "CFob_ctest_common.hpp"
-#include "CFobLicVerifier.hpp"
+#include "CocoaFob/CFobLicVerifier.hpp"
 
 SCENARIO( "License generators should only be created if a public key is passed in", "[verifier] [publicKey]" )
 {

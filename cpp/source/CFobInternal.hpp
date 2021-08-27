@@ -9,7 +9,7 @@
 #ifndef CFobInternal_hpp
 #define CFobInternal_hpp
 
-#include "CFobDataTypes.hpp"
+#include "CocoaFob/CFobDataTypes.hpp"
 
 namespace CFob
 {

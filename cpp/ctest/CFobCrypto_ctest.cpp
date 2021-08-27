@@ -7,7 +7,7 @@
 //
 
 #include <catch2/catch.hpp>
-#include "CFobCrypto.hpp"
+#include "CocoaFob/CFobCrypto.hpp"
 
 
 SCENARIO("CreateDSAPubKeyFromPublicKeyPEM", "[]")
