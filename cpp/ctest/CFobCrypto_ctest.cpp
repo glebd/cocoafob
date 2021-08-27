@@ -6,7 +6,7 @@
 //  Copyright © 2016 Jaime O. Rios. All rights reserved.
 //
 
-#include "catch.hpp"
+#include <catch2/catch.hpp>
 #include "CFobCrypto.hpp"
 
 
