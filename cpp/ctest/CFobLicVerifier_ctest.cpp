@@ -15,7 +15,7 @@ SCENARIO( "License generators should only be created if a public key is passed i
     GIVEN("No public key")
     {
         auto licenseVer = CreateCFobLicVerifier("");
-        
+
         THEN( "The result should be a nullptr" )
         {
             REQUIRE(licenseVer == nullptr);

@@ -18,15 +18,15 @@ class CFobLicGenerator
 {
 public:
     auto SetPrivateKey() -> std::tuple<bool, ErrorMessage>;
-    
+
     auto GenerateRegCodeForName(const std::string name) -> std::tuple<bool, RegCode>;
-    
+
 private:
     template <typename T>
     friend T CreateCFobLicGenerator(const UTF8String privateKey );
-    
+
     CFobLicGenerator(const std::string privateKey);
-    
+
     CFobLicGenerator() = delete;
     const UTF8String _privateKey;
 };
@@ -40,7 +40,7 @@ T CreateCFobLicGenerator(const UTF8String privateKey )
 {
     if (privateKey.length() == 0)
         return T{};
-    
+
     return T{};
 }
 
