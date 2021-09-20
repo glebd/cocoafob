@@ -6,7 +6,7 @@
 //  Copyright © 2016 Jaime O. Rios. All rights reserved.
 //
 
-#include "CFobLicGenerator.hpp"
+#include "CocoaFob/CFobLicGenerator.hpp"
 
 CFobLicGenerator::CFobLicGenerator(const std::string privateKey)
 : _privateKey(privateKey)

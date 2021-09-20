@@ -6,16 +6,16 @@
 //  Copyright © 2016 Jaime O. Rios. All rights reserved.
 //
 
-#include "catch.hpp"
+#include <catch2/catch.hpp>
 #include "CFob_ctest_common.hpp"
-#include "CFobLicVerifier.hpp"
+#include "CocoaFob/CFobLicVerifier.hpp"
 
 SCENARIO( "License generators should only be created if a public key is passed in", "[verifier] [publicKey]" )
 {
     GIVEN("No public key")
     {
         auto licenseVer = CreateCFobLicVerifier("");
-        
+
         THEN( "The result should be a nullptr" )
         {
             REQUIRE(licenseVer == nullptr);

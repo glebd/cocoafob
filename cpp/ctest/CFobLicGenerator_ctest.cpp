@@ -7,9 +7,9 @@
 //
 
 #define CATCH_CONFIG_MAIN
-#include "catch.hpp"
+#include <catch2/catch.hpp>
 #include "CFob_ctest_common.hpp"
-#include "CFobLicGenerator.hpp"
+#include "CocoaFob/CFobLicGenerator.hpp"
 
 SCENARIO("When given a bad private key", "[base] [generator]")
 {

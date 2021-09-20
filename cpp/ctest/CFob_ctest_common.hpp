@@ -9,7 +9,7 @@
 #ifndef CFob_ctest_common_hpp
 #define CFob_ctest_common_hpp
 
-#include "CFobDataTypes.hpp"
+#include "CocoaFob/CFobDataTypes.hpp"
 
 auto GetPublicKey() -> UTF8String;
 auto GetPrivateKey() -> UTF8String;
