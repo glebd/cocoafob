@@ -23,68 +23,68 @@ cli.addOptions(pubKey, pvtKey, userName, regKey, urlSchema, help)
 var errStream = Stderr()
 
 do {
-  try cli.parse()
+    try cli.parse()
 } catch {
-  cli.printUsage(error)
-  exit(EX_USAGE)
+    cli.printUsage(error)
+    exit(EX_USAGE)
 }
 
 if let pub = pubKey.value {
-  
-  if let user = userName.value, let reg = regKey.value {
-    do {
-      print("Name: \(user)\n Key: \(reg)")
-      if try verifyRegKey(pub, userName: user, regKey: reg) {
-        print("Registration is VALID")
-      } else {
-        print("Registration is INVALID")
-        exit(1)
-      }
-    } catch {
-      print("ERROR: Unable to verify registration key -- \(error)", &errStream)
-      exit(EX_DATAERR)
-    }
-  } else {
-    print("ERROR: Specifying a public key means 'verify' and requires both user name and registration key", &errStream)
-    cli.printUsage()
-    exit(EX_USAGE)
-  }
-  
-} else if let pvt = pvtKey.value {
-  
-  if let user = userName.value {
-    if regKey.value != nil {
-      print("WARNING: Specifying a private key means 'generate' and doesn't need a registration key", &errStream)
-    }
-    do {
-      if let schema = urlSchema.value {
-        if let url = try generateRegURL(pvt, userName: user, schema: schema) {
-          print(url)
-        } else {
-          print("ERROR: Unable to generate registration URL")
+
+    if let user = userName.value, let reg = regKey.value {
+        do {
+            print("Name: \(user)\n Key: \(reg)")
+            if try verifyRegKey(pubKeyPath: pub, userName: user, regKey: reg) {
+                print("Registration is VALID")
+            } else {
+                print("Registration is INVALID")
+                exit(1)
+            }
+        } catch {
+            print("ERROR: Unable to verify registration key -- \(error)", errStream)
+            exit(EX_DATAERR)
         }
-      } else {
-        let reg = try generateRegKey(pvt, userName: user)
-        print("Name: \(user)\n Key: \(reg)")
-      }
-    } catch {
-      print("ERROR: Unable to generate registration key -- \(error)", &errStream)
-      exit(EX_DATAERR)
+    } else {
+        print("ERROR: Specifying a public key means 'verify' and requires both user name and registration key", errStream)
+        cli.printUsage()
+        exit(EX_USAGE)
     }
-  } else {
-    print("ERROR: Specifying a private key means 'verify' and requires a user name", &errStream)
-    cli.printUsage()
-    exit(EX_USAGE)
-  }
-  
+
+} else if let pvt = pvtKey.value {
+
+    if let user = userName.value {
+        if regKey.value != nil {
+            print("WARNING: Specifying a private key means 'generate' and doesn't need a registration key", errStream)
+        }
+        do {
+            if let schema = urlSchema.value {
+                if let url = try generateRegURL(pvtKeyPath: pvt, userName: user, schema: schema) {
+                    print(url)
+                } else {
+                    print("ERROR: Unable to generate registration URL")
+                }
+            } else {
+                let reg = try generateRegKey(pvtKeyPath: pvt, userName: user)
+                print("Name: \(user)\n Key: \(reg)")
+            }
+        } catch {
+            print("ERROR: Unable to generate registration key -- \(error)", errStream)
+            exit(EX_DATAERR)
+        }
+    } else {
+        print("ERROR: Specifying a private key means 'verify' and requires a user name", errStream)
+        cli.printUsage()
+        exit(EX_USAGE)
+    }
+
 } else {
 
-  if help.value {
-    cli.printUsage()
-  } else {
-    print("ERROR: Either private or public key must be provided", &errStream)
-    cli.printUsage()
-    exit(EX_USAGE)
-  }
+    if help.value {
+        cli.printUsage()
+    } else {
+        print("ERROR: Either private or public key must be provided", errStream)
+        cli.printUsage()
+        exit(EX_USAGE)
+    }
 
 }
