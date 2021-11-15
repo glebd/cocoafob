@@ -9,8 +9,8 @@
 import Foundation
 
 // From http://ericasadun.com/2015/06/09/swift-2-0-how-to-print/
-public struct Stderr: OutputStreamType {
-  public mutating func write(string: String) {
-    fputs(string, stderr)
-  }
+public struct Stderr: TextOutputStream {
+    public mutating func write(_ string: String) {
+        fputs(string, stderr)
+    }
 }
