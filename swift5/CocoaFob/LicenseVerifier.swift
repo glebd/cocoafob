@@ -60,10 +60,18 @@ public struct LicenseVerifier {
   */
   public func verify(_ regKey: String, forName name: String) -> Bool {
     do {
-      guard let keyData = regKey.cocoaFobFromReadableKey().data(using: String.Encoding.utf8) else { return false }
+      let keyString = regKey.cocoaFobFromReadableKey()
+      guard let keyData = keyString.data(using: String.Encoding.utf8) else { return false }
       guard let nameData = name.data(using: String.Encoding.utf8) else { return false }
       let decoder = try getDecoder(keyData)
       let signature = try cfTry(.error) { SecTransformExecute(decoder, $0) }
+
+      // reverse the signature to check for truncated data / additional data entered by the user
+      let encoder = try getEncoder(signature as! Data)
+      let reverseSignature = try cfTry(.error) { SecTransformExecute(encoder, $0) }
+      let reverseSignatureString = String(decoding: reverseSignature as! Data, as: UTF8.self).replacingOccurrences(of: "=", with: "")
+      if(reverseSignatureString != keyString) { return false }
+
       let verifier = try getVerifier(self.pubKey, signature: signature as! Data, nameData: nameData)
       let result = try cfTry(.error) { SecTransformExecute(verifier, $0) }
       let boolResult = result as! CFBoolean
@@ -74,6 +82,11 @@ public struct LicenseVerifier {
   }
   
   // MARK: - Helper functions
+  fileprivate func getEncoder(_ signature: Data) throws -> SecTransform {
+    let encoder = try cfTry(.error) { return SecEncodeTransformCreate(kSecBase32Encoding, $0) }
+    let _ = try cfTry(.error) { return SecTransformSetAttribute(encoder, kSecTransformInputAttributeName, signature as CFTypeRef, $0) }
+    return encoder
+  }
   
   fileprivate func getDecoder(_ keyData: Data) throws -> SecTransform {
     let decoder = try cfTry(.error) { return SecDecodeTransformCreate(kSecBase32Encoding, $0) }
