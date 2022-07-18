@@ -144,6 +144,30 @@
 		SecTransformSetAttribute(decoder, kSecTransformInputAttributeName, keyDataRef, NULL);
 		CFDataRef signature = SecTransformExecute(decoder, NULL);
 		if (signature) {
+
+            // reverse the signature to check for truncated data / additional data entered by the user
+            NSData *reversedKeyData = nil;
+            SecTransformRef encoder = SecEncodeTransformCreate(kSecBase32Encoding, NULL);
+            if (encoder) {
+                SecTransformSetAttribute(encoder, kSecTransformInputAttributeName, signature, NULL);
+                reversedKeyData = CFBridgingRelease(SecTransformExecute(encoder, NULL));
+            }
+            CFRelease(encoder);
+
+            if (!reversedKeyData) {
+                return NO;
+            }
+
+            NSString *reversedKeyString = [[NSString alloc] initWithData:reversedKeyData encoding:NSUTF8StringEncoding];
+
+            // Cut off the padding.
+            NSString *reversedKeyNoDashesNoPadding = [reversedKeyString stringByReplacingOccurrencesOfString:@"=" withString:@""];
+
+            if (![reversedKeyNoDashesNoPadding isEqualToString:keyNoDashes]) {
+                return NO;
+            }
+
+            //now verify the key
 			SecTransformRef verifier = SecVerifyTransformCreate(self.publicKey, signature, NULL);
 			if (verifier) {
 				SecTransformSetAttribute(verifier, kSecTransformInputAttributeName, nameDataRef, NULL);
