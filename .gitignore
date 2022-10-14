@@ -6,3 +6,5 @@ build
 xcuserdata
 *.xccheckout
 *.xcscmblueprint
+.build/
+.swiftpm/
