@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'CocoaFob'
-  s.version          = '2.2.0'
+  s.version          = '2.2.1'
   s.swift_versions   = ["5.6", "5.5", "5.4", '5.3', '5.2', '5.1', '5.0']
   s.summary          = 'macOS app registration code verification & generation.'
   s.description      = <<-DESC
