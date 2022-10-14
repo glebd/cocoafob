@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'CocoaFob'
-  s.version          = '2.2.0'
-  s.swift_versions   = ['5.3', '5.2', '5.1', '5.0']
+  s.version          = '2.2.1'
+  s.swift_versions   = ["5.6", "5.5", "5.4", '5.3', '5.2', '5.1', '5.0']
   s.summary          = 'macOS app registration code verification & generation.'
   s.description      = <<-DESC
 CocoaFob is a set of helper code snippets for registration code generation and
@@ -13,7 +13,7 @@ FastSpring <http://fastspring.com>.
   s.homepage         = 'https://github.com/glebd/cocoafob'
   s.license          = 'BSD'
   s.author           = { 'Gleb Dolgich' => '@glebd' }
-  s.source           = { :git => 'https://github.com/glebd/cocoafob.git', :branch => 'master' }
+  s.source           = { :git => 'https://github.com/glebd/cocoafob.git', :tag => s.version }
 
   s.module_name = 'CocoaFob'
   s.platform = :osx
