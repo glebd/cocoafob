@@ -209,5 +209,14 @@ class CocoaFobTests: XCTestCase {
     let result = verifier?.verify(regKey, forName: name) ?? false
     XCTAssertFalse(result)
   }
-  
+
+  func testVerifyWhitespaceInMiddleFails() {
+    let verifier = LicenseVerifier(publicKeyPEM: publicKeyPEM)
+    XCTAssertNotNil(verifier?.pubKey)
+    let name = "Joe Bloggs"
+    let regKey = "GAWQE-F9AQP- XJCCL-PAFAX-NU5XX - EUG6W-KLT3H-VTEB9\n-A9KHJ-8DZ5R- DL74G-\tTU4BN-7ATPY-3N4XB-V4V27-Q"
+    let result = verifier?.verify(regKey, forName: name) ?? false
+    XCTAssertFalse(result)
+  }
+
 }
