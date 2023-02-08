@@ -70,7 +70,7 @@ class License_Generator
 		// decode Key
 		$decodedHash = base32_decode($undashed);
 
-		$ok = openssl_verify($stringData, $decodedHash, $this->public_key, OPENSSL_ALGO_DSS1);
+		$ok = openssl_verify($stringData, $decodedHash, $this->public_key, OPENSSL_ALGO_SHA1);
 		if ($ok == 1) {
 		    return TRUE;
 		} elseif ($ok == 0) {
