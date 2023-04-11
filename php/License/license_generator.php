@@ -7,7 +7,7 @@ class License_Generator
 
 	#-#############################################
 	# desc: constructor
-	function License_Generator(){
+	function __construct() {
 
 
 		## NOTE ###############################################
