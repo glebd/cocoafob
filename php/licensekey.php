@@ -50,7 +50,7 @@ class License_Generator
 		$stringData = $product_code.",".$name.",".$email;
 	echo "Data: ".$stringData."<br>";
 		$binary_signature ="";
-		openssl_sign($stringData, $binary_signature, $this->private_key, OPENSSL_ALGO_DSS1);
+		openssl_sign($stringData, $binary_signature, $this->private_key, OPENSSL_ALGO_SHA1);
 	echo "Binary Sig: ".$binary_signature."<br>";
 		
 		// base 32 encode the stuff
@@ -104,7 +104,7 @@ class License_Generator
 	echo "Binary Sig: ".$decodedHash. "<br>";				
 		//digest the original Data
 		$stringData = $product_code.",".$name.",".$email;
-		$ok = openssl_verify($stringData, $decodedHash, $this->public_key, OPENSSL_ALGO_DSS1);
+		$ok = openssl_verify($stringData, $decodedHash, $this->public_key, OPENSSL_ALGO_SHA1);
 		if ($ok == 1) {
 		    echo "<strong>GOOD</strong>";
 		} elseif ($ok == 0) {

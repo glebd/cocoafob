@@ -7,7 +7,7 @@ class License_Generator
 
 	#-#############################################
 	# desc: constructor
-	function License_Generator(){
+	function __construct() {
 
 
 		## NOTE ###############################################
@@ -32,7 +32,7 @@ class License_Generator
 
 		#################################################
 		$binary_signature ="";
-		openssl_sign($stringData, $binary_signature, $this->private_key, OPENSSL_ALGO_DSS1);
+		openssl_sign($stringData, $binary_signature, $this->private_key, OPENSSL_ALGO_SHA1);
 		// base 32 encode the signature
 		$encoded = base32_encode($binary_signature);
 		// replace O with 8 and I with 9
